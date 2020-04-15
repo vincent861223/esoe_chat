@@ -3,6 +3,8 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import server.database.Database;
+
 
 public class Server extends Thread{
 	private ServerSocket server;
@@ -40,6 +42,9 @@ public class Server extends Thread{
 	public static void main(String[] argv) {
 		Server server = new Server(12345);
 		server.start();
+		Database database = new Database("Database/chat.db");
+		
+		
 	}
 	
 }

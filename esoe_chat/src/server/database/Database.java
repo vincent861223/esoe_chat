@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 public class Database {
 	private String dbPath;
 	private String initSQLPath;
-	public Database(String dbPath, String jsonPath){
+	public Database(String dbPath){
 		// Pass in "" as jsonPath if the database has already established.
 		// Pass in the jsonPath to clear the database and init the database by jsonPath.
 		this.dbPath = dbPath;
@@ -27,7 +27,7 @@ public class Database {
 				initDB();
 			}
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
 	}
 	
@@ -36,8 +36,7 @@ public class Database {
 	    	File f = new File(this.initSQLPath);
 	    	Scanner s = new Scanner(f);
 	    	s.useDelimiter("(;(\r)?\n)|((\r)?\n)?(--)?.*(--(\r)?\n)");
-	    	Statement st = null;
-	        st = this.connect().createStatement();
+	    	Statement st = this.connect().createStatement();
 	        while (s.hasNext()){
 	            String line = s.next();
 	            if (line.startsWith("/*!") && line.endsWith("*/")){
@@ -52,7 +51,7 @@ public class Database {
 	        s.close();
 	        st.close();
 	    }catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
 	}
 
@@ -61,12 +60,12 @@ public class Database {
 		Connection conn = null;
 		
 		try {
-			Class.forName("org.sqlite.JDBC"); 
+			//Class.forName("org.sqlite.JDBC"); 
 			String url = "jdbc:sqlite:" + this.dbPath;
 			conn = DriverManager.getConnection(url);
 			//System.out.println("Connection to SQLite has been established.");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
 		return conn;
 	}
