@@ -1,10 +1,9 @@
-package chat;
+package container;
 
 import java.io.Serializable;
 
-import org.json.JSONObject;
 
-public class Response implements Serializable{
+public class Response extends Container implements Serializable{
 	/**
 	 * 
 	 */
@@ -26,8 +25,4 @@ public class Response implements Serializable{
 		this.status = status;
 	}
 	
-	@Override
-	public String toString() {
-		return new JSONObject(this).toString();
-	}
 }

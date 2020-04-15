@@ -1,4 +1,4 @@
-package chat_server;
+package server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,10 +21,12 @@ public class Server extends Thread{
 	public void run() {
 		Socket clientSocket;
 		while(true) {
+			// Loop for accepting new client
 			clientSocket = null;
 			try {
 				synchronized(server) {
 					clientSocket = server.accept();
+					// When a new client is accepted, create a new thread (RequestHandler) to handle the client request.
 					(new RequestHandler(clientSocket)).start();
 				}
 				

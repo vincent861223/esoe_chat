@@ -1,17 +1,22 @@
-package chat_client;
+package client;
 
 import java.net.Socket;
-import chat.Request;
-import chat.Response;
+
+import container.Request;
+import container.Response;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class Client {
-	private String ip;
-	private int port;
+public class Agent {
+	protected String ip;
+	protected int port;
+	
+	public Agent() {
+		this("127.0.0.1", 12345);
+	}
 
-	public Client(String ip, int port) {
+	public Agent(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
 	}
@@ -24,9 +29,9 @@ public class Client {
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
 			
-			out.writeObject(request);
+			out.writeObject(request); // Send the request to server.
 			
-			Response response = (Response) in.readObject();
+			Response response = (Response) in.readObject(); // Receive response from server
 			
 			out.close();
 			in.close();
@@ -38,11 +43,4 @@ public class Client {
 		}
 	}
 
-	public static void main(String args[]) {
-		Client client = new Client("127.0.0.1", 12345);
-		Request request = new Request("SendMsg", "Hello", "A", "B");
-		System.out.println("Request: " + request);
-		Response response = client.sendRequest(request);
-		System.out.println("Response: " + response);
-	}
 }

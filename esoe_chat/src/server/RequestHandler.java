@@ -1,10 +1,11 @@
-package chat_server;
+package server;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import chat.Request;
-import chat.Response;
+
+import container.Request;
+import container.Response;
 
 
 public class RequestHandler extends Thread{
@@ -14,7 +15,6 @@ public class RequestHandler extends Thread{
 		this.clientSocket = clientSocket;
 	}
 	
-	
 	public void run() {
 		ObjectInputStream in;
 		ObjectOutputStream out;
@@ -23,17 +23,34 @@ public class RequestHandler extends Thread{
 			out = new ObjectOutputStream(clientSocket.getOutputStream());
 			in = new ObjectInputStream(clientSocket.getInputStream());
 			
+			// Get request from client
 			Request request = (Request) in.readObject();
 			System.out.println("[Client " + clientSocket.getInetAddress() + "]: " + request);
 			
-			Response response = new Response("OK");
+			// Handle the request and send response to client
+			Response response = handleRequest(request);
 			out.writeObject(response);
+			
 			in.close();
 			out.close();
 			clientSocket.close();
 		}catch(Exception e){
 			System.out.println("RequestHandler error: " + e.toString());
 		}
+	}
+	
+	public Response handleRequest(Request request) {
+		switch (request.command) {
+			case "Register":
+				break;
+			case "Login":
+				break;
+			case "SendMsg":
+				break;
+			default:
+				break;
+		}
+		return new Response("OK");
 	}
 	
 }
