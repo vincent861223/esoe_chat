@@ -1,14 +1,11 @@
 package client;
 
-import container.ChatroomInfo;
 import container.Response;
 
 public class ChatController {
-	private Boolean loggedIn = false;
 	private String serverIP;
 	private int serverPort;
-	private String username;
-	private String password;
+	private String userID;
 	private RegisterAgent registerAgent;
 	private LoginAgent loginAgent;
 	private MessageAgent messageAgent;
@@ -18,7 +15,6 @@ public class ChatController {
 		this.serverPort = serverPort;
 		this.registerAgent = new RegisterAgent(serverIP, serverPort);
 		this.loginAgent = new LoginAgent(serverIP, serverPort);
-		this.messageAgent = new MessageAgent(serverIP, serverPort);
 	}
 	
 	public Response register(String username, String email, String password) {
@@ -26,16 +22,27 @@ public class ChatController {
 	}
 	
 	public Response login(String username, String password) {
-		return loginAgent.login(username, password);
+		Response response = loginAgent.login(username, password);
+		if(response.status.equals("OK")) this.userID = response.msg;
+		return response;
 	}
 	
 	public Response creatChatroom(String[] members) {
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
 		return messageAgent.createChatroom(members);
 	}
 	
-	public Response sendMessage(ChatroomInfo chatroomInfo, String msg) {
+	public Response sendMessage(String chatroomID, String msg) {
 		// Send a msg to a chatroom
-		return messageAgent.sendMessage(chatroomInfo, msg);
+		
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
+		return messageAgent.sendMessage(chatroomID, msg);
 	}
 	
 }

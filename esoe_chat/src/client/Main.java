@@ -9,13 +9,13 @@ public class Main {
 		Response response;
 		response = chatController.register("Vincent", "aaa@bbb.com", "123");
 		System.out.println(response);
-		response = chatController.login("Vincent", "123");
-		System.out.println(response);
 		response = chatController.login("Vincent", "1234");
 		System.out.println(response);
-		response = chatController.creatChatroom(new String[]{"Alice", "Bob"});
+		response = chatController.login("Vincent", "123");
 		System.out.println(response);
-//		response = chatController.sendMessage("Kevin", "Hello");
-//		System.out.println(response);
+		response = chatController.creatChatroom(new String[]{"Vincent", "Alice", "Bob"});
+		System.out.println(response);
+		response = chatController.sendMessage(response.msg, "Hello");
+		System.out.println(response);
 	}
 }

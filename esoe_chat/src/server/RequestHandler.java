@@ -4,6 +4,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import container.ChatroomInfo;
+import container.LoginInfo;
+import container.MessageInfo;
+import container.RegisterInfo;
 import container.Request;
 import container.Response;
 import server.database.ChatDatabase;
@@ -44,15 +48,16 @@ public class RequestHandler extends Thread{
 		ChatDatabase chatDatabase = new ChatDatabase("Database/chat.db", "Database/init_table.sql");
 		switch (request.command) {
 			case "Register":
-				return chatDatabase.addUser(request.registerInfo);
+				return chatDatabase.addUser((RegisterInfo)request.info);
 			case "Login":
-				return chatDatabase.login(request.loginInfo);
+				return chatDatabase.login((LoginInfo)request.info);
+			case "NewChatroom":
+				return chatDatabase.newChatroom((ChatroomInfo)request.info);
 			case "SendMsg":
-				break;
+				return chatDatabase.sendMessage((MessageInfo)request.info);
 			default:
 				return new Response("Unknown command");
 		}
-		return new Response("Unknown command");
 	}
 	
 }

@@ -6,8 +6,10 @@ import container.Request;
 import container.Response;
 
 public class MessageAgent extends Agent {
-	public MessageAgent(String ip, int port) {
+	private String userID;
+	public MessageAgent(String ip, int port, String userID) {
 		super(ip, port);
+		this.userID = userID;
 	}
 	
 	public Response createChatroom(String[] members) {
@@ -16,8 +18,8 @@ public class MessageAgent extends Agent {
 		return sendRequest(request);
 	}
 	
-	public Response sendMessage(ChatroomInfo chatroomInfo, String msg) {
-		MessageInfo messageInfo = new MessageInfo(chatroomInfo.chatroomID, msg);
+	public Response sendMessage(String chatroomID, String msg) {
+		MessageInfo messageInfo = new MessageInfo(chatroomID, userID, msg);
 		Request request = new Request("SendMsg", messageInfo);
 		return sendRequest(request);
 	}

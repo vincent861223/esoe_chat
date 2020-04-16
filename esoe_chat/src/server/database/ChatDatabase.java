@@ -38,11 +38,27 @@ public class ChatDatabase extends Database {
 		else return new Response("Failed", "Wrong password");
 	}
 	
+	
+	
 	public Response newChatroom(ChatroomInfo chatroomInfo) {
 		// Check member relationship
 		// each member must be a friend of the establisher (the first member)
+		for(int i= 1; i < chatroomInfo.members.length; i++) {
+			if(!areFriend(chatroomInfo.members[0], chatroomInfo.members[i])) {
+				return new Response("Failed", "Establisher is not a friend of " + chatroomInfo.members[i]);
+			}
+		}
 		
-		return null;
+		// Create a new chatroom
+		String chatroomID = UUID.randomUUID().toString();
+		for(String member : chatroomInfo.members) {
+			HashMap<String, String> attr = new HashMap<String, String>();
+			attr.put("chatroomID", chatroomID);
+			attr.put("memberID", member);
+			Boolean success = insert("Chatroom", attr);
+			if(!success) return new Response("Failed", "Failed to add new Chatroom");
+		}
+		return new Response("OK", chatroomID);
 	}
 	
 	public Response sendMessage(MessageInfo messageInfo) {
@@ -58,8 +74,22 @@ public class ChatDatabase extends Database {
 //		// Access the chatroom
 //		// Create a new chatroom if not exist
 //		attr = new HashMap<String, String>();
-//		
-		return null;
+		
+		//
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("messageID", UUID.randomUUID().toString());
+		attr.put("chatroomID", messageInfo.chatroomID);
+		attr.put("message", messageInfo.message);
+		attr.put("sender", messageInfo.senderID);
+		attr.put("timestamp", getTimestamp());
+		Boolean success = insert("Message", attr);
+		if(success) return new Response("OK");
+		else return new Response("Failed", "DB send message error");
+	}
+	
+	private Boolean areFriend(String userA, String userB) {
+		
+		return true;
 	}
 	
 }

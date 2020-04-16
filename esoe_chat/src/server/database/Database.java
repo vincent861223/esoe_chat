@@ -4,6 +4,7 @@ package server.database;
 import java.io.File;
 import java.util.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.security.MessageDigest;
 
 public class Database {
@@ -290,5 +291,13 @@ public class Database {
 			encryptedString = Base64.getEncoder().encodeToString(encryptedString.getBytes());
 		}catch(Exception e){}
 		return encryptedString;
+	}
+
+	protected String getTimestamp() {
+		Timestamp time= new Timestamp(System.currentTimeMillis());//獲取系統當前時間 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String timeStr = df.format(time); 
+		time = Timestamp.valueOf(timeStr); 
+		return time.toString();
 	}
 }
