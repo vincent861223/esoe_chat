@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import container.Request;
 import container.Response;
+import server.database.ChatDatabase;
 
 
 public class RequestHandler extends Thread{
@@ -40,17 +41,18 @@ public class RequestHandler extends Thread{
 	}
 	
 	public Response handleRequest(Request request) {
+		ChatDatabase chatDatabase = new ChatDatabase("Database/chat.db", "Database/init_table.sql");
 		switch (request.command) {
 			case "Register":
-				break;
+				return chatDatabase.addUser(request.registerInfo);
 			case "Login":
-				break;
+				return chatDatabase.login(request.loginInfo);
 			case "SendMsg":
 				break;
 			default:
-				break;
+				return new Response("Unknown command");
 		}
-		return new Response("OK");
+		return new Response("Unknown command");
 	}
 	
 }

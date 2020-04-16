@@ -7,20 +7,15 @@ public class MessageInfo extends Container implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 72005063343133555L;
-	public String sender;
-	public String receiver;
+	public String chatroomID;
 	public String message;
+	
+	
 	public String getSender() {
-		return sender;
+		return chatroomID;
 	}
 	public void setSender(String sender) {
-		this.sender = sender;
-	}
-	public String getReceiver() {
-		return receiver;
-	}
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+		this.chatroomID = sender;
 	}
 	public String getMessage() {
 		return message;
@@ -31,9 +26,8 @@ public class MessageInfo extends Container implements Serializable{
 	public MessageInfo() {
 		
 	}
-	public MessageInfo(String sender, String receiver, String message) {
-		this.sender = sender;
-		this.receiver = receiver;
+	public MessageInfo(String chatroomID,String message) {
+		this.chatroomID = chatroomID;
 		this.message = message;
 	}
 }

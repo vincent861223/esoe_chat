@@ -1,5 +1,8 @@
 package client;
 
+import container.ChatroomInfo;
+import container.Response;
+
 public class ChatController {
 	private Boolean loggedIn = false;
 	private String serverIP;
@@ -18,16 +21,21 @@ public class ChatController {
 		this.messageAgent = new MessageAgent(serverIP, serverPort);
 	}
 	
-	public Boolean register(String username, String password, String email) {
+	public Response register(String username, String email, String password) {
 		return registerAgent.register(username, email, password);
 	}
 	
-	public Boolean login(String username, String password) {
+	public Response login(String username, String password) {
 		return loginAgent.login(username, password);
 	}
 	
-	public Boolean sendMessage(String receiver, String msg) {
-		return messageAgent.sendMessage(receiver, msg);
+	public Response creatChatroom(String[] members) {
+		return messageAgent.createChatroom(members);
+	}
+	
+	public Response sendMessage(ChatroomInfo chatroomInfo, String msg) {
+		// Send a msg to a chatroom
+		return messageAgent.sendMessage(chatroomInfo, msg);
 	}
 	
 }

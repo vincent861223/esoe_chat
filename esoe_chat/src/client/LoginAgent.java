@@ -8,10 +8,9 @@ public class LoginAgent extends Agent {
 	public LoginAgent(String ip, int port) {
 		super(ip, port);
 	}
-	public Boolean login(String username, String password) {
+	public Response login(String username, String password) {
 		LoginInfo loginInfo = new LoginInfo(username, password);
-		Request request = new Request("login", loginInfo);
-		Response response = sendRequest(request);
-		return response.status.equals("OK");
+		Request request = new Request("Login", loginInfo);
+		return sendRequest(request);
 	}
 }

@@ -9,10 +9,9 @@ public class RegisterAgent extends Agent {
 		super(ip, port);
 	}
 	
-	public Boolean register(String username, String email, String password) {
+	public Response register(String username, String email, String password) {
 		RegisterInfo registerInfo = new RegisterInfo(username, email, password);
 		Request request = new Request("Register", registerInfo);
-		Response response = sendRequest(request);
-		return response.status.equals("OK");
+		return sendRequest(request);
 	}
 }

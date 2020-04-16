@@ -1,25 +1,18 @@
 package server.database;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+
 import java.io.File;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
 import java.util.*;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.*;
 import java.security.MessageDigest;
 
 public class Database {
 	private String dbPath;
 	private String initSQLPath;
-	public Database(String dbPath){
-		// Pass in "" as jsonPath if the database has already established.
-		// Pass in the jsonPath to clear the database and init the database by jsonPath.
+	public Database(String dbPath, String initSQLPath){
+		// dbPath: the path you want your datebase to store. 
 		this.dbPath = dbPath;
-		this.initSQLPath = "Database/init_table.sql";
+		this.initSQLPath = initSQLPath;
 		try{
 			File f = new File(this.dbPath);
 			if(!f.exists()){
@@ -29,6 +22,10 @@ public class Database {
 		}catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	public Database() {
+		
 	}
 	
 	private void initDB(){
@@ -70,7 +67,7 @@ public class Database {
 		return conn;
 	}
 	
-	private int maxID(String table) {
+	protected int maxID(String table) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 
 		String sql = "SELECT MAX(id) FROM " + "`" + table + "`" ;
@@ -93,7 +90,7 @@ public class Database {
 		}
 	}
 	
-	private int len(String table) {
+	protected int len(String table) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 
 		String sql = "SELECT * FROM " + "`" + table + "`" ;
@@ -117,7 +114,7 @@ public class Database {
 		}
 	}
 
-	private Boolean insert(String table,  HashMap<String, String> attr) {
+	protected Boolean insert(String table,  HashMap<String, String> attr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String columns = "", values = "";
 		for(String key: attr.keySet()){
@@ -143,7 +140,7 @@ public class Database {
 		}
 	}
 
-	private Boolean update(String table,  HashMap<String, String> attr, HashMap<String, String> cond_attr) {
+	protected Boolean update(String table,  HashMap<String, String> attr, HashMap<String, String> cond_attr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String set_values = "";
 		for(String key: attr.keySet()){
@@ -174,7 +171,7 @@ public class Database {
 		}
 	}
 
-	private Boolean delete(String table,  HashMap<String, String> attr) {
+	protected Boolean delete(String table,  HashMap<String, String> attr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String conditions = "";
 		for(String key: attr.keySet()){
@@ -198,7 +195,7 @@ public class Database {
 		}
 	}
 
-	private List<HashMap<String, String>> select(String table,  HashMap<String, String> attr) {
+	protected List<HashMap<String, String>> select(String table,  HashMap<String, String> attr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String conditions = "";
 		for(String key: attr.keySet()){
@@ -238,7 +235,7 @@ public class Database {
 		}
 	}
 
-	private List<HashMap<String, String>> selectCondition(String table,  HashMap<String, String> attr) {
+	protected List<HashMap<String, String>> selectCondition(String table,  HashMap<String, String> attr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String conditions = "";
 		for(String key: attr.keySet()){
@@ -278,13 +275,13 @@ public class Database {
 		}
 	}
 
-	private List<HashMap<String, String>> selectAll(String table){
+	protected List<HashMap<String, String>> selectAll(String table){
 		HashMap<String, String> attr = new HashMap<>();
 		attr.put("'1'", "1");
 		return this.select(table, attr);
 	}
 	
-	private String hashPassword(String password){
+	protected String hashPassword(String password){
 		String encryptedString = "";
 		try{
 			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
