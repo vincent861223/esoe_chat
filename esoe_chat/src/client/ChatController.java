@@ -9,6 +9,7 @@ public class ChatController {
 	private RegisterAgent registerAgent;
 	private LoginAgent loginAgent;
 	private MessageAgent messageAgent;
+	private FriendAgent friendAgent;
 	
 	public ChatController(String serverIP, int serverPort) {
 		this.serverIP = serverIP;
@@ -51,6 +52,15 @@ public class ChatController {
 		// Create messageAgent if the user has logged in.
 		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
 		return messageAgent.getHistory(chatroomID);
+	}
+	
+	public Response addFriend(String friendID) {
+		// Add userID as friend
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
+		return friendAgent.addFriend(friendID);
 	}
 	
 }

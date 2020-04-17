@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import container.AddFriendInfo;
 import container.ChatroomInfo;
 import container.GetHistoryInfo;
 import container.LoginInfo;
@@ -52,6 +53,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.addUser((RegisterInfo)request.info);
 			case "Login":
 				return chatDatabase.login((LoginInfo)request.info);
+			case "AddFriend":
+				return chatDatabase.addFriend((AddFriendInfo)request.info);
 			case "NewChatroom":
 				return chatDatabase.newChatroom((ChatroomInfo)request.info);
 			case "SendMsg":

@@ -7,7 +7,10 @@ import java.util.UUID;
 
 import java.util.List;
 
+import container.AddFriendInfo;
 import container.ChatroomInfo;
+import container.Friend;
+import container.FriendList;
 import container.GetHistoryInfo;
 import container.LoginInfo;
 import container.Message;
@@ -42,6 +45,34 @@ public class ChatDatabase extends Database {
 		else return new Response("Failed", "Wrong password");
 	}
 	
+	public Response addFriend(AddFriendInfo addFriendInfo) {
+		// Check if the user exist.
+		if(!userExist(addFriendInfo.userID) || !userExist(addFriendInfo.friendID)) return new Response("Failed", "User not exist"); 
+		// Check if they are friend already
+		if(areFriend(addFriendInfo.userID, addFriendInfo.friendID)) return new Response("Failed", "Are friends already.");
+		if(arePendingFriend(addFriendInfo.userID, addFriendInfo.friendID)) return new Response("Failed", "Already added, waiting for friend to confirm.");
+		
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", addFriendInfo.userID);
+		attr.put("friendID", addFriendInfo.friendID);
+		attr.put("inviteSender", "1");
+		attr.put("pending", "1");
+		attr.put("blocked", "0");
+		Boolean success = insert("Friend", attr);
+		if(!success) return new Response("Failed", "Failed to insert new friend row");
+		
+		attr = new HashMap<String, String>();
+		attr.put("userID", addFriendInfo.friendID);
+		attr.put("friendID", addFriendInfo.userID);
+		attr.put("inviteSender", "0");
+		attr.put("pending", "1");
+		attr.put("blocked", "0");
+		success = insert("Friend", attr);
+		if(!success) return new Response("Failed", "Failed to insert new friend row");
+		
+		return new Response("OK");
+	}
+	
 	
 	
 	public Response newChatroom(ChatroomInfo chatroomInfo) {
@@ -66,6 +97,8 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response sendMessage(MessageInfo messageInfo) {
+		// Check if the chatroom exist
+		if(!chatroomExist(messageInfo.chatroomID)) return new Response("Failed", "Chatroom does not exist.");
 		// insert the message into Message table
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("messageID", UUID.randomUUID().toString());
@@ -78,12 +111,27 @@ public class ChatDatabase extends Database {
 		else return new Response("Failed", "DB send message error");
 	}
 	
-	public Response getHistory(GetHistoryInfo getHistoryInfo) {
+	public Response getFriend(String userID) {
+		if(!userExist(userID)) return new Response("Failed", "User does not exist");
 		HashMap<String, String> attr = new HashMap<String, String>();
-		attr.put("chatroomID", getHistoryInfo.chatroomID);
+		attr.put("userID", userID);
+		List<HashMap<String, String>> results = select("Friend", attr);
+		FriendList friendList = new FriendList();
+		for(HashMap<String, String> result: results) {
+			friendList.friends.add(new Friend(result.get("friendID"), result.get("pending"), result.get("blocked")));
+		}
+		return new Response("OK", friendList);
+	}
+	
+	public Response getHistory(GetHistoryInfo getHistoryInfo) {
+		// Check if the chatroom exist
+		if(!chatroomExist(getHistoryInfo.chatroomID)) return new Response("Failed", "Chatroom does not exist.");
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("chatroomID = ", getHistoryInfo.chatroomID);
+		attr.put("timestamp > ", getHistoryInfo.startTime);
 		List<String> sortAttr = new ArrayList<String>();
 		sortAttr.add("timestamp");
-		List<HashMap<String, String>> results = select("Message", attr, sortAttr);
+		List<HashMap<String, String>> results = selectCondition("Message", attr, sortAttr);
 		List<Message> messages = new ArrayList<Message>();
 		for(HashMap<String, String> result: results) {
 			messages.add(new Message(result.get("sender"), result.get("message"), result.get("timestamp")));
@@ -93,8 +141,39 @@ public class ChatDatabase extends Database {
 	}
 	
 	private Boolean areFriend(String userA, String userB) {
-		
-		return true;
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", userA);
+		attr.put("friendID", userB);
+		List<HashMap<String, String>> results = select("Friend", attr);
+		// not friend if no entry found or the relationship is pending.
+		if(results.size() == 0 || results.get(0).get("pending").equals("1")) return false;
+		else return true;
+	}
+	
+	private Boolean arePendingFriend(String userA, String userB) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", userA);
+		attr.put("friendID", userB);
+		List<HashMap<String, String>> results = select("Friend", attr);
+		// not friend if no entry found or the relationship is pending.
+		if(results.size() == 0 || results.get(0).get("pending").equals("0")) return false;
+		else return true;
+	}
+	
+	private Boolean userExist(String userID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", userID);
+		List<HashMap<String, String>> results = select("User", attr); // Check if the user exist
+		if(results.size() == 0) return false;
+		else return true;
+	}
+	
+	private Boolean chatroomExist(String chatroomID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("chatroomID", chatroomID);
+		List<HashMap<String, String>> results = select("Chatroom", attr); // Check if the user exist
+		if(results.size() == 0) return false;
+		else return true;
 	}
 	
 }

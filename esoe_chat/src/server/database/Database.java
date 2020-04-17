@@ -249,7 +249,11 @@ public class Database {
 		}
 	}
 
-	protected List<HashMap<String, String>> selectCondition(String table,  HashMap<String, String> attr) {
+	protected List<HashMap<String, String>> selectCondition(String table,  HashMap<String, String> attr){
+		return selectCondition(table, attr, null);
+	}
+	
+	protected List<HashMap<String, String>> selectCondition(String table,  HashMap<String, String> attr, List<String> sortAttr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String conditions = "";
 		for(String key: attr.keySet()){
@@ -257,8 +261,15 @@ public class Database {
 			conditions += key + "'" + value + "'" + " and ";
 		}
 		conditions = conditions.substring(0, conditions.length()-5);
+		
+		String sortCondition = "";
+		if(sortAttr != null) {
+			sortCondition += " ORDER BY";
+			for(String att: sortAttr) sortCondition += " " + att;
+			sortCondition += " ASC";
+		}
 
-		String sql = "SELECT * FROM " + "`" + table + "`" + " WHERE " + conditions + ";" ;
+		String sql = "SELECT * FROM " + "`" + table + "`" + " WHERE " + conditions + sortCondition + ";" ;
 		//System.out.println(sql);
 		//String sql = "INSERT INTO " + table + " (star, locality, street_address) " + " VALUES " + "(1, 'Taipei', 'abc street');";
 
