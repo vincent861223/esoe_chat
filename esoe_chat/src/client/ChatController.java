@@ -45,4 +45,12 @@ public class ChatController {
 		return messageAgent.sendMessage(chatroomID, msg);
 	}
 	
+	public Response getHistory(String chatroomID) {
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
+		return messageAgent.getHistory(chatroomID);
+	}
+	
 }

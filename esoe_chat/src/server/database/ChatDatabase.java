@@ -1,5 +1,6 @@
 package server.database;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -7,7 +8,10 @@ import java.util.UUID;
 import java.util.List;
 
 import container.ChatroomInfo;
+import container.GetHistoryInfo;
 import container.LoginInfo;
+import container.Message;
+import container.MessageHistory;
 import container.RegisterInfo;
 import container.Response;
 import container.MessageInfo;;
@@ -62,20 +66,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response sendMessage(MessageInfo messageInfo) {
-//		// Check if the sender is a friend of the receiver.
-//		HashMap<String, String> attr = new HashMap<String, String>();
-//		attr.put("userID", messageInfo.);
-//		attr.put("friendID", messageInfo.receiver);
-//		List<HashMap<String, String>> results = select("Friend", attr);
-//		if(results.size() == 0 || results.get(0).get("pending").equals("1") || results.get(0).get("blocked").equals("1")) {
-//			return new Response("Failed", "Not friend");
-//		}
-//		
-//		// Access the chatroom
-//		// Create a new chatroom if not exist
-//		attr = new HashMap<String, String>();
-		
-		//
+		// insert the message into Message table
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("messageID", UUID.randomUUID().toString());
 		attr.put("chatroomID", messageInfo.chatroomID);
@@ -85,6 +76,20 @@ public class ChatDatabase extends Database {
 		Boolean success = insert("Message", attr);
 		if(success) return new Response("OK");
 		else return new Response("Failed", "DB send message error");
+	}
+	
+	public Response getHistory(GetHistoryInfo getHistoryInfo) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("chatroomID", getHistoryInfo.chatroomID);
+		List<String> sortAttr = new ArrayList<String>();
+		sortAttr.add("timestamp");
+		List<HashMap<String, String>> results = select("Message", attr, sortAttr);
+		List<Message> messages = new ArrayList<Message>();
+		for(HashMap<String, String> result: results) {
+			messages.add(new Message(result.get("sender"), result.get("message"), result.get("timestamp")));
+		}
+		MessageHistory messageHistory = new MessageHistory(messages);
+		return new Response("OK", messageHistory);
 	}
 	
 	private Boolean areFriend(String userA, String userB) {

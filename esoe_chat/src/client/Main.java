@@ -15,7 +15,13 @@ public class Main {
 		System.out.println(response);
 		response = chatController.creatChatroom(new String[]{"Vincent", "Alice", "Bob"});
 		System.out.println(response);
-		response = chatController.sendMessage(response.msg, "Hello");
+		String chatroomID = response.msg;
+		response = chatController.sendMessage(chatroomID, "Hello");
 		System.out.println(response);
+		response = chatController.sendMessage(chatroomID, "I am Vincent");
+		System.out.println(response);
+		response = chatController.getHistory(chatroomID);
+		System.out.println(response);
+		
 	}
 }

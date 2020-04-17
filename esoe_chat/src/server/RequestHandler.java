@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import container.ChatroomInfo;
+import container.GetHistoryInfo;
 import container.LoginInfo;
 import container.MessageInfo;
 import container.RegisterInfo;
@@ -55,6 +56,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.newChatroom((ChatroomInfo)request.info);
 			case "SendMsg":
 				return chatDatabase.sendMessage((MessageInfo)request.info);
+			case "GetHistory":
+				return chatDatabase.getHistory((GetHistoryInfo)request.info);
 			default:
 				return new Response("Unknown command");
 		}

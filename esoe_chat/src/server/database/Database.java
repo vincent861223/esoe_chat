@@ -196,7 +196,11 @@ public class Database {
 		}
 	}
 
-	protected List<HashMap<String, String>> select(String table,  HashMap<String, String> attr) {
+	protected List<HashMap<String, String>> select(String table,  HashMap<String, String> attr){
+		return this.select(table, attr, null);
+	}
+	
+	protected List<HashMap<String, String>> select(String table,  HashMap<String, String> attr, List<String> sortAttr) {
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String conditions = "";
 		for(String key: attr.keySet()){
@@ -204,8 +208,17 @@ public class Database {
 			conditions += key + "=" + "'" + value + "'" + " and ";
 		}
 		conditions = conditions.substring(0, conditions.length()-5);
-
-		String sql = "SELECT * FROM " + "`" + table + "`" + " WHERE " + conditions + ";" ;
+		
+		String sortCondition = "";
+		if(sortAttr != null) {
+			sortCondition += " ORDER BY";
+			for(String att: sortAttr) sortCondition += " " + att;
+			sortCondition += " ASC";
+		}
+		
+		
+		String sql = "SELECT * FROM " + "`" + table + "`" + " WHERE " + conditions + sortCondition + ";" ;
+		
 		//System.out.println(sql);
 		//String sql = "INSERT INTO " + table + " (star, locality, street_address) " + " VALUES " + "(1, 'Taipei', 'abc street');";
 
@@ -295,7 +308,7 @@ public class Database {
 
 	protected String getTimestamp() {
 		Timestamp time= new Timestamp(System.currentTimeMillis());//獲取系統當前時間 
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		String timeStr = df.format(time); 
 		time = Timestamp.valueOf(timeStr); 
 		return time.toString();
