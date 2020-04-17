@@ -15,6 +15,7 @@ CREATE TABLE `User`(
 CREATE TABLE `Friend`(
 	userID VARCHAR(100) NOT NULL,
 	friendID  VARCHAR(100) NOT NULL,
+	inviteSender Int Not NULL,
 	pending Int Not NULL,
 	blocked Int Not NULL
 );
