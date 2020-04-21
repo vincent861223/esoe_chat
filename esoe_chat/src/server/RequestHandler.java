@@ -6,12 +6,14 @@ import java.net.Socket;
 
 import container.AddFriendInfo;
 import container.ChatroomInfo;
+import container.Friend;
 import container.GetHistoryInfo;
 import container.LoginInfo;
 import container.MessageInfo;
 import container.RegisterInfo;
 import container.Request;
 import container.Response;
+import container.UserInfo;
 import server.database.ChatDatabase;
 
 
@@ -55,6 +57,10 @@ public class RequestHandler extends Thread{
 				return chatDatabase.login((LoginInfo)request.info);
 			case "AddFriend":
 				return chatDatabase.addFriend((AddFriendInfo)request.info);
+			case "GetFriend":
+				return chatDatabase.getFriend(((UserInfo)request.info));
+			case "modifyFriend":
+				return chatDatabase.modifyFriend(request.userID, (Friend)request.info);
 			case "NewChatroom":
 				return chatDatabase.newChatroom((ChatroomInfo)request.info);
 			case "SendMsg":

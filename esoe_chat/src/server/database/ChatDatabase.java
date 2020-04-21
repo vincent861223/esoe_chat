@@ -17,6 +17,7 @@ import container.Message;
 import container.MessageHistory;
 import container.RegisterInfo;
 import container.Response;
+import container.UserInfo;
 import container.MessageInfo;;
 
 
@@ -73,6 +74,29 @@ public class ChatDatabase extends Database {
 		return new Response("OK");
 	}
 	
+	public Response modifyFriend(String userID, Friend friend) {
+		// Check if the user exist.
+		if(!userExist(userID) || !userExist(friend.friendID)) return new Response("Failed", "User not exist"); 
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("pending", friend.pending == true? "1" : "0");
+		attr.put("blocked", friend.blocked == true? "1" : "0");
+		HashMap<String, String> cond_attr = new HashMap<String, String>();
+		cond_attr.put("userID", userID);
+		cond_attr.put("friendID", friend.friendID);
+		Boolean success = update("Friend", attr, cond_attr);
+		if(!success) return new Response("Failed", "Failed to modify the friend entry");
+		
+		attr = new HashMap<String, String>();
+		attr.put("pending", friend.pending == true? "1" : "0");
+		attr.put("blocked", friend.blocked == true? "1" : "0");
+		cond_attr = new HashMap<String, String>();
+		cond_attr.put("userID", friend.friendID);
+		cond_attr.put("friendID", userID);
+		success = update("Friend", attr, cond_attr);
+		if(!success) return new Response("Failed", "Failed to modify the friend entry");
+		else return new Response("OK");
+	}
+	
 	
 	
 	public Response newChatroom(ChatroomInfo chatroomInfo) {
@@ -111,10 +135,10 @@ public class ChatDatabase extends Database {
 		else return new Response("Failed", "DB send message error");
 	}
 	
-	public Response getFriend(String userID) {
-		if(!userExist(userID)) return new Response("Failed", "User does not exist");
+	public Response getFriend(UserInfo userInfo) {
+		if(!userExist(userInfo.userID)) return new Response("Failed", "User does not exist");
 		HashMap<String, String> attr = new HashMap<String, String>();
-		attr.put("userID", userID);
+		attr.put("userID", userInfo.userID);
 		List<HashMap<String, String>> results = select("Friend", attr);
 		FriendList friendList = new FriendList();
 		for(HashMap<String, String> result: results) {

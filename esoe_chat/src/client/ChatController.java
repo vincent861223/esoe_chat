@@ -58,9 +58,27 @@ public class ChatController {
 		// Add userID as friend
 		//Failed if user has not logged in
 		if(userID == null) return new Response("Failed", "Not logged in");
-		// Create messageAgent if the user has logged in.
+		// Create friendAgent if the user has logged in.
 		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
 		return friendAgent.addFriend(friendID);
+	}
+	
+	public Response getFriend() {
+		// Add userID as friend
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create friendAgent if the user has logged in.
+		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
+		return friendAgent.getFriend();
+	}
+	
+	public Response confirmFriend(String friendID) {
+		// Add userID as friend
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create friendAgent if the user has logged in.
+		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
+		return friendAgent.confirmFriend(friendID);
 	}
 	
 }
