@@ -1,4 +1,6 @@
 /bin/
 /target/
 /Database/chat.db
+/.idea/
+esoe_chat.iml
 .DS_Store

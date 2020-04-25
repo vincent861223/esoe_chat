@@ -1,0 +1,4 @@
+/.metadata/
+/.sonarlint/
+*.swp
+.DS_Store
