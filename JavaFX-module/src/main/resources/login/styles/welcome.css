@@ -1,0 +1,7 @@
+.hover-hand:hover {
+    -fx-cursor: hand;
+}
+
+#forget-password:hover {
+    -fx-text-fill: #3FA7D6;
+}

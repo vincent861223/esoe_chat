@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.WelcomeController">
+   <center>
+      <AnchorPane fx:id="basePane" prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: #FBC563;">
+         <children>
+            <StackPane fx:id="boxPane" layoutX="291.0" layoutY="35.0" prefHeight="302.0" prefWidth="274.0" />
+            <Label layoutX="35.0" layoutY="143.0" text="Welcome back!" textFill="#686868">
+               <font>
+                  <Font name="Lato Thin" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="321.0" text="Haven't any account?">
+               <font>
+                  <Font name="Lato Thin" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnGoToSignUp" alignment="CENTER" buttonType="RAISED" layoutX="188.0" layoutY="317.0" onAction="#handleGoToSignUp" style="-fx-border-radius: 5; -fx-border-color: #FFFFFF; -fx-border-width: 1;" styleClass="hover-hand" text="Sign Up" textFill="#fcfcfc">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXButton>
+            <Label layoutX="35.0" layoutY="86.0" text="Hello" textFill="WHITE">
+               <font>
+                  <Font name="Lato Light" size="50.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="TOP_RIGHT" onMouseDragged="#barDragged" onMousePressed="#barPressed" prefHeight="25.0" prefWidth="600.0" spacing="1.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <FontIcon fx:id="btnMinimize" iconColor="#3fa7d6" iconLiteral="fth-minus" iconSize="23" onMouseClicked="#minimizeClicked" styleClass="hover-hand" />
+            <FontIcon fx:id="btnClose" iconColor="#3fa7d6" iconLiteral="fth-cross" iconSize="23" onMouseClicked="#closeClicked" styleClass="hover-hand" />
+         </children>
+         <padding>
+            <Insets right="3.0" />
+         </padding>
+      </HBox>
+   </top>
+</BorderPane>
