@@ -1,0 +1,5 @@
+/bin/
+/target/
+/Database/chat.db
+.DS_Store
+
