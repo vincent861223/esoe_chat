@@ -1,0 +1,12 @@
+.popover > .border  {
+    -fx-border-style: none;
+    -fx-padding: 0;
+    -fx-stroke-width: 0;
+    -fx-border-width: 0;
+    -fx-fill: #EE6352;
+    /*-fx-opacity: 0.8;*/
+}
+
+#msg {
+    -fx-text-fill: white;
+}

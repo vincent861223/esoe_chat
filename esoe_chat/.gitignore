@@ -35,5 +35,15 @@
 .idea/modules.xml
 .idea/*.iml
 .idea/modules
+.idea/sonarlint
 *.iml
 *.ipr
+
+out/
+src/main/java/login/FormController.java
+src/main/java/login/GuiException.java
+src/main/java/login/MyDeco.java
+src/main/java/login/Transition.java
+src/main/resources/login/popupBox.fxml
+src/main/resources/login/styles/popover.css
+

@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.StageStyle;
 
-
 public class Main extends Application {
 
     private static Scene scene;
@@ -22,7 +21,7 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("welcomeWindow.fxml"));
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles/welcome.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("styles/welcome.css").toExternalForm());
         window = primaryStage;
         window.initStyle(StageStyle.TRANSPARENT);
         window.setTitle("Login");

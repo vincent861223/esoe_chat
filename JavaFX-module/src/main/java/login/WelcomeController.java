@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
@@ -32,7 +33,8 @@ public class WelcomeController implements Initializable {
 
             try {
                 loadPane("loginBox");
-                fadeIn("#loginBox");
+                loadPane("signUpBox");
+                Transition.fadeIn(boxPane,"#loginBox");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -40,34 +42,19 @@ public class WelcomeController implements Initializable {
     }
 
     private void loadPane(String fxml) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxml + ".fxml"));
-        root.translateXProperty().set(boxPane.getWidth());
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+        Parent root = loader.load();
+        FormController controller = loader.getController();
+        controller.setBoxPane(boxPane);
+        root.translateXProperty().set(600);
         boxPane.getChildren().add(root);
-    }
-
-    private void fadeIn(String cssID) {
-        Node node = boxPane.lookup(cssID);
-        Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(node.translateXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.7), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-    }
-
-    private void fadeOut(String cssID) {
-        Node node = boxPane.lookup(cssID);
-        Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(node.translateXProperty(),600 - boxPane.getLayoutX(), Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
     }
 
     @FXML
     void handleGoToSignUp(ActionEvent event) throws IOException {
-        fadeOut("#loginBox");
-        loadPane("signUpBox");
-        fadeIn("#signUpBox");
+        Transition.fadeOut(boxPane,"#loginBox");
+        Transition.fadeIn(boxPane, "#signUpBox");
     }
 
     @FXML
@@ -89,6 +76,7 @@ public class WelcomeController implements Initializable {
         stage.close();
     }
 
+    //FIXIT: this doesn't function properly on macOS Catalina since java doesn't fix it
     @FXML
     void minimizeClicked(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="loginBox" fx:id="loginBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-color: #FDFCDC; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<GridPane id="loginBox" fx:id="loginBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-color: #FDFCDC; -fx-background-radius: 5;" stylesheets="@styles/welcome.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
 <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="179.0" />
@@ -22,8 +23,8 @@
 </columnConstraints>
 <rowConstraints>
     <RowConstraints maxHeight="42.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="234.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="42.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="211.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="49.0" minHeight="42.0" prefHeight="49.0" vgrow="SOMETIMES" />
 </rowConstraints>
 <children>
     <VBox prefHeight="235.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -33,7 +34,7 @@
                     <Insets left="1.0" />
                 </VBox.margin>
                 <font>
-                    <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    <Font size="13.0" />
                 </font>
             </Label>
             <JFXTextField fx:id="inputUsername" focusColor="#3fa7d6">
@@ -46,7 +47,7 @@
                     <Insets left="1.0" top="10.0" />
                 </VBox.margin>
                 <font>
-                    <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    <Font size="13.0" />
                 </font>
             </Label>
             <JFXPasswordField fx:id="inputPassword" focusColor="#3fa7d6">
@@ -59,29 +60,27 @@
                     <Insets left="1.0" top="10.0" />
                 </VBox.margin>
                 <font>
-                    <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    <Font size="13.0" />
                 </font>
+                <styleClass>
+                    <String fx:value="hover-hand" />
+                </styleClass>
             </JFXCheckBox>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <Label fx:id="loginMsg" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Login Message" textFill="#f07167" visible="false">
-                <font>
-                    <Font name="Noto Sans CJK TC Regular" size="13.0" />
-                </font>
+            <Label fx:id="loginMsg" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 14px;" text="Login Message" textFill="#f07167" visible="false">
             </Label>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <JFXButton fx:id="btnLogin" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#handleLoginClicked" prefHeight="5.0" prefWidth="183.0" ripplerFill="#f8b9a8" style="-fx-background-color: #EE6352;" styleClass="hover-hand" text="Login" textFill="WHITE">
-                <font>
-                    <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
-                </font>
+            <JFXButton fx:id="btnLogin" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#handleLoginClicked" prefHeight="23.0" prefWidth="180.0" ripplerFill="#f8b9a8" style="-fx-background-color: #EE6352;" styleClass="hover-hand" text="Login" textFill="WHITE">
             </JFXButton>
         </children>
     </VBox>
     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <children>
-            <Label id="forget-password" fx:id="lblForgetPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="12.0" styleClass="hover-hand" text="Forget password?" textFill="#686868" underline="true">
-                <font>
-                    <Font name="Noto Sans CJK TC Light" size="12.0" />
-                </font>
+            <Label fx:id="lblForgetPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="15.0" text="Forget password?" textFill="#686868" underline="true">
+               <styleClass>
+                  <String fx:value="link-label" />
+                  <String fx:value="hover-hand" />
+               </styleClass>
             </Label>
         </children>
     </AnchorPane>

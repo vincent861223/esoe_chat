@@ -1,14 +1,0 @@
-
-_
-java:S1128"BRemove this unused import 'javafx.application.ConditionalFeature'.(³â¼›8À—Ç¿.
-r
-java:S1450"URemove the "window" field and declare it as a local variable in the relevant methods.(Ğóß8ÀÊ‡.
-X
-java:S2696"6Make the enclosing method "static" or remove this set.(¦Ğ€•úÿÿÿÿ8ÀÊ‡.
-S
-java:S2696"6Make the enclosing method "static" or remove this set.(°öÔú8ÀÊ‡.
-v
-java:S1450"TRemove the "scene" field and declare it as a local variable in the relevant methods.(™ëøıÿÿÿÿ8ÀÊ‡.
-Z
-java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8À—Ç¿.
-X	java:S125"<This block of commented-out lines of code should be removed.(Ä®ºÂ8‘®‡.

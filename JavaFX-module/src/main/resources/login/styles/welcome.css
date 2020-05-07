@@ -1,7 +1,24 @@
 .hover-hand:hover {
     -fx-cursor: hand;
+    -fx-font-size: 100%;
 }
 
-#forget-password:hover {
+.link-label:hover {
     -fx-text-fill: #3FA7D6;
+
+}
+
+.label, .check-box, .button {
+    -fx-font-family: "Noto Sans CJK TC Light";
+    -fx-font-size: 100%;
+}
+
+.jfx-text-field, .jfx-password-field {
+    -fx-font-family: "Lucida Grande";
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-font-family: "Noto Sans CJK TC DemiLight";
+    -fx-font-size: 13px;
 }

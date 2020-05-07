@@ -1,6 +1,5 @@
 package login;
-import client.ChatController;
-import container.Response;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,24 +10,17 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import old.GuiException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
-public class LoginController implements Initializable {
+public class LoginController extends FormController implements Initializable {
 
-    ChatController chatController = new ChatController("127.0.0.1", 12345);
-    Response response;
     Preferences userPreferences = Preferences.userRoot();
     private static final String SAVED_USERNAME = "savedUsername";
     private static final String SAVED_PASSWORD = "savedPassword";
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        displaySavedInfo();
-    }
 
     @FXML
     private JFXTextField inputUsername;
@@ -48,39 +40,58 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblForgetPassword;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        displaySavedInfo();
+        btnLogin.disableProperty().bind((
+            inputUsername.textProperty().isNotEmpty().and(
+            inputPassword.textProperty().isNotEmpty()
+            ).not()
+        ));
+    }
+
+    //TODO: forget password
     @FXML
     void handleForgetPasswordClicked(MouseEvent event) {
 
     }
 
     @FXML
-    void handleLoginClicked(ActionEvent event) {
-        String account;
+    void handleLoginClicked(ActionEvent event) throws IOException {
+        String username;
         String password;
         try {
-            account = inputUsername.getText();
+            username = inputUsername.getText();
             password = inputPassword.getText();
-            response = chatController.login(account, password);
-            if (response.getStatus().equals("Failed")) {
+            response = chatController.login(username, password);
+            System.out.println(response);
+            if (response == null) {
+                throw new GuiException("Server Offline");
+            }
+            else if (response.getStatus().equals("Failed")) {
                 throw new GuiException(response.getMsg());
             }
-            loginMsg.setVisible(true);
-            loginMsg.setText("Login Success");
+            else {
+                loginMsg.setVisible(true);
+                loginMsg.setText("Login Success");
 
-            if (btnRememberMe.isSelected()) {
-                userPreferences.put(SAVED_USERNAME, account);
-                userPreferences.put(SAVED_PASSWORD, password);
-            } else {
-                userPreferences.put(SAVED_USERNAME, "");
-                userPreferences.put(SAVED_PASSWORD, "");
-            }
+                if (btnRememberMe.isSelected()) {
+                    userPreferences.put(SAVED_USERNAME, username);
+                    userPreferences.put(SAVED_PASSWORD, password);
+                } else {
+                    userPreferences.put(SAVED_USERNAME, "");
+                    userPreferences.put(SAVED_PASSWORD, "");
+                }
 //
 //            frame.dispose();
 //            MainFrame frmMain = new MainFrame();
 //            frmMain.setVisible(true);
 
-            //TODO: newWindow
-            //Login.newWindow();
+                //TODO: newWindow
+                //Login.newWindow();
+
+
+            }
 
         } catch (GuiException e) {
             loginMsg.setVisible(true);
@@ -102,6 +113,7 @@ public class LoginController implements Initializable {
                     inputUsername.deselect();
                 });
             });
+            //TODO: disable button
 //            btnLogin.setEnabled(true);
         }
     }

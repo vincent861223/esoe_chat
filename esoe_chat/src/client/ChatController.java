@@ -24,7 +24,7 @@ public class ChatController {
 	
 	public Response login(String username, String password) {
 		Response response = loginAgent.login(username, password);
-		if(response.status.equals("OK")) this.userID = response.msg;
+		if(response!= null && response.status.equals("OK")) this.userID = response.msg;
 		return response;
 	}
 	

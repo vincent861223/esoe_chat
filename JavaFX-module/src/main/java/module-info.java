@@ -4,6 +4,7 @@ module test {
     requires javafx.base;
     requires javafx.graphics;
     requires com.jfoenix;
+    requires org.controlsfx.controls;
 
     requires org.kordamp.iconli.core;
     requires org.kordamp.ikonli.javafx;
