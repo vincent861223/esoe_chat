@@ -62,7 +62,7 @@ public class ChatController {
 		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
 		return friendAgent.addFriend(friendID);
 	}
-	
+	//TODO: getFriend
 	public Response getFriend() {
 		// Add userID as friend
 		//Failed if user has not logged in

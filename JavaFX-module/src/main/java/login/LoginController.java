@@ -64,7 +64,6 @@ public class LoginController extends FormController implements Initializable {
             username = inputUsername.getText();
             password = inputPassword.getText();
             response = chatController.login(username, password);
-            System.out.println(response);
             if (response == null) {
                 throw new GuiException("Server Offline");
             }

@@ -1,9 +1,5 @@
 package login;
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
-import java.text.Normalizer;
 import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
@@ -52,7 +46,7 @@ public class WelcomeController implements Initializable {
     }
 
     @FXML
-    void handleGoToSignUp(ActionEvent event) throws IOException {
+    void handleGoToSignUp(ActionEvent event)  {
         Transition.fadeOut(boxPane,"#loginBox");
         Transition.fadeIn(boxPane, "#signUpBox");
     }
@@ -71,7 +65,7 @@ public class WelcomeController implements Initializable {
     }
 
     @FXML
-    void closeClicked(MouseEvent event) {
+    void closeClicked(MouseEvent event) throws NullPointerException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }

@@ -1,14 +1,4 @@
-.hover-hand:hover {
-    -fx-cursor: hand;
-    -fx-font-size: 100%;
-}
-
-.link-label:hover {
-    -fx-text-fill: #3FA7D6;
-
-}
-
-.label, .check-box, .button {
+.label, .check-box {
     -fx-font-family: "Noto Sans CJK TC Light";
     -fx-font-size: 100%;
 }
