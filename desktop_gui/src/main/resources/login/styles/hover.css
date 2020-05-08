@@ -1,7 +1,3 @@
 .hover-hand:hover {
     -fx-cursor: hand;
 }
-
-.link-label:hover {
-    -fx-text-fill: #3FA7D6;
-}

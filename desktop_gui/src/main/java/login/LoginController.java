@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,10 +36,9 @@ public class LoginController extends FormController implements Initializable {
     private JFXButton btnLogin;
 
     @FXML
-    private Label loginMsg;
-
-    @FXML
     private Label lblForgetPassword;
+
+    public LoginController() throws IOException { super(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,9 +71,7 @@ public class LoginController extends FormController implements Initializable {
                 throw new GuiException(response.getMsg());
             }
             else {
-                loginMsg.setVisible(true);
-                loginMsg.setText("Login Success");
-
+                System.out.println("Login Successfully"); // DELETEME
                 if (btnRememberMe.isSelected()) {
                     userPreferences.put(SAVED_USERNAME, username);
                     userPreferences.put(SAVED_PASSWORD, password);
@@ -93,10 +91,10 @@ public class LoginController extends FormController implements Initializable {
             }
 
         } catch (GuiException e) {
-            loginMsg.setVisible(true);
-            loginMsg.setText(e.getErrMessage());
+            ((Label) popOver.getContentNode()).setText(e.getErrMessage());
+            popOver.setArrowLocation(PopOver.ArrowLocation.BOTTOM_CENTER);
+            popOver.show(btnLogin, -5);
         }
-
     }
 
     private void displaySavedInfo() {
@@ -112,8 +110,6 @@ public class LoginController extends FormController implements Initializable {
                     inputUsername.deselect();
                 });
             });
-            //TODO: disable button
-//            btnLogin.setEnabled(true);
         }
     }
 

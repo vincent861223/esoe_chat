@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="signUpBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-background-color: #FDFCDC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SignUpController">
+<GridPane id="signUpBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-background-color: #FDFCDC;" stylesheets="@styles/signupbox.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SignUpController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -27,13 +27,13 @@
    <children>
       <VBox spacing="19.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <JFXTextField fx:id="inputUsername" focusColor="#3fa7d6" labelFloat="true" promptText="Username" unFocusColor="#a1a1a1">
+            <JFXTextField fx:id="inputUsername" labelFloat="true" promptText="Username" >
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="14.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="inputEmail" focusColor="#3fa7d6" labelFloat="true" promptText="E-mail" unFocusColor="#a1a1a1" />
-            <JFXPasswordField fx:id="inputPassword" focusColor="#3fa7d6" labelFloat="true" promptText="Password" unFocusColor="#a1a1a1" />
-            <JFXPasswordField fx:id="inputConfirmPassword" focusColor="#3fa7d6" labelFloat="true" promptText="Confirm your password" unFocusColor="#a1a1a1">
+            <JFXTextField fx:id="inputEmail" labelFloat="true" promptText="E-mail" />
+            <JFXPasswordField fx:id="inputPassword" labelFloat="true" promptText="Password" />
+            <JFXPasswordField fx:id="inputConfirmPassword" labelFloat="true" promptText="Confirm your password" >
                <font>
                   <Font name="Lucida Grande" size="13.0" />
                </font></JFXPasswordField>
@@ -42,7 +42,7 @@
       </VBox>
        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
            <children>
-               <Label fx:id="btnGoBackToLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="4.0" onMouseClicked="#haveAccountClicked" text="Already have an account?" textFill="#686868" underline="true">
+               <Label fx:id="btnGoBackToLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="4.0" onMouseClicked="#haveAccountClicked" text="Already have an account?" underline="true">
                <styleClass>
                   <String fx:value="link-label" />
                   <String fx:value="hover-hand" />
@@ -52,7 +52,6 @@
        </AnchorPane>
    </children>
    <stylesheets>
-      <URL value="@styles/welcome.css" />
       <URL value="@styles/hover.css" />
    </stylesheets>
 </GridPane>

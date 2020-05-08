@@ -1,9 +1,20 @@
+.hover-hand:hover {
+    -fx-cursor: hand;
+}
+
+.link-label:hover {
+    -fx-text-fill: #EE6352;
+}
+
 .label, .check-box {
+    -fx-text-fill: #686868;
     -fx-font-family: "Noto Sans CJK TC Light";
     -fx-font-size: 100%;
 }
 
 .jfx-text-field, .jfx-password-field {
+    -jfx-focus-color: #fac05e;
+    -jfx-unfocus-color: #4d4d4d;
     -fx-font-family: "Lucida Grande";
     -fx-font-size: 13px;
 }
@@ -11,4 +22,6 @@
 .button {
     -fx-font-family: "Noto Sans CJK TC DemiLight";
     -fx-font-size: 13px;
+    -fx-rippler-fill: white;
+    -fx-text-fill: white;
 }

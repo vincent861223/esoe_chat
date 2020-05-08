@@ -15,7 +15,7 @@ public class Transition {
         Node node = boxPane.lookup(cssID);
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(node.translateXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.7), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
     }
@@ -24,7 +24,7 @@ public class Transition {
         Node node = boxPane.lookup(cssID);
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(node.translateXProperty(),600 - boxPane.getLayoutX(), Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
     }

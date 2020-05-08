@@ -20,12 +20,12 @@
                   <Font name="Lato Thin" size="33.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="311.0" text="Haven't any account?">
+            <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="302.0" text="Haven't any account?">
                <font>
                   <Font name="Lato Thin" size="16.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnGoToSignUp" alignment="CENTER" buttonType="RAISED" layoutX="188.0" layoutY="306.0" onAction="#handleGoToSignUp" style="-fx-border-radius: 5; -fx-border-color: #FFFFFF; -fx-border-width: 1;" styleClass="hover-hand" text="Sign Up" textFill="#fcfcfc">
+            <JFXButton fx:id="btnGoToSignUp" alignment="CENTER" buttonType="RAISED" layoutX="188.0" layoutY="297.0" onAction="#handleGoToSignUp" style="-fx-border-radius: 5; -fx-border-color: #FFFFFF; -fx-border-width: 1;" styleClass="hover-hand" text="Sign Up" textFill="#fcfcfc">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font></JFXButton>

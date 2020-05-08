@@ -20,12 +20,10 @@ import java.util.ResourceBundle;
 
 public class SignUpController extends FormController implements Initializable {
 
-    //TODO: display validator
+      // TODO: show validation information
 //    private static final String eMailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 //    ValidationSupport eMailValidation = new ValidationSupport();
 //    ValidationSupport passwordValidation = new ValidationSupport();
-
-    PopOver popOver;
 
     @FXML
     private JFXTextField inputUsername;
@@ -42,18 +40,10 @@ public class SignUpController extends FormController implements Initializable {
     @FXML
     private JFXButton btnSignUp;
 
+    public SignUpController() throws IOException { super(); }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-
-            popOver = new PopOver((Node) FXMLLoader.load(getClass().getResource("popupBox.fxml")));
-            popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
-            popOver.getRoot().getStylesheets().add(getClass().getResource("styles/popover.css").toExternalForm());
-            popOver.setArrowSize(7.5);
-            popOver.setArrowIndent(5.0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         Platform.runLater(() -> {
             btnSignUp.disableProperty().bind((
@@ -66,9 +56,7 @@ public class SignUpController extends FormController implements Initializable {
                  )
                  ).not()
             ));
-
-
-
+            // TODO: show validation information
 //            eMailValidation.setValidationDecorator(new StyleClassValidationDecoration());
 //            passwordValidation.setValidationDecorator(new StyleClassValidationDecoration());
 //            eMailValidation.registerValidator(inputEmail, Validator.createRegexValidator("Invalid e-mail format",  eMailRegex, Severity.ERROR));
@@ -97,12 +85,12 @@ public class SignUpController extends FormController implements Initializable {
             } else if (response.getStatus().equals("Failed")) {
                 throw new GuiException(response.getMsg());
             }
-            //TODO: Pop up window
+            // TODO: show validation information -> Pop up window
             System.out.println("Sign up Successfully");
         } catch (GuiException e) {
-            //((Label) popOver.getContentNode().lookup("#msg")).setText(e.getErrMessage());
             ((Label) popOver.getContentNode()).setText(e.getErrMessage());
-            popOver.show(btnSignUp);
+            popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
+            popOver.show(btnSignUp, -5);
         }
     }
 

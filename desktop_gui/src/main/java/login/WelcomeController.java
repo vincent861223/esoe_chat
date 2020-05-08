@@ -24,7 +24,6 @@ public class WelcomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater( () -> {
-
             try {
                 loadPane("loginBox");
                 loadPane("signUpBox");
@@ -39,6 +38,9 @@ public class WelcomeController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
         Parent root = loader.load();
+
+        // FIXME: FXML load too slow and return null controller
+        //        This is a workaround(?) of loading speed problem.
         Platform.runLater(() -> {
             FormController controller = loader.getController();
             if (controller != null) {
@@ -71,10 +73,11 @@ public class WelcomeController implements Initializable {
     @FXML
     void closeClicked(MouseEvent event) throws NullPointerException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FormController.popOver.setAnimated(false);
         stage.close();
     }
 
-    //FIXIT: this doesn't function properly on macOS Catalina since java doesn't fix it
+    //FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it
     @FXML
     void minimizeClicked(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
