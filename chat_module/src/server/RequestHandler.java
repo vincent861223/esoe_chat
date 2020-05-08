@@ -47,9 +47,10 @@ public class RequestHandler extends Thread{
 			System.out.println("RequestHandler error: " + e.toString());
 		}
 	}
-	
 	public Response handleRequest(Request request) {
-		ChatDatabase chatDatabase = new ChatDatabase("Database/chat.db", "Database/init_table.sql");
+		// FIXME: have to change database path if change module directory
+		String current = System.getProperty("user.dir");
+		ChatDatabase chatDatabase = new ChatDatabase(current + "/chat_module/Database/chat.db", current + "/chat_module/Database/init_table.sql");
 		switch (request.command) {
 			case "Register":
 				return chatDatabase.addUser((RegisterInfo)request.info);

@@ -10,14 +10,14 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         // TODO: optimize FXMLLoader load speed! Don't use static load()
         FXMLLoader loader = new FXMLLoader(getClass().getResource("welcomeWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.show();

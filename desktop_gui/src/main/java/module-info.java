@@ -13,10 +13,14 @@ module desktop_gui {
 
     requires java.prefs;
     requires chat_module;
-//    requires
 
+    // add every javafx package
     opens login to javafx.fxml;
     exports login;
+    opens major to javafx.fxml;
+    exports major;
+
+    // In case of jfoenix has weird behavior(?)
 //    opens com.sun.javafx.control.behavior to com.jfoenix;
 //    exports com.sun.javafx.control.behavior to com.jfoenix;
 

@@ -3,13 +3,19 @@ package login;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import major.MajorController;
 import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
@@ -57,7 +63,7 @@ public class LoginController extends FormController implements Initializable {
     }
 
     @FXML
-    void handleLoginClicked(ActionEvent event) throws IOException {
+    void handleLoginClicked(ActionEvent event) {
         String username;
         String password;
         try {
@@ -79,15 +85,21 @@ public class LoginController extends FormController implements Initializable {
                     userPreferences.put(SAVED_USERNAME, "");
                     userPreferences.put(SAVED_PASSWORD, "");
                 }
-//
-//            frame.dispose();
-//            MainFrame frmMain = new MainFrame();
-//            frmMain.setVisible(true);
+                try {
+                    FXMLLoader loader = new FXMLLoader(MajorController.class.getResource("majorWindow.fxml"));
+                    MajorController.setUserID(response.getMsg());
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add(MajorController.class.getResource("styles/major.css").toExternalForm());
+                    Stage primaryStage = new Stage();
+                    primaryStage.setScene(scene);
+//            primaryStage.initStyle(StageStyle.UNDECORATED);
+                    primaryStage.setTitle("ESOE CHAT");
+                    primaryStage.show();
 
-                //TODO: newWindow
-                //Login.newWindow();
-
-
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
         } catch (GuiException e) {
@@ -95,6 +107,7 @@ public class LoginController extends FormController implements Initializable {
             popOver.setArrowLocation(PopOver.ArrowLocation.BOTTOM_CENTER);
             popOver.show(btnLogin, -5);
         }
+
     }
 
     private void displaySavedInfo() {
