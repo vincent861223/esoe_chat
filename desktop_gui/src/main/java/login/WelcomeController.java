@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -20,6 +21,9 @@ public class WelcomeController implements Initializable {
 
     @FXML
     private StackPane boxPane;
+
+    @FXML
+    private AnchorPane basePane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,14 +62,14 @@ public class WelcomeController implements Initializable {
     }
 
     @FXML
-    void barDragged(MouseEvent event) {
+    void titleBarDragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
 
     @FXML
-    void barPressed(MouseEvent event) {
+    void titleBarPressed(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
     }
@@ -77,7 +81,7 @@ public class WelcomeController implements Initializable {
         stage.close();
     }
 
-    //FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it
+    // FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it
     @FXML
     void minimizeClicked(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

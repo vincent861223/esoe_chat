@@ -5,21 +5,20 @@ import container.Response;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
+import util.*;
 
-public class FormController {
+public class FormController extends CurrentUserInfo {
 
     static StackPane boxPane;
     static PopOver popOver;
 
-    static ChatController chatController = new ChatController("127.0.0.1", 12345);
-    static Response response;
-
     public FormController() throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("popupBox.fxml"));
         Node root = loader.load();
         popOver = new PopOver(root);

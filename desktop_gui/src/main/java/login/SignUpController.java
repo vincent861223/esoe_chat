@@ -1,29 +1,45 @@
 package login;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import main.MainController;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.validation.ValidationSupport;
+import org.kordamp.ikonli.javafx.FontIcon;
+import util.CurrentUserInfo;
+import util.StageMap;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpController extends FormController implements Initializable {
 
-      // TODO: show validation information
-//    private static final String eMailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-//    ValidationSupport eMailValidation = new ValidationSupport();
-//    ValidationSupport passwordValidation = new ValidationSupport();
+    Pattern pattern = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+    BooleanProperty isEmailValid = new SimpleBooleanProperty(false);
 
     @FXML
     private JFXTextField inputUsername;
@@ -51,16 +67,45 @@ public class SignUpController extends FormController implements Initializable {
                  inputPassword.textProperty().isNotEmpty().and(
                  inputConfirmPassword.textProperty().isNotEmpty().and(
                  inputEmail.textProperty().isNotEmpty()).and(
-                 inputPassword.textProperty().isEqualTo(inputConfirmPassword.textProperty())
+                 inputPassword.textProperty().isEqualTo(inputConfirmPassword.textProperty()).and(
+                 isEmailValid
+                 )
                  )
                  )
                  ).not()
             ));
-            // TODO: show validation information
-//            eMailValidation.setValidationDecorator(new StyleClassValidationDecoration());
-//            passwordValidation.setValidationDecorator(new StyleClassValidationDecoration());
-//            eMailValidation.registerValidator(inputEmail, Validator.createRegexValidator("Invalid e-mail format",  eMailRegex, Severity.ERROR));
-//            passwordValidation.registerValidator(inputConfirmPassword, Validator.createPredicateValidator(o -> matchPassword(), "Password does not match"));
+
+            inputConfirmPassword.focusedProperty().addListener((v, oldValue, newValue) -> {
+                if (newValue) {
+                    popOver.hide();
+                }
+                else {
+                    ((Label) popOver.getContentNode()).setText("Passwords do not match");
+                    popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
+                    popOver.show(inputConfirmPassword, -5);
+                }
+            });
+
+            inputEmail.setOnKeyTyped(v -> {
+                Matcher matcher = pattern.matcher(inputEmail.getText());
+                if (!matcher.matches()) {
+                    isEmailValid.set(false);
+                }
+                else {
+                    isEmailValid.set(true);
+                }
+            });
+            inputEmail.focusedProperty().addListener((v, oldValue, newValue) -> {
+                if (newValue) {
+                    popOver.hide();
+                } else {
+                    if (!isEmailValid.getValue()) {
+                        ((Label) popOver.getContentNode()).setText("Invalid e-mail");
+                        popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
+                        popOver.show(inputEmail, -5);
+                    }
+                }
+            });
         });
     }
 
@@ -71,7 +116,7 @@ public class SignUpController extends FormController implements Initializable {
     }
 
     @FXML
-    void handleSignUp(ActionEvent event) throws IOException {
+    void handleSignUp(ActionEvent event) {
         String username;
         String email;
         String password;
@@ -85,8 +130,28 @@ public class SignUpController extends FormController implements Initializable {
             } else if (response.getStatus().equals("Failed")) {
                 throw new GuiException(response.getMsg());
             }
-            // TODO: show validation information -> Pop up window
-            System.out.println("Sign up Successfully");
+
+            VBox vbox = new VBox();
+            vbox.setPrefSize(250, 160);
+            vbox.setAlignment(Pos.TOP_CENTER);
+            vbox.setPadding(new Insets(10));
+            vbox.setSpacing(5);
+            vbox.getStylesheets().add(getClass().getResource("styles/signupbox.css").toExternalForm());
+            FontIcon icon = new FontIcon("mdi-checkbox-marked-circle-outline:35:#F79D84");
+            Label lbl = new Label("You have signed up successfully!");
+            lbl.getStyleClass().add("dialog-label");
+            JFXButton button = new JFXButton("Go to login");
+            button.getStyleClass().add("dialog-button");
+            vbox.getChildren().addAll(icon, lbl, button);
+            vbox.setMargin(button, new Insets(10, 0, 0, 0));
+
+            JFXDialog dialog = new JFXDialog(boxPane, vbox, JFXDialog.DialogTransition.TOP);
+            button.setOnAction(a -> {
+                dialog.close();
+                goToLogin();
+            });
+            dialog.show();
+
         } catch (GuiException e) {
             ((Label) popOver.getContentNode()).setText(e.getErrMessage());
             popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
