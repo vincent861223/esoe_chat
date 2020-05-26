@@ -10,6 +10,13 @@ public class LoginInfo extends Container implements Serializable{
 	private static final long serialVersionUID = -987148438774747439L;
 	public String username;
 	public String password;
+	public int listenPort;
+	public int getListenPort() {
+		return listenPort;
+	}
+	public void setListenPort(int listenPort) {
+		this.listenPort = listenPort;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -26,8 +33,9 @@ public class LoginInfo extends Container implements Serializable{
 		
 	}
 	
-	public LoginInfo(String username, String password) {
+	public LoginInfo(String username, String password, int listenPort) {
 		this.username = username;
 		this.password = password;
+		this.listenPort = listenPort;
 	}
 }

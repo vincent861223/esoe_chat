@@ -34,10 +34,12 @@ public class RequestHandler extends Thread{
 			
 			// Get request from client
 			Request request = (Request) in.readObject();
-			System.out.println("[Client " + clientSocket.getInetAddress() + "]: " + request);
+			String client_ip = clientSocket.getInetAddress().toString().replaceFirst("/", "");
+			int client_port = clientSocket.getPort();
+			System.out.println("[Client " + client_ip + ":" + client_port + "]: " + request);
 			
 			// Handle the request and send response to client
-			Response response = handleRequest(request);
+			Response response = handleRequest(request, client_ip, client_port);
 			out.writeObject(response);
 			
 			in.close();
@@ -47,15 +49,15 @@ public class RequestHandler extends Thread{
 			System.out.println("RequestHandler error: " + e.toString());
 		}
 	}
-	public Response handleRequest(Request request) {
+	public Response handleRequest(Request request, String client_ip, int client_port) {
 		// FIXME: have to change database path if change module directory
 		String current = System.getProperty("user.dir");
-		ChatDatabase chatDatabase = new ChatDatabase(current + "/chat_module/Database/chat.db", current + "/chat_module/Database/init_table.sql");
+		ChatDatabase chatDatabase = new ChatDatabase(current + "/Database/chat.db", current + "/Database/init_table.sql");
 		switch (request.command) {
 			case "Register":
 				return chatDatabase.addUser((RegisterInfo)request.info);
 			case "Login":
-				return chatDatabase.login((LoginInfo)request.info);
+				return chatDatabase.login((LoginInfo)request.info, client_ip, client_port);
 			case "AddFriend":
 				return chatDatabase.addFriend((AddFriendInfo)request.info);
 			case "GetFriend":
@@ -68,6 +70,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.sendMessage((MessageInfo)request.info);
 			case "GetHistory":
 				return chatDatabase.getHistory((GetHistoryInfo)request.info);
+			case "GetChatroomList":
+				return chatDatabase.getChatroomList(request.userID);
 			default:
 				return new Response("Unknown command");
 		}

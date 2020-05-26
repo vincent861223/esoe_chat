@@ -7,15 +7,15 @@ public class AddFriendInfo extends Container implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 8272009928268780059L;
-	public String friendID;
+	public String friendUsername;
 	public String userID;
 
 	public String getFriendID() {
-		return friendID;
+		return friendUsername;
 	}
 
 	public void setFriendID(String friendID) {
-		this.friendID = friendID;
+		this.friendUsername = friendID;
 	}
 
 	public String getUserID() {
@@ -32,7 +32,7 @@ public class AddFriendInfo extends Container implements Serializable{
 	
 	public AddFriendInfo(String userID, String friendID) {
 		this.userID = userID;
-		this.friendID = friendID;
+		this.friendUsername = friendID;
 	}
 	
 }

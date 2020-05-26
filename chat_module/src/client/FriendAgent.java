@@ -14,8 +14,8 @@ public class FriendAgent extends Agent {
 		this.userID = userID;
 	}
 	
-	public Response addFriend(String friendID) {
-		AddFriendInfo addFriendInfo = new AddFriendInfo(userID, friendID);
+	public Response addFriend(String friendUsername) {
+		AddFriendInfo addFriendInfo = new AddFriendInfo(userID, friendUsername);
 		Request request = new Request("AddFriend", addFriendInfo);
 		return sendRequest(request);
 	}
@@ -26,8 +26,8 @@ public class FriendAgent extends Agent {
 		return sendRequest(request);
 	}
 	
-	public Response confirmFriend(String friendID) {
-		Friend friend = new Friend(friendID, false, false);
+	public Response confirmFriend(String friendUsername) {
+		Friend friend = new Friend(friendUsername, false, false);
 		Request request = new Request("modifyFriend", userID, friend);
 		return sendRequest(request);
 	}

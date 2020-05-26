@@ -5,17 +5,23 @@ import container.Response;
 public class ChatController {
 	private String serverIP;
 	private int serverPort;
+	private int listenPort;
+	public volatile String updateHistoryChatroom = null;
 	private String userID;
 	private RegisterAgent registerAgent;
 	private LoginAgent loginAgent;
 	private MessageAgent messageAgent;
 	private FriendAgent friendAgent;
+	private ServerRequestHandler requestHandler;
 	
-	public ChatController(String serverIP, int serverPort) {
+	public ChatController(String serverIP, int serverPort, int listenPort) {
 		this.serverIP = serverIP;
 		this.serverPort = serverPort;
+		this.listenPort = listenPort;
 		this.registerAgent = new RegisterAgent(serverIP, serverPort);
 		this.loginAgent = new LoginAgent(serverIP, serverPort);
+		this.requestHandler = new ServerRequestHandler(listenPort, this);
+		this.requestHandler.start();
 	}
 	
 	public Response register(String username, String email, String password) {
@@ -23,7 +29,8 @@ public class ChatController {
 	}
 	
 	public Response login(String username, String password) {
-		Response response = loginAgent.login(username, password);
+		if(userID != null) return new Response("Failed", "Logged in already!");
+		Response response = loginAgent.login(username, password, listenPort);
 		if(response!= null && response.status.equals("OK")) this.userID = response.msg;
 		return response;
 	}
@@ -34,6 +41,14 @@ public class ChatController {
 		// Create messageAgent if the user has logged in.
 		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
 		return messageAgent.createChatroom(members);
+	}
+	
+	public Response getChatroomList() {
+		//Failed if user has not logged in
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
+		return messageAgent.getChatroomList();
 	}
 	
 	public Response sendMessage(String chatroomID, String msg) {
@@ -54,15 +69,15 @@ public class ChatController {
 		return messageAgent.getHistory(chatroomID);
 	}
 	
-	public Response addFriend(String friendID) {
+	public Response addFriend(String friendUsername) {
 		// Add userID as friend
 		//Failed if user has not logged in
 		if(userID == null) return new Response("Failed", "Not logged in");
 		// Create friendAgent if the user has logged in.
 		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
-		return friendAgent.addFriend(friendID);
+		return friendAgent.addFriend(friendUsername);
 	}
-	//TODO: getFriend
+	
 	public Response getFriend() {
 		// Add userID as friend
 		//Failed if user has not logged in
@@ -72,13 +87,13 @@ public class ChatController {
 		return friendAgent.getFriend();
 	}
 	
-	public Response confirmFriend(String friendID) {
+	public Response confirmFriend(String friendUsername) {
 		// Add userID as friend
 		//Failed if user has not logged in
 		if(userID == null) return new Response("Failed", "Not logged in");
 		// Create friendAgent if the user has logged in.
 		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
-		return friendAgent.confirmFriend(friendID);
+		return friendAgent.confirmFriend(friendUsername);
 	}
 	
 }
