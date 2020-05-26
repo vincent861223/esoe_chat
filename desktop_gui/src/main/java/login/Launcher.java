@@ -3,6 +3,6 @@ package login;
 // for packaging purpose
 public class Launcher {
     public static void main(String[] args) {
-        Main.main(args);
+        SplashScreen.main(args);
     }
 }

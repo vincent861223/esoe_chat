@@ -20,12 +20,12 @@
                   <Font name="Lato Thin" size="33.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="302.0" text="Haven't any account?">
+            <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="302.0" text="Don't have an account?">
                <font>
                   <Font name="Lato Thin" size="16.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnGoToSignUp" alignment="CENTER" buttonType="RAISED" layoutX="188.0" layoutY="297.0" onAction="#handleGoToSignUp" style="-fx-border-radius: 5; -fx-border-color: #FFFFFF; -fx-border-width: 1;" styleClass="hover-hand" text="Sign Up" textFill="#fcfcfc">
+            <JFXButton fx:id="btnGoToSignUp" alignment="CENTER" buttonType="RAISED" layoutX="197.0" layoutY="297.0" onAction="#handleGoToSignUp" style="-fx-border-radius: 5; -fx-border-color: #FFFFFF; -fx-border-width: 1;" styleClass="hover-hand" text="Sign Up" textFill="#fcfcfc">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font></JFXButton>
@@ -38,7 +38,7 @@
       </AnchorPane>
    </center>
    <top>
-      <HBox alignment="TOP_RIGHT" onMouseDragged="#barDragged" onMousePressed="#barPressed" prefHeight="25.0" prefWidth="600.0" spacing="1.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="25.0" prefWidth="600.0" spacing="1.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <FontIcon fx:id="btnMinimize" iconColor="#3fa7d6" iconLiteral="fth-minus" iconSize="23" onMouseClicked="#minimizeClicked" styleClass="hover-hand" />
             <FontIcon fx:id="btnClose" iconColor="#3fa7d6" iconLiteral="fth-cross" iconSize="23" onMouseClicked="#closeClicked" styleClass="hover-hand" />

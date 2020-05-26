@@ -17,8 +17,8 @@ module desktop_gui {
     // add every javafx package
     opens login to javafx.fxml;
     exports login;
-    opens major to javafx.fxml;
-    exports major;
+    opens main to javafx.fxml;
+    exports main;
 
     // In case of jfoenix has weird behavior(?)
 //    opens com.sun.javafx.control.behavior to com.jfoenix;

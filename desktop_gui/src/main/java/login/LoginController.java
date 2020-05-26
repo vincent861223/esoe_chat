@@ -15,8 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import major.MajorController;
+import main.MainController;
 import org.controlsfx.control.PopOver;
+import util.CurrentUserInfo;
+import util.StageMap;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,19 +88,25 @@ public class LoginController extends FormController implements Initializable {
                     userPreferences.put(SAVED_PASSWORD, "");
                 }
                 try {
-                    FXMLLoader loader = new FXMLLoader(MajorController.class.getResource("majorWindow.fxml"));
-                    MajorController.setUserID(response.getMsg());
+                    CurrentUserInfo.setUsername(username);
+                    FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainWindow.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
-                    scene.getStylesheets().add(MajorController.class.getResource("styles/major.css").toExternalForm());
-                    Stage primaryStage = new Stage();
-                    primaryStage.setScene(scene);
-//            primaryStage.initStyle(StageStyle.UNDECORATED);
-                    primaryStage.setTitle("ESOE CHAT");
-                    primaryStage.show();
+                    scene.getStylesheets().add(MainController.class.getResource("styles/main.css").toExternalForm());
+                    Stage newStage = new Stage();
+                    newStage.setScene(scene);
+                    newStage.initStyle(StageStyle.TRANSPARENT);
+                    newStage.setTitle("ESOE CHAT");
+                    newStage.show();
+                    StageMap.stages.put("mainStage", newStage);
 
+                    // TODO: Not determine to hide() or to close() login stage yet. Check this later.
+                    Stage loginStage = StageMap.stages.getOrDefault("loginStage", null);
+                    if (loginStage != null) {
+                        loginStage.close();
+                    }
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println( "ERROR: "+ e.getMessage());
                 }
             }
 

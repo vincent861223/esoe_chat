@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#Dragged" onMousePressed="#Pressed" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="550.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="439.0" promptText="Write your message" />
+                  <Region />
+                  <JFXButton maxWidth="70.0" minWidth="70.0" prefWidth="70.0" ripplerFill="#ee6352" style="-fx-background-color: F79D84;" text="SEND" textFill="WHITE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="550.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="10.0" right="10.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label contentDisplay="RIGHT" graphicTextGap="6.0" text="Chatroom Title" textFill="#686868">
+                     <font>
+                        <Font name="Noto Sans CJK TC DemiLight" size="30.0" />
+                     </font>
+                     <graphic>
+                        <StackedFontIcon iconSize="25">
+                           <children>
+                              <FontIcon id="ringon" fx:id="btnRingOn" iconColor="#686868" iconLiteral="mdi-bell-ring-outline" />
+                              <FontIcon id="ringoff" fx:id="btnRingOff" iconColor="#686868" iconLiteral="mdi-bell-outline" />
+                           </children>
+                        </StackedFontIcon>
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <AnchorPane prefHeight="357.0" prefWidth="550.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </center>
+   <left>
+      <BorderPane prefHeight="500.0" prefWidth="250.0" stylesheets="@styles/side_pane.css" BorderPane.alignment="TOP_CENTER">
+         <top>
+            <HBox id="title-bar" alignment="CENTER_LEFT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" spacing="3.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FontIcon id="close" iconColor="#686868" iconLiteral="enty-circle-with-cross" iconSize="15" onMouseClicked="#closeClicked" />
+                  <FontIcon id="minimize" iconColor="#686868" iconLiteral="enty-circle-with-minus" iconSize="15" onMouseClicked="#minimizeClicked" />
+                  <FontIcon id="maximize" iconColor="#686868" iconLiteral="enty-circle-with-plus" iconSize="15" onMouseDragged="#maximizeClicked" text="" />
+               </children>
+               <padding>
+                  <Insets left="7.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="4.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                     <graphic>
+                        <FontIcon id="function-icon" fx:id="btnFriendList" iconLiteral="mdi-human-greeting" iconSize="25" />
+                     </graphic>
+                  </Button>
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                     <graphic>
+                        <FontIcon id="function-icon" fx:id="btnChatList" iconLiteral="enty-chat" iconSize="25" />
+                     </graphic>
+                  </Button>
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                     <graphic>
+                        <FontIcon id="function-icon" fx:id="btnAddFriend" iconLiteral="mdi-account-plus" iconSize="25" />
+                     </graphic>
+                  </Button>
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                     <graphic>
+                        <FontIcon id="function-icon" fx:id="btnSetting" iconLiteral="mdi-settings" iconSize="25" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </center>
+         <bottom>
+            <StackPane maxHeight="1.7976931348623157E308" prefHeight="415.0" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </left>
+</BorderPane>
