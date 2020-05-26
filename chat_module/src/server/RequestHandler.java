@@ -58,6 +58,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.addUser((RegisterInfo)request.info);
 			case "Login":
 				return chatDatabase.login((LoginInfo)request.info, client_ip, client_port);
+			case "Logout":
+				return chatDatabase.logout(request.userID);
 			case "AddFriend":
 				return chatDatabase.addFriend((AddFriendInfo)request.info);
 			case "GetFriend":

@@ -21,6 +21,7 @@ import container.MessageHistory;
 import container.RegisterInfo;
 import container.Request;
 import container.Response;
+import container.SessionInfo;
 import container.UpdateHistoryInfo;
 import container.UserInfo;
 import container.MessageInfo;;
@@ -49,14 +50,22 @@ public class ChatDatabase extends Database {
 		List<HashMap<String, String>> results = select("User", attr); // Check if the user exist and password match
 		if(results.size() != 0) {
 			attr = new HashMap<String, String>();
+			String sessionID = UUID.randomUUID().toString();
 			attr.put("userID", results.get(0).get("userID"));
 			attr.put("ip", client_ip);
 			attr.put("port", String.valueOf(loginInfo.listenPort));
-			attr.put("sessionID", UUID.randomUUID().toString());
+			attr.put("sessionID", sessionID);
 			insert("Session", attr);
-			return new Response("OK", results.get(0).get("userID"));
+			return new Response("OK", new SessionInfo(results.get(0).get("userID"), sessionID));
 		}
 		else return new Response("Failed", "Wrong password");
+	}
+	
+	public Response logout(String sessionID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("sessionID", sessionID);
+		if(delete("Session", attr)) return new Response("OK");
+		else return new Response("Failed", "Unable to delete session");
 	}
 	
 	public Response addFriend(AddFriendInfo addFriendInfo) {

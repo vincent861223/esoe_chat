@@ -11,7 +11,7 @@ import container.Message;;
 public class Main{
 	
 	public static void main(String[] argv) {
-		ChatController chatController = new ChatController("127.0.0.1", 12345, 11111);
+		ChatController chatController = new ChatController("127.0.0.1", 12345, 11112);
 		TestUpdateHistoryThread testUpdateHistoryThread = new TestUpdateHistoryThread(chatController);
 		testUpdateHistoryThread.start();
 		Scanner scanner = new Scanner(System.in);
@@ -53,8 +53,6 @@ public class Main{
 //		response = chatController.sendMessage(chatroomID, "Hello");
 //		System.out.println(response);
 //		response = chatController.sendMessage(chatroomID, "I am Vincent");
-		response = chatController.getHistory("16773a8b-b9ab-4067-95e6-167a2e600116");
-		System.out.println(response);
 		
 		while(true) {
 			//System.out.println(chatController.updateHistoryChatroom);
@@ -76,6 +74,10 @@ public class Main{
 	        		System.out.print("password: ");
 	        		password = scanner.nextLine();
 	        		response = chatController.login(username, password);
+	        		System.out.println(response);
+	        		break;
+	        	case "logout":  
+	        		response = chatController.logout();
 	        		System.out.println(response);
 	        		break;
 	        	case "addFriend":
@@ -121,6 +123,9 @@ public class Main{
 	        			}
 	        		}
 	        		break;
+	        	case "exit":
+	        		chatController.logout();
+	        		System.exit(0);
 	        }
 		}
 		//16773a8b-b9ab-4067-95e6-167a2e600116

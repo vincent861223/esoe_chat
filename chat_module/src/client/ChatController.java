@@ -1,6 +1,7 @@
 package client;
 
 import container.Response;
+import container.SessionInfo;
 
 public class ChatController {
 	private String serverIP;
@@ -8,6 +9,7 @@ public class ChatController {
 	private int listenPort;
 	public volatile String updateHistoryChatroom = null;
 	private String userID;
+	private String sessionID;
 	private RegisterAgent registerAgent;
 	private LoginAgent loginAgent;
 	private MessageAgent messageAgent;
@@ -31,7 +33,22 @@ public class ChatController {
 	public Response login(String username, String password) {
 		if(userID != null) return new Response("Failed", "Logged in already!");
 		Response response = loginAgent.login(username, password, listenPort);
-		if(response!= null && response.status.equals("OK")) this.userID = response.msg;
+		if(response!= null && response.status.equals("OK")) {
+			SessionInfo sessionInfo = (SessionInfo) response.info;
+			this.userID = sessionInfo.userID;
+			this.sessionID = sessionInfo.sessionID;
+		}
+		return response;
+	}
+	
+	public Response logout() {
+		Response response = loginAgent.logout(sessionID);
+		if(response.status.equals("OK")) {
+			userID = null;
+			sessionID = null;
+			messageAgent = null;
+			friendAgent = null;
+		}
 		return response;
 	}
 	

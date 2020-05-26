@@ -13,4 +13,9 @@ public class LoginAgent extends Agent {
 		Request request = new Request("Login", loginInfo);
 		return sendRequest(request);
 	}
+	
+	public Response logout(String sessionID) {
+		Request request = new Request("Logout", sessionID);
+		return sendRequest(request);
+	}
 }

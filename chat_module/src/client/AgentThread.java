@@ -3,9 +3,8 @@ package client;
 import java.net.Socket;
 
 import container.Request;
-import container.Response;
 
-import java.io.ObjectInputStream;
+
 import java.io.ObjectOutputStream;
 
 public class AgentThread extends Thread{

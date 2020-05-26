@@ -8,7 +8,7 @@ import container.Response;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class Agent extends Thread{
+public class Agent{
 	protected String ip;
 	protected int port;
 	
@@ -52,25 +52,5 @@ public class Agent extends Thread{
 		}
 	}
 	
-	public void run(Request request, int timeout) {
-		Socket server;
-		ObjectOutputStream out;
-		try {
-			server = new Socket(this.ip, this.port);
-			server.setSoTimeout(timeout);
-			
-			out = new ObjectOutputStream(server.getOutputStream());
-			
-			out.writeObject(request); 
-			out.flush();
-
-			
-			out.close();
-			server.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Socket connection error !: " + e.toString());
-		}
-	}
 
 }
