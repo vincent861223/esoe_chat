@@ -1,8 +1,8 @@
 module chat_module {
-    requires org.json;
     requires java.sql;
     requires java.desktop;
     requires java.prefs;
+	requires com.google.gson;
     exports client;
     exports container;
 }

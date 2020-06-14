@@ -1,10 +1,12 @@
 package container;
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Container {
+	private transient Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	@Override
 	public String toString() {
-		return new JSONObject(this).toString();
+		return gson.toJson(this);
 	}
 }
