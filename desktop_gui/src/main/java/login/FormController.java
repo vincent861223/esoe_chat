@@ -1,19 +1,14 @@
 package login;
 
-import client.ChatController;
-import container.Response;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
 import util.*;
 
-public class FormController extends CurrentUserInfo {
+public abstract class FormController extends CurrentUserInfo {
 
     static StackPane boxPane;
     static PopOver popOver;
@@ -28,7 +23,7 @@ public class FormController extends CurrentUserInfo {
         popOver.setArrowIndent(4.0);
     }
 
-    void setBoxPane(StackPane boxPane) {
+    static void setBoxPane(StackPane boxPane) {
         FormController.boxPane = boxPane;
     }
 

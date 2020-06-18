@@ -76,22 +76,22 @@
          <center>
             <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="4.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#clickedFriendList" prefWidth="50.0">
                      <graphic>
                         <FontIcon id="function-icon" fx:id="btnFriendList" iconLiteral="mdi-human-greeting" iconSize="25" />
                      </graphic>
                   </Button>
-                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#clickedChatList" prefWidth="50.0">
                      <graphic>
                         <FontIcon id="function-icon" fx:id="btnChatList" iconLiteral="enty-chat" iconSize="25" />
                      </graphic>
                   </Button>
-                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#clickedAddFriend" prefWidth="50.0">
                      <graphic>
                         <FontIcon id="function-icon" fx:id="btnAddFriend" iconLiteral="mdi-account-plus" iconSize="25" />
                      </graphic>
                   </Button>
-                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" prefWidth="50.0">
+                  <Button id="transparent-button" contentDisplay="CENTER" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#clickedSetting" prefWidth="50.0">
                      <graphic>
                         <FontIcon id="function-icon" fx:id="btnSetting" iconLiteral="mdi-settings" iconSize="25" />
                      </graphic>
@@ -100,7 +100,7 @@
             </HBox>
          </center>
          <bottom>
-            <StackPane maxHeight="1.7976931348623157E308" prefHeight="415.0" BorderPane.alignment="CENTER" />
+            <StackPane fx:id="slidePane" maxHeight="1.7976931348623157E308" prefHeight="415.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </left>

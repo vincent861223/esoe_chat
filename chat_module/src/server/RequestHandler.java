@@ -50,9 +50,10 @@ public class RequestHandler extends Thread{
 		}
 	}
 	public Response handleRequest(Request request, String client_ip, int client_port) {
-		// FIXME: have to change database path if change module directory
+		// FIXME: see if need to change path when packaging?
 		String current = System.getProperty("user.dir");
 		ChatDatabase chatDatabase = new ChatDatabase(current + "/Database/chat.db", current + "/Database/init_table.sql");
+
 		switch (request.command) {
 			case "Register":
 				return chatDatabase.addUser((RegisterInfo)request.info);

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d63a5e2-5c68-4fc2-9e06-367cf2eb424e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DarkyenusTimeTracker">
+    <option name="totalTimeSeconds" value="42966" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="CSS File" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1bbJtUpo5C4LG6BHOXVHvHYA0mZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/desktop_gui/src/main/resources/login/styles" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/desktop_gui/src/main/resources/login/styles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginScreen">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="client.Main" />
+      <module name="chat_module" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginScreen" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="login.SplashScreen" />
+      <module name="desktop_gui" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
+      <module name="chat_module" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.test" />
+      <module name="desktop_gui" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.LoginScreen" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d63a5e2-5c68-4fc2-9e06-367cf2eb424e" name="Default Changelist" comment="" />
+      <created>1588895074945</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588895074945</updated>
+      <workItem from="1588895076647" duration="38388000" />
+      <workItem from="1589787236536" duration="1323000" />
+      <workItem from="1589880162594" duration="20030000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="592" y="209" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1589881483327">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="592" y="209" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1589881483327" />
+    <state x="658" y="146" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589934072875">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="658" y="146" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1589934072875" />
+    <state x="1063" y="199" key="#com.intellij.ide.util.MemberChooser" timestamp="1589881490516">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1063" y="199" key="#com.intellij.ide.util.MemberChooser/0.23.1920.1057@0.23.1920.1057" timestamp="1589881490516" />
+    <state x="869" y="301" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1588938289603">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="869" y="301" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1588938289603" />
+    <state x="894" y="394" width="581" height="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588910628343">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="894" y="394" width="581" height="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1920.1057@0.23.1920.1057" timestamp="1588910628343" />
+    <state x="870" y="248" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588940459420">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="870" y="248" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1588940459420" />
+    <state x="1003" y="256" key="FileChooserDialogImpl" timestamp="1588905622593">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1003" y="256" key="FileChooserDialogImpl/0.23.1920.1057@0.23.1920.1057" timestamp="1588905622593" />
+    <state width="1123" height="111" key="GridCell.Tab.0.bottom" timestamp="1590832334698">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1123" height="111" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1590832334698" />
+    <state width="1275" height="185" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1590035861481" />
+    <state width="1123" height="111" key="GridCell.Tab.0.center" timestamp="1590832334697">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1123" height="111" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1590832334697" />
+    <state width="1275" height="185" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1590035861481" />
+    <state width="1123" height="111" key="GridCell.Tab.0.left" timestamp="1590832334695">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1123" height="111" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1590832334695" />
+    <state width="1275" height="185" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1590035861480" />
+    <state width="1123" height="111" key="GridCell.Tab.0.right" timestamp="1590832334698">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1123" height="111" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1590832334698" />
+    <state width="1275" height="185" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1590035861481" />
+    <state x="683" y="241" key="IDE.errors.dialog" timestamp="1588900839673">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="683" y="241" key="IDE.errors.dialog/0.23.1920.1057@0.23.1920.1057" timestamp="1588900839673" />
+    <state x="346" y="39" key="SettingsEditor" timestamp="1588919210886">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="346" y="39" key="SettingsEditor/0.23.1920.1057@0.23.1920.1057" timestamp="1588919210886" />
+    <state x="377" y="23" width="947" height="1016" key="find.popup" timestamp="1590032755247">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="377" y="23" width="947" height="1016" key="find.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1590032755247" />
+    <state x="452" y="31" key="new project wizard" timestamp="1588910338974">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="452" y="31" key="new project wizard/0.23.1920.1057@0.23.1920.1057" timestamp="1588910338974" />
+    <state x="779" y="48" width="838" height="1032" key="search.everywhere.popup" timestamp="1588900666056">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="779" y="48" width="838" height="1032" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1588900666056" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/desktop_gui/src/main/java/login/SplashScreen.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/desktop_gui/src/main/java/main/test.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

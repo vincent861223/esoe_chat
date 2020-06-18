@@ -49,7 +49,7 @@ public class Main{
 //		System.out.println(response);
 //		response = chatController.creatChatroom(new String[]{"Alice", "Bob"});
 //		System.out.println(response);
-//		String chatroomID = response.msg;
+//		chatroomID = response.msg;
 //		response = chatController.sendMessage(chatroomID, "Hello");
 //		System.out.println(response);
 //		response = chatController.sendMessage(chatroomID, "I am Vincent");
@@ -58,7 +58,7 @@ public class Main{
 			//System.out.println(chatController.updateHistoryChatroom);
 	        System.out.print("> ");
 	        switch(scanner.nextLine()){
-	        	case "register": 
+	        	case "register":
 	        		System.out.print("Username: ");
 	        		String username = scanner.nextLine();
 	        		System.out.print("email: ");
@@ -68,7 +68,7 @@ public class Main{
 	        		response = chatController.register(username, email, password);
 	        		System.out.println(response);
 	        		break;
-	        	case "login":  
+	        	case "login":
 	        		System.out.print("username: ");
 	        		username = scanner.nextLine();
 	        		System.out.print("password: ");
@@ -76,7 +76,7 @@ public class Main{
 	        		response = chatController.login(username, password);
 	        		System.out.println(response);
 	        		break;
-	        	case "logout":  
+	        	case "logout":
 	        		response = chatController.logout();
 	        		System.out.println(response);
 	        		break;
@@ -90,14 +90,14 @@ public class Main{
 	        		response = chatController.getFriend();
 	        		System.out.println(response);
 	        		break;
-	        		
+
 	        	case "confirmFriend":
 	        		System.out.print("Friend username: ");
 	        		username = scanner.nextLine();
 	        		response = chatController.confirmFriend(username);
 	        		System.out.println(response);
 	        		break;
-	        		
+
 	        	case "createChatroom":
 	        		System.out.println("With who? ");
 	        		String[] friends = scanner.nextLine().split(" ");
@@ -114,7 +114,7 @@ public class Main{
 	        		chatroomID = chatroomIDs[scanner.nextInt()];
 	        		boolean exit = false;
 	        		while(!exit) {
-	        			
+
 	        			String msg = scanner.nextLine();
 	        			if(msg.equals("exit")) exit = true;
 	        			else {

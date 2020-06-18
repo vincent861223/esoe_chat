@@ -31,38 +31,16 @@ public class test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainWindow.fxml"));
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("styles/main.css").toExternalForm());
-//        scene.setFill(Color.TRANSPARENT);
-//        primaryStage.setScene(scene);
-
-
-        VBox vbox = new VBox();
-        vbox.setPrefSize(250, 160);
-        vbox.setAlignment(Pos.TOP_CENTER);
-        vbox.setPadding(new Insets(10));
-
-        FontIcon icon = new FontIcon("mdi-checkbox-marked-circle-outline:35:#F79D84");
-        Label lbl = new Label("You have signed up successfully!");
-        lbl.setFont(new Font("Noto Sans CJK TC Light", 18));
-        lbl.setWrapText(true);
-        lbl.setTextAlignment(TextAlignment.CENTER);
-        lbl.setStyle("-fx-text-fill: #686868");
-        JFXButton button = new JFXButton("Go to login");
-        button.setFont(new Font("Noto Sans CJK TC DemiLight", 13));
-        button.setStyle("-fx-background-color: #F79D84; -fx-text-fill: white;");
-
-
-        vbox.getChildren().addAll(icon, lbl, button);
-        vbox.setMargin(button, new Insets(8, 0, 5, 0));
-
-        Scene scene = new Scene(vbox);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+//        scene.getStylesheets().add(getClass().getResource("styles/main.css").toExternalForm());
+        scene.setFill(Color.TRANSPARENT);
 
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.setTitle("Login");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setTitle("Test");
         primaryStage.setResizable(false);
         primaryStage.show();
 
