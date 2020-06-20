@@ -2,8 +2,9 @@ package util;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
-public abstract class MessageUnit {
+public abstract class MessageUnit extends VBox {
 
     @FXML
     private Label timestamp;

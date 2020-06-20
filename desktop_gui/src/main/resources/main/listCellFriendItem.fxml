@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox fx:id="hBox" alignment="CENTER_LEFT" prefWidth="230.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="hBox" alignment="CENTER_LEFT" prefWidth="215.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <FontIcon iconColor="#59cd90" iconLiteral="mdi-account-circle" iconSize="40" />
         <Label fx:id="label" text="Label">

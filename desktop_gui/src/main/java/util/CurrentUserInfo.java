@@ -8,13 +8,8 @@ public class CurrentUserInfo {
 
     static public ChatController chatController = new ChatController("127.0.0.1", 12345);
 
-    // User Info
-    //    static String userID; -> save in chatcontroller
-    // TODO: user friend list, chatroom list, preference
-    //       + group?
-    //       + self-defined name
+    // TODO:  preference
     //       + profile pic? --> use placeholder now
-    //       + Utilities: change password / sent email
     //       + logout
     //       + notification
     static String username;
@@ -31,6 +26,7 @@ public class CurrentUserInfo {
     // for testing
     public static void testLogin() {
         chatController.login("Vincent", "123");
+        setUsername("Vincent");
     }
 
 

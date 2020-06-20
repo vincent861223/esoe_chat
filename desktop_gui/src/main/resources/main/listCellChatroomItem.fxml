@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox fx:id="hBox" alignment="CENTER_LEFT" onMouseClicked="#mouseClicked" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="hBox" alignment="CENTER_LEFT" onMouseClicked="#mouseClicked" prefWidth="215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <FontIcon iconColor="#59cd90" iconLiteral="mdi-account-circle" iconSize="40" />
       <VBox alignment="CENTER_LEFT" prefWidth="185.0">

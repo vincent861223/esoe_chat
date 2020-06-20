@@ -7,17 +7,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.ChatroomController;
+import main.ListCellChatroomItem;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
-public class Maps {
+public abstract class Maps {
 
-    public static HashMap<String, Stage> stages = new HashMap<>();
-    public static HashMap<String, Parent> parents = new HashMap<>();
-    public static HashMap<String, Parent> chatrooms = new HashMap<>();
-    public static HashMap<String, ChatroomController> chatroomControllers = new HashMap<>();
-    public static HashMap<String, Object> controllers = new HashMap<>();
+    public static final Map<String, Stage> stages = new HashMap<>();
+    public static final Map<String, Parent> parents = new HashMap<>();
+    public static final Map<String, Parent> chatrooms = new HashMap<>();
+    public static final Map<String, ListCellChatroomItem> chatroomListItems = new HashMap<>();
+    public static final Map<String, ChatroomController> chatroomControllers = new HashMap<>();
+    public static final Map<String, Object> controllers = new HashMap<>();
 
     public static final String FRIEND_LIST = "friendListSlide";
     public static final String CHAT_LIST = "chatListSlide";
@@ -28,11 +31,12 @@ public class Maps {
     public static final String ALERT_DIALOG = "alertDialog";
     public static final String NEW_CHAT_DIALOG = "newChatDialog";
 
-    private static Response response;
     private static BorderPane borderPane;
 
+    private Maps() {}
+
     public static void createNewChatroom(String[] members) throws IOException {
-        response = CurrentUserInfo.chatController.creatChatroom(members);
+        Response response = CurrentUserInfo.chatController.creatChatroom(members);
         displayChatroom(response.getMsg());
     }
 
@@ -42,24 +46,20 @@ public class Maps {
         }
         VBox vBox = (VBox) chatrooms.get(chatroomID);
         borderPane.setCenter(vBox);
-        ChatroomController controller = chatroomControllers.get(chatroomID);
-        controller.setChatroomTitle(chatroomID);
+
     }
 
-    private static Parent loadPane(String chatroomID) throws IOException {
+    private static void loadPane(String chatroomID) throws IOException {
         FXMLLoader loader = new FXMLLoader(Maps.class.getResource( "chatroom.fxml"));
         Parent root = loader.load();
         chatrooms.put(chatroomID, root);
-        chatroomControllers.put(chatroomID, loader.getController());
-        return root;
+        ChatroomController controller = loader.getController();
+        controller.setChatroomID(chatroomID);
+        chatroomControllers.put(chatroomID, controller);
     }
 
     public static void setBorderPane(BorderPane borderPane) {
         Maps.borderPane = borderPane;
-    }
-
-    private void loadChatHistory(String chatroomID) {
-
     }
 
 }

@@ -8,14 +8,12 @@ import java.io.IOException;
 
 public class RightMessageUnit extends MessageUnit {
 
-    @FXML
-    private VBox vBox;
-
     public RightMessageUnit() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("rightMessageUnit.fxml"));
+        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
-            vBox = fxmlLoader.load();
+            fxmlLoader.load();
         }
         catch (IOException e) {
             throw new RuntimeException(e);
@@ -23,6 +21,7 @@ public class RightMessageUnit extends MessageUnit {
     }
 
     public RightMessageUnit(String message, String timestamp) {
+        this();
         setMessage(message);
         setTimestamp(timestamp);
     }

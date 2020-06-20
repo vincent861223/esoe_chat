@@ -80,7 +80,6 @@ public class LoginController extends FormController implements Initializable {
                 throw new GuiException(response.getMsg());
             }
             else {
-                System.out.println("Login Successfully"); // DELETEME
                 if (btnRememberMe.isSelected()) {
                     userPreferences.put(SAVED_USERNAME, username);
                     userPreferences.put(SAVED_PASSWORD, password);

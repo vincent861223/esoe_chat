@@ -54,11 +54,14 @@ public class ChatListSlideController implements Initializable, ListviewControlle
         String[] chatroomIDs = ((ChatroomList) response.info).chatroomIDs;
         for (String id: chatroomIDs) {
             MessageHistory msgHistory = (MessageHistory)CurrentUserInfo.chatController.getHistory(id).info;
-            if (!msgHistory.messages.isEmpty())
-                obsList.add(new ListCellChatroomItem(id, id, msgHistory.messages.get(msgHistory.messages.size() - 1).msg));
-            else
-                obsList.add(new ListCellChatroomItem(id, id, null));
 
+            ListCellChatroomItem newItem;
+            if (!msgHistory.messages.isEmpty())
+                newItem = new ListCellChatroomItem(id, id, msgHistory.messages.get(msgHistory.messages.size() - 1).msg);
+            else
+                newItem = new ListCellChatroomItem(id, id, null);
+            Maps.chatroomListItems.put(id, newItem);
+            obsList.add(newItem);
             // TODO: chatroom ID & chatroom Title
 
         }

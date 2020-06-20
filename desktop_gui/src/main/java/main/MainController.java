@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 import util.CurrentUserInfo;
 import util.Maps;
+import util.UpdateHistoryThread;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,17 +35,13 @@ public class MainController implements Initializable {
     private BorderPane borderPane;
 
     @FXML
-    private FontIcon btnRingOn;
-
-    @FXML
-    private FontIcon btnRingOff;
-
-    @FXML
     private StackPane slidePane;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UpdateHistoryThread updateHistoryThread = new UpdateHistoryThread();
+        updateHistoryThread.start();
 
         Platform.runLater( () -> {
             try {
@@ -101,7 +98,7 @@ public class MainController implements Initializable {
         currentSlide.setVisible(false);
         currentSlide = Maps.parents.get(Maps.CHAT_LIST);
         currentSlide.setVisible(true);
-        ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
+//        ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
     }
 
     @FXML

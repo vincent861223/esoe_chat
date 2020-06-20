@@ -34,11 +34,13 @@ public class ListCellChatroomItem extends ListCellItem {
         label2.setText(lastMessage);
     }
 
+    public void setLabel2(String text) {
+        this.label2.setText(text);
+    }
+
     @FXML
     void mouseClicked(MouseEvent e) throws IOException {
         if (e.getClickCount() == 2){
-            System.out.println(CurrentUserInfo.chatController.getChatroomName(chatroomID));
-            System.out.println(CurrentUserInfo.chatController.getHistory(chatroomID));
             Maps.displayChatroom(chatroomID);
         }
     }

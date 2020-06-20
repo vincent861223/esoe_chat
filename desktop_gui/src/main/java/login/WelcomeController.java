@@ -42,9 +42,6 @@ public class WelcomeController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
         Parent root = loader.load();
-
-        // FIXME: FXML load too slow and return null controller
-        //        This is a workaround(?) of loading speed problem.
         Platform.runLater(() -> {
             FormController controller = loader.getController();
             if (controller != null) {

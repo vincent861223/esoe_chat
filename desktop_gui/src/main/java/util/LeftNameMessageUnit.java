@@ -3,14 +3,16 @@ package util;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class LeftMessageUnit extends MessageUnit {
+public class LeftNameMessageUnit extends MessageUnit {
 
-    public LeftMessageUnit() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("leftMessageUnit.fxml"));
+    @FXML
+    private Label username;
+
+    public LeftNameMessageUnit() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("leftNameMessageUnit.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
@@ -21,10 +23,15 @@ public class LeftMessageUnit extends MessageUnit {
         }
     }
 
-    public LeftMessageUnit(String message, String timestamp) {
+    public LeftNameMessageUnit(String message, String timestamp, String username) {
         this();
         setMessage(message);
         setTimestamp(timestamp);
+        setUsername(username);
+    }
+
+    public void setUsername(String username) {
+        this.username.setText(username);
     }
 
 }

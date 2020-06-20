@@ -8,6 +8,11 @@
 
 <fx:root maxWidth="-Infinity" prefWidth="490.0" spacing="3.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+        <Label fx:id="username" text="Username" textFill="#686868">
+            <font>
+                <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+            </font>
+        </Label>
         <HBox alignment="BOTTOM_LEFT" spacing="5.0">
             <children>
                 <Label fx:id="message" maxWidth="350.0" style="-fx-background-color: #E1E1E1; -fx-background-radius: 10;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" wrapText="true">

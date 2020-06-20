@@ -17,10 +17,13 @@
             <VBox alignment="CENTER" prefHeight="475.0" prefWidth="550.0" BorderPane.alignment="CENTER">
                <children>
                   <FontIcon iconColor="#fac05e" iconLiteral="fth-coffee" iconSize="50" />
-                  <Label text="Start a new conversation!" textFill="#686868">
+                  <Label style="-fx-border-color: #fac05e; -fx-border-width: 0 0 2 0;" text="Start a new conversation!" textFill="#686868">
                      <font>
                         <Font name="Noto Sans CJK TC DemiLight" size="17.0" />
                      </font>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
                   </Label>
                </children>
             </VBox>

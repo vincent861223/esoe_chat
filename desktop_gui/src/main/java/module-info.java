@@ -19,6 +19,8 @@ module desktop_gui {
     exports login;
     opens main to javafx.fxml;
     exports main;
+    opens util to javafx.fxml;
+    exports util;
 
     // In case of jfoenix has weird behavior(?)
 //    opens com.sun.javafx.control.behavior to com.jfoenix;
