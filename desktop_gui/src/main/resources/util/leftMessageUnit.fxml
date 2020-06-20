@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefWidth="400.0" spacing="3.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="username" text="Username" textFill="#686868">
+            <font>
+                <Font name="Noto Sans CJK TC Light" size="13.0" />
+            </font>
+        </Label>
+        <HBox alignment="BOTTOM_LEFT" spacing="5.0">
+            <children>
+                <Label fx:id="message" maxWidth="320.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" wrapText="true">
+                    <font>
+                        <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="timestamp" text="11:55 PM" textFill="#686868">
+                    <font>
+                        <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    </font>
+                </Label>
+            </children>
+            <VBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

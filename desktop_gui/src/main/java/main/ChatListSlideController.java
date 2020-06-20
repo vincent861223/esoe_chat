@@ -65,16 +65,6 @@ public class ChatListSlideController implements Initializable, ListviewControlle
         listView.getItems().clear();
         listView.getItems().addAll(obsList);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        listView.setCellFactory(p -> {
-            ListCell<ListCellItem> cell = new ListViewCell();
-//            cell.setOnMousePressed(e -> {
-//                if (e.getClickCount() == 2){
-//                    // TODO: the right slide changes to this chat
-//                    System.out.println(cell.getItem() + " double clicked!");
-////                     Maps.displayChatroom();
-//                }
-//            });
-            return cell;
-        });
+        listView.setCellFactory(p -> new ListViewCell());
     }
 }

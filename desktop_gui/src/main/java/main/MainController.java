@@ -45,6 +45,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         Platform.runLater( () -> {
             try {
                 CurrentUserInfo.testLogin();
@@ -136,6 +137,7 @@ public class MainController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         // FormController.popOver.setAnimated(false);
         stage.close();
+        CurrentUserInfo.chatController.logout();
         System.exit(0);
     }
     @FXML

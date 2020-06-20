@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import util.CurrentUserInfo;
 import util.Maps;
 
 import java.io.IOException;
@@ -36,6 +37,8 @@ public class ListCellChatroomItem extends ListCellItem {
     @FXML
     void mouseClicked(MouseEvent e) throws IOException {
         if (e.getClickCount() == 2){
+            System.out.println(CurrentUserInfo.chatController.getChatroomName(chatroomID));
+            System.out.println(CurrentUserInfo.chatController.getHistory(chatroomID));
             Maps.displayChatroom(chatroomID);
         }
     }

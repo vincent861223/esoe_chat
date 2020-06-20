@@ -31,7 +31,7 @@ public class AddFriendSlideController implements Initializable, ListviewControll
     }
 
     @FXML
-    void AddNewFriend() {
+    void addNewFriend() {
         StackPane content = (StackPane) Maps.parents.get(Maps.ADD_FRIEND_DIALOG);
         StackPane root = (StackPane) Maps.parents.get(Maps.ROOT_STACK_PANE);
         dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.TOP);
@@ -48,8 +48,8 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         Response response = CurrentUserInfo.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
-            if (friend.getPending() && !friend.getBlocked())
-                obsList.add(new ListCellAddFriendItem(friend.getFriendUsername()));
+            if (friend.pending && !friend.blocked)
+                obsList.add(new ListCellAddFriendItem(friend.friendUsername));
         }
 
         listView.getItems().clear();

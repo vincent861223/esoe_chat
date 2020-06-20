@@ -58,4 +58,8 @@ public class Maps {
         Maps.borderPane = borderPane;
     }
 
+    private void loadChatHistory(String chatroomID) {
+
+    }
+
 }

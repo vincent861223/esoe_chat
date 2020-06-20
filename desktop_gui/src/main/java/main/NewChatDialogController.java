@@ -59,8 +59,8 @@ public class NewChatDialogController implements Initializable, ListviewControlle
         Response response = CurrentUserInfo.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
-            if (!friend.getPending() && !friend.getBlocked())
-                obsList.add(new ListCellNewChatItem(friend.getFriendUsername()));
+            if (!friend.pending && !friend.blocked)
+                obsList.add(new ListCellNewChatItem(friend.friendUsername));
         }
         listView.getItems().clear();
         listView.getItems().addAll(obsList);
