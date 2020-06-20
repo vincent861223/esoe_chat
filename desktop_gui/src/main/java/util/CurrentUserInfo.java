@@ -6,7 +6,7 @@ import container.Response;
 // This is the common parent of all controllers that should hold User information
 public class CurrentUserInfo {
 
-    static public ChatController chatController = new ChatController("127.0.0.1", 12345, 11112);
+    static public ChatController chatController = new ChatController("127.0.0.1", 12345);
 
     // User Info
     //    static String userID; -> save in chatcontroller

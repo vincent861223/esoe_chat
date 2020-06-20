@@ -1,5 +1,7 @@
 package client;
 
+import java.util.Random;
+
 import container.Response;
 import container.SessionInfo;
 
@@ -7,32 +9,32 @@ public class ChatController {
 	private String serverIP;
 	private int serverPort;
 	private int listenPort;
+	private static final int listenPortMin = 10000;
+	private static final int listenPortMax = 20000;
 	public volatile String updateHistoryChatroom = null;
 	private String userID;
 	private String sessionID;
-	private RegisterAgent registerAgent;
-	private LoginAgent loginAgent;
+	private AccountAgent accountAgent;
 	private MessageAgent messageAgent;
 	private FriendAgent friendAgent;
 	private ServerRequestHandler requestHandler;
 	
-	public ChatController(String serverIP, int serverPort, int listenPort) {
+	public ChatController(String serverIP, int serverPort) {
 		this.serverIP = serverIP;
 		this.serverPort = serverPort;
-		this.listenPort = listenPort;
-		this.registerAgent = new RegisterAgent(serverIP, serverPort);
-		this.loginAgent = new LoginAgent(serverIP, serverPort);
+		this.listenPort = new Random().nextInt((listenPortMax - listenPortMin) + 1) + listenPortMin;
+		this.accountAgent = new AccountAgent(serverIP, serverPort);
 		this.requestHandler = new ServerRequestHandler(listenPort, this);
 		this.requestHandler.start();
 	}
 	
 	public Response register(String username, String email, String password) {
-		return registerAgent.register(username, email, password);
+		return accountAgent.register(username, email, password);
 	}
 	
 	public Response login(String username, String password) {
 		if(userID != null) return new Response("Failed", "Logged in already!");
-		Response response = loginAgent.login(username, password, listenPort);
+		Response response = accountAgent.login(username, password, listenPort);
 		if(response!= null && response.status.equals("OK")) {
 			SessionInfo sessionInfo = (SessionInfo) response.info;
 			this.userID = sessionInfo.userID;
@@ -42,7 +44,7 @@ public class ChatController {
 	}
 	
 	public Response logout() {
-		Response response = loginAgent.logout(sessionID);
+		Response response = accountAgent.logout(sessionID);
 		if(response.status.equals("OK")) {
 			userID = null;
 			sessionID = null;
@@ -50,6 +52,16 @@ public class ChatController {
 			friendAgent = null;
 		}
 		return response;
+	}
+	
+	public Response getUsername(String userID) {
+		Response response = accountAgent.getUsername(userID);
+		return response;
+	}
+	
+	public Response getUsername() {
+		if(userID == null) return new Response("Failed", "Not logged in");
+		return getUsername(userID);
 	}
 	
 	public Response creatChatroom(String[] members) {
@@ -118,5 +130,4 @@ public class ChatController {
 		if(friendAgent == null) friendAgent = new FriendAgent(this.serverIP, this.serverPort, this.userID);
 		return friendAgent.confirmFriend(friendUsername);
 	}
-	
 }

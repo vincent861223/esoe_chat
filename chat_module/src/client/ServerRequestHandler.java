@@ -1,14 +1,12 @@
 package client;
 
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import container.Request;
 import container.Response;
 import container.UpdateHistoryInfo;
-import server.RequestHandler;
 
 public class ServerRequestHandler extends Thread{
 	private ServerSocket server;
