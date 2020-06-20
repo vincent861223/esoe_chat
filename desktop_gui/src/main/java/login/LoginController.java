@@ -1,5 +1,6 @@
 package login;
 
+import container.Response;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.stage.StageStyle;
 import main.MainController;
 import org.controlsfx.control.PopOver;
 import util.CurrentUserInfo;
-import util.StageMap;
+import util.Maps;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,7 +72,7 @@ public class LoginController extends FormController implements Initializable {
         try {
             username = inputUsername.getText();
             password = inputPassword.getText();
-            response = chatController.login(username, password);
+            Response response = chatController.login(username, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             }
@@ -98,10 +99,10 @@ public class LoginController extends FormController implements Initializable {
                     newStage.initStyle(StageStyle.TRANSPARENT);
                     newStage.setTitle("ESOE CHAT");
                     newStage.show();
-                    StageMap.stages.put("mainStage", newStage);
+                    Maps.stages.put("mainStage", newStage);
 
                     // TODO: Not determine to hide() or to close() login stage yet. Check this later.
-                    Stage loginStage = StageMap.stages.getOrDefault("loginStage", null);
+                    Stage loginStage = Maps.stages.getOrDefault("loginStage", null);
                     if (loginStage != null) {
                         loginStage.close();
                     }

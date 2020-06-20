@@ -1,34 +1,21 @@
 package login;
 
 import com.jfoenix.controls.*;
+import container.Response;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import main.MainController;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
-import util.CurrentUserInfo;
-import util.StageMap;
 
 import java.io.IOException;
 import java.net.URL;
@@ -124,7 +111,7 @@ public class SignUpController extends FormController implements Initializable {
             username = inputUsername.getText();
             email = inputEmail.getText();
             password = inputPassword.getText();
-            response = chatController.register(username, email, password);
+            Response response = chatController.register(username, email, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             } else if (response.getStatus().equals("Failed")) {

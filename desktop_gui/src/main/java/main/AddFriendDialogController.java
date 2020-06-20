@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.CurrentUserInfo;
+import util.Maps;
 
 public class AddFriendDialogController {
 
@@ -26,16 +27,14 @@ public class AddFriendDialogController {
     private static final String USERNAME_DOES_NOT_EXIST = "friend username does not exist";
     private static final String ALREADY_INVITED = "Already added, waiting for friend to confirm.";
 
-
     @FXML
     void submitAddFriend(ActionEvent event) {
         String username = tfUsername.getText();
         if (username.equals("")) return;
-
         Response response = CurrentUserInfo.chatController.addFriend(username);
         if (response.status.equals("OK")) {
             lblMsg.setVisible(false);
-            VBox content = (VBox) MainController.parentsMap.get(MainController.ALERT_DIALOG);
+            VBox content = (VBox) Maps.parents.get(Maps.ALERT_DIALOG);
             Label label = (Label)content.lookup("#label");
             JFXButton button = (JFXButton)content.lookup("#button");
             label.setText("Invitation Sent!");
@@ -63,7 +62,7 @@ public class AddFriendDialogController {
     @FXML
     void cancelAddFriend(ActionEvent event) {
         lblMsg.setVisible(false);
-        ((AddFriendSlideController) MainController.controllersMap.get(MainController.ADD_FRIEND_LIST)).closeDialog();
+        ((AddFriendSlideController) Maps.controllers.get(Maps.ADD_FRIEND_LIST)).closeDialog();
     }
 
 }

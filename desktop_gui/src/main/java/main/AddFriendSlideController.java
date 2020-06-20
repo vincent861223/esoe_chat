@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import util.CurrentUserInfo;
+import util.Maps;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,8 +32,8 @@ public class AddFriendSlideController implements Initializable, ListviewControll
 
     @FXML
     void AddNewFriend() {
-        StackPane content = (StackPane) MainController.parentsMap.get(MainController.ADD_FRIEND_DIALOG);
-        StackPane root = (StackPane) MainController.parentsMap.get(MainController.ROOT_STACK_PANE);
+        StackPane content = (StackPane) Maps.parents.get(Maps.ADD_FRIEND_DIALOG);
+        StackPane root = (StackPane) Maps.parents.get(Maps.ROOT_STACK_PANE);
         dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.TOP);
         dialog.show();
     }

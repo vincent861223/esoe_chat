@@ -5,10 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import util.CurrentUserInfo;
+import util.Maps;
 
 import java.io.IOException;
 
-import static main.MainController.ADD_FRIEND_LIST;
+import static util.Maps.ADD_FRIEND_LIST;
 
 public class ListCellAddFriendItem extends ListCellItem {
 
@@ -25,14 +26,15 @@ public class ListCellAddFriendItem extends ListCellItem {
             throw new RuntimeException(e);
         }
     }
-    public ListCellAddFriendItem(String labelText) {
+
+    public ListCellAddFriendItem(String username) {
         this();
-        label1.setText(labelText);
+        label.setText(username);
     }
 
     @FXML
     void comfirmFriend(ActionEvent event) {
-        CurrentUserInfo.chatController.confirmFriend(label1.getText());
-        ((AddFriendSlideController) MainController.controllersMap.get(ADD_FRIEND_LIST)).reload();
+        CurrentUserInfo.chatController.confirmFriend(label.getText());
+        ((AddFriendSlideController) Maps.controllers.get(ADD_FRIEND_LIST)).reload();
     }
 }

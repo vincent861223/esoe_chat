@@ -7,7 +7,6 @@ import container.Response;
 public class CurrentUserInfo {
 
     static public ChatController chatController = new ChatController("127.0.0.1", 12345, 11112);
-    static public Response response;
 
     // User Info
     //    static String userID; -> save in chatcontroller

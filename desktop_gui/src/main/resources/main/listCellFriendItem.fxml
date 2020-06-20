@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -15,11 +13,5 @@
             <Font name="Noto Sans CJK TC Regular" size="13.0" />
          </font>
       </Label>
-      <Region prefHeight="40.0" HBox.hgrow="ALWAYS" />
-      <JFXButton fx:id="buttom" onAction="#comfirmFriend" style="-fx-background-color: #3FA7D6;" text="Confirm" textFill="WHITE">
-         <font>
-            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
-         </font>
-      </JFXButton>
     </children>
 </HBox>

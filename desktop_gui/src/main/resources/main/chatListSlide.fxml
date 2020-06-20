@@ -8,15 +8,15 @@
 
 <VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="250.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChatListSlideController">
    <children>
-      <JFXButton onAction="#CreateNewChatroom" prefHeight="30.0" prefWidth="267.0" ripplerFill="WHITE" style="-fx-background-color: #3FA7D6;" text="Create A New Chatroom" textFill="WHITE">
+      <ListView fx:id="listView" prefHeight="437.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+      <JFXButton onAction="#clickedCreateNewChatroom" prefHeight="30.0" prefWidth="220.0" ripplerFill="WHITE" style="-fx-background-color: #3FA7D6;" text="Create A New Chatroom" textFill="WHITE">
          <VBox.margin>
-            <Insets />
+            <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
          <font>
             <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
          </font>
       </JFXButton>
-      <ListView fx:id="listView" prefHeight="437.0" prefWidth="250.0" />
    </children>
    <padding>
       <Insets bottom="5.0" top="5.0" />

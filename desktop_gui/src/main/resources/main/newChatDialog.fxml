@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.NewChatDialogController">
    <children>
       <Label text="Create a New Chatroom" textFill="#686868">
@@ -17,7 +16,7 @@
             <Font name="Noto Sans CJK TC DemiLight" size="18.0" />
          </font>
          <graphic>
-            <FontIcon iconColor="#fac05e" iconLiteral="mdi-comment-plus-outline" iconSize="25" />
+            <FontIcon iconColor="#fac05e" iconLiteral="fth-box" iconSize="25" />
          </graphic>
       </Label>
       <ListView fx:id="listView" prefHeight="267.0" prefWidth="270.0" />

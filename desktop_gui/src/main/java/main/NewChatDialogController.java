@@ -12,9 +12,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import util.CurrentUserInfo;
+import util.Maps;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class NewChatDialogController implements Initializable, ListviewControlle
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listView.setFocusTraversable(false);
-        chatListSlideController = (ChatListSlideController) MainController.controllersMap.get(MainController.CHAT_LIST);
+        chatListSlideController = (ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST);
     }
 
     @FXML
@@ -41,12 +42,11 @@ public class NewChatDialogController implements Initializable, ListviewControlle
     }
 
     @FXML
-    void createNewChatroom(ActionEvent event) {
-        CurrentUserInfo.response = CurrentUserInfo.chatController.creatChatroom(members.toArray(new String[0]));
+    void createNewChatroom(ActionEvent event) throws IOException {
+        Maps.createNewChatroom(members.toArray(new String[0]));
         members.clear();
         chatListSlideController.closeDialog();
         chatListSlideController.reload();
-        // TODO: Change to this chat
     }
 
     void addMember(String username) { members.add(username); }
@@ -56,8 +56,8 @@ public class NewChatDialogController implements Initializable, ListviewControlle
     @Override
     public void reload() {
         obsList.clear();
-        CurrentUserInfo.response = CurrentUserInfo.chatController.getFriend();
-        FriendList friendList = (FriendList) CurrentUserInfo.response.info;
+        Response response = CurrentUserInfo.chatController.getFriend();
+        FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
             if (!friend.getPending() && !friend.getBlocked())
                 obsList.add(new ListCellNewChatItem(friend.getFriendUsername()));

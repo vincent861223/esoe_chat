@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.StageStyle;
-import util.StageMap;
+import util.Maps;
 
 public class SplashScreen extends Application {
 
@@ -22,7 +22,7 @@ public class SplashScreen extends Application {
         primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.show();
-        StageMap.stages.put("loginStage", primaryStage);
+        Maps.stages.put("loginStage", primaryStage);
     }
 
     public static void main(String[] args) {

@@ -79,6 +79,7 @@ public class WelcomeController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FormController.popOver.setAnimated(false);
         stage.close();
+        System.exit(0);
     }
 
     // FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it

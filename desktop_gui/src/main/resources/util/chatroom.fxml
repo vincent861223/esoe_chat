@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+
+<VBox prefHeight="475.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChatroomController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="550.0" spacing="5.0">
+         <children>
+            <Label fx:id="lblChatroomTitle" contentDisplay="RIGHT" graphicTextGap="6.0" text="Chatroom Title" textFill="#686868">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="30.0" />
+               </font>
+               <graphic>
+                  <StackedFontIcon iconSize="25">
+                     <children>
+                        <FontIcon id="ringon" fx:id="btnRingOn" iconColor="#686868" iconLiteral="mdi-bell-ring-outline" onMouseClicked="#RingOff" />
+                        <FontIcon id="ringoff" fx:id="btnRingOff" iconColor="#686868" iconLiteral="mdi-bell-outline" onMouseClicked="#RingOn" />
+                     </children>
+                  </StackedFontIcon>
+               </graphic>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <AnchorPane prefWidth="550.0" VBox.vgrow="ALWAYS" />
+      <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="550.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tfInputMessage" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="439.0" promptText="Write your message" />
+            <Region HBox.hgrow="ALWAYS" />
+            <JFXButton fx:id="btnSendMessage" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" ripplerFill="#ee6352" style="-fx-background-color: F79D84;" text="SEND" textFill="WHITE" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

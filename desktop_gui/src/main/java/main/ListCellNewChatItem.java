@@ -6,19 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import util.CurrentUserInfo;
+import util.Maps;
 
 import java.io.IOException;
 
-import static main.MainController.ADD_FRIEND_LIST;
-
 public class ListCellNewChatItem extends ListCellItem {
-
-    @FXML
-    private HBox hBox;
-
-    @FXML
-    private Label label;
 
     @FXML
     private JFXButton cancelButton;
@@ -28,9 +20,8 @@ public class ListCellNewChatItem extends ListCellItem {
 
     private NewChatDialogController listViewController;
 
-
     public ListCellNewChatItem() {
-        listViewController = (NewChatDialogController) MainController.controllersMap.get(MainController.NEW_CHAT_DIALOG);
+        listViewController = (NewChatDialogController) Maps.controllers.get(Maps.NEW_CHAT_DIALOG);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listCellNewChatItem.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -40,9 +31,10 @@ public class ListCellNewChatItem extends ListCellItem {
             throw new RuntimeException(e);
         }
     }
-    public ListCellNewChatItem(String labelText) {
+
+    public ListCellNewChatItem(String username) {
         this();
-        label.setText(labelText);
+        label.setText(username);
     }
 
     @FXML
