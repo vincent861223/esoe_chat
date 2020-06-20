@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import client.Agent;
 import client.AgentThread;
 
 import java.util.List;
@@ -162,6 +161,22 @@ public class ChatDatabase extends Database {
 		return new Response("OK", new ChatroomList(chatroomIDs));
 	}
 	
+	public Response getChatroomName(String chatroomID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("chatroomID", chatroomID);
+		List<HashMap<String, String>> results = select("Chatroom", attr);
+		if(results.size() == 0) return new Response("Failed", "No such chatroom");
+		else{
+			String chatroomName = "";
+			for(HashMap<String, String> result: results) {
+				String username = getUserName(result.get("memberID"));
+				chatroomName += username + " ";
+			}
+			chatroomName = chatroomName.strip();
+			return new Response("OK", chatroomName);
+		}
+	}
+	
 	public Response sendMessage(MessageInfo messageInfo) {
 		// Check if the chatroom exist
 		if(!chatroomExist(messageInfo.chatroomID)) return new Response("Failed", "Chatroom does not exist.");
@@ -203,7 +218,7 @@ public class ChatDatabase extends Database {
 		FriendList friendList = new FriendList();
 		for(HashMap<String, String> result: results) {
 			System.out.println(getUserName(result.get("friendID")));
-			friendList.friends.add(new Friend(getUserName(result.get("friendID")), result.get("pending"), result.get("blocked")));
+			friendList.friends.add(new Friend(getUserName(result.get("friendID")), result.get("pending"), result.get("blocked"), result.get("inviteSender")));
 		}
 		return new Response("OK", friendList);
 	}

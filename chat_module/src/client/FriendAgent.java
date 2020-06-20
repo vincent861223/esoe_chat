@@ -27,7 +27,7 @@ public class FriendAgent extends Agent {
 	}
 	
 	public Response confirmFriend(String friendUsername) {
-		Friend friend = new Friend(friendUsername, false, false);
+		Friend friend = new Friend(friendUsername, false, false, false);
 		Request request = new Request("modifyFriend", userID, friend);
 		return sendRequest(request);
 	}

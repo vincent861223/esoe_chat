@@ -17,6 +17,7 @@ public class Main{
 		Scanner scanner = new Scanner(System.in);
 		
 		String chatroomID;
+		String[] chatroomIDs;
 		Response response;
 //		response = chatController.register("Alice", "Alice@gmail.com", "123");
 //		System.out.println(response);
@@ -104,10 +105,17 @@ public class Main{
 	        		response = chatController.creatChatroom(friends);
 	        		System.out.println(response);
 	        		break;
+	        	case "chatroomList":
+	        		response = chatController.getChatroomList();
+	        		chatroomIDs = ((ChatroomList)response.info).chatroomIDs;
+	        		for(String chatroom_ID: chatroomIDs) {
+	        			System.out.println(chatController.getChatroomName(chatroom_ID));
+	        		}
+	        		break;
 	        	case "enterChatroom":
 	        		System.out.println("Which chatroom? ");
 	        		response = chatController.getChatroomList();
-	        		String[] chatroomIDs = ((ChatroomList)response.info).chatroomIDs;
+	        		chatroomIDs = ((ChatroomList)response.info).chatroomIDs;
 	        		for(int i = 0; i < chatroomIDs.length; i++) {
 	        			System.out.println(i + " : " + chatroomIDs[i]);
 	        		}

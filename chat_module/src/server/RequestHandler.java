@@ -74,6 +74,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.getHistory((GetHistoryInfo)request.info);
 			case "GetChatroomList":
 				return chatDatabase.getChatroomList(request.userID);
+			case "GetChatroomName":
+				return chatDatabase.getChatroomName(request.userID);
 			default:
 				return new Response("Unknown command");
 		}
