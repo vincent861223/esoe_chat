@@ -77,6 +77,14 @@ public class RequestHandler extends Thread{
 				return chatDatabase.getChatroomList(request.userID);
 			case "GetChatroomName":
 				return chatDatabase.getChatroomName(request.userID);
+			case "GetUsername":
+				String username = chatDatabase.getUsername(request.userID);
+				if(username != null) return new Response("OK", username);
+				else return new Response("Failed", "user not found");
+			case "GetUserID":
+				String userID = chatDatabase.getUserID(request.userID);
+				if(userID != null) return new Response("OK", userID);
+				else return new Response("Failed", "user not found");
 			default:
 				return new Response("Unknown command");
 		}

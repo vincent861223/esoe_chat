@@ -169,7 +169,7 @@ public class ChatDatabase extends Database {
 		else{
 			String chatroomName = "";
 			for(HashMap<String, String> result: results) {
-				String username = getUserName(result.get("memberID"));
+				String username = getUsername(result.get("memberID"));
 				chatroomName += username + " ";
 			}
 			chatroomName = chatroomName.strip();
@@ -217,8 +217,8 @@ public class ChatDatabase extends Database {
 		List<HashMap<String, String>> results = select("Friend", attr);
 		FriendList friendList = new FriendList();
 		for(HashMap<String, String> result: results) {
-			System.out.println(getUserName(result.get("friendID")));
-			friendList.friends.add(new Friend(getUserName(result.get("friendID")), result.get("pending"), result.get("blocked"), result.get("inviteSender")));
+			System.out.println(getUsername(result.get("friendID")));
+			friendList.friends.add(new Friend(getUsername(result.get("friendID")), result.get("pending"), result.get("blocked"), result.get("inviteSender")));
 		}
 		return new Response("OK", friendList);
 	}
@@ -238,6 +238,22 @@ public class ChatDatabase extends Database {
 		}
 		MessageHistory messageHistory = new MessageHistory(messages);
 		return new Response("OK", messageHistory);
+	}
+	
+	public String getUserID(String username) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("username", username);
+		List<HashMap<String, String>> results = select("User", attr);
+		if(results.size() == 0) return null;
+		else return results.get(0).get("userID");
+	}
+	
+	public String getUsername(String userID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", userID);
+		List<HashMap<String, String>> results = select("User", attr);
+		if(results.size() == 0) return null;
+		else return results.get(0).get("username");
 	}
 	
 	private Boolean areFriend(String userA, String userB) {
@@ -276,19 +292,5 @@ public class ChatDatabase extends Database {
 		else return true;
 	}
 	
-	private String getUserID(String username) {
-		HashMap<String, String> attr = new HashMap<String, String>();
-		attr.put("username", username);
-		List<HashMap<String, String>> results = select("User", attr);
-		if(results.size() == 0) return null;
-		else return results.get(0).get("userID");
-	}
 	
-	private String getUserName(String userID) {
-		HashMap<String, String> attr = new HashMap<String, String>();
-		attr.put("userID", userID);
-		List<HashMap<String, String>> results = select("User", attr);
-		if(results.size() == 0) return null;
-		else return results.get(0).get("username");
-	}
 }

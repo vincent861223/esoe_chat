@@ -48,8 +48,8 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         Response response = CurrentUserInfo.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
-            if (friend.getPending() && !friend.getBlocked())
-                obsList.add(new ListCellAddFriendItem(friend.getFriendUsername()));
+            if (friend.pending && !friend.blocked)
+                obsList.add(new ListCellAddFriendItem(friend.friendUsername));
         }
 
         listView.getItems().clear();
