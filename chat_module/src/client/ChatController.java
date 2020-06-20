@@ -68,6 +68,13 @@ public class ChatController {
 		return messageAgent.getChatroomList();
 	}
 	
+	public Response getChatroomName(String chatroomID) {
+		if(userID == null) return new Response("Failed", "Not logged in");
+		// Create messageAgent if the user has logged in.
+		if(messageAgent == null) this.messageAgent = new MessageAgent(this.serverIP, this.serverPort, this.userID);
+		return messageAgent.getChatroomName(chatroomID);
+	}
+	
 	public Response sendMessage(String chatroomID, String msg) {
 		// Send a msg to a chatroom
 		
