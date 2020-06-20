@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.NewChatDialogController">
+   <children>
+      <Label text="Create a New Chatroom" textFill="#686868">
+         <font>
+            <Font name="Noto Sans CJK TC DemiLight" size="18.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="#fac05e" iconLiteral="mdi-comment-plus-outline" iconSize="25" />
+         </graphic>
+      </Label>
+      <ListView fx:id="listView" prefHeight="267.0" prefWidth="270.0" />
+      <HBox alignment="CENTER" spacing="7.0">
+         <children>
+            <JFXButton onAction="#createNewChatroom" style="-fx-background-color: #3fa7d6;" text="Create" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#cancelDialog" style="-fx-background-color: #a1a1a1;" text="Cancel" textFill="WHITE" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+   </padding>
+</VBox>

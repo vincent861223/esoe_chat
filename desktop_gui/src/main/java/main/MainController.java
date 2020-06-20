@@ -10,11 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import login.FormController;
-import login.Transition;
 import org.kordamp.ikonli.javafx.FontIcon;
 import util.CurrentUserInfo;
-import util.StageMap;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,17 +21,24 @@ import java.util.ResourceBundle;
 import static javafx.application.Application.launch;
 
 public class MainController implements Initializable {
-//public class MainController extends CurrentUserInfo implements Initializable {
 
-    double x, y;
+    private static double x, y;
 
-    private static HashMap<String, Parent> slidesMap = new HashMap<>();
+    static HashMap<String, Parent> parentsMap = new HashMap<>();
+    static HashMap<String, Object> controllersMap = new HashMap<>();
     private Parent currentSlide = null;
 
-    private static final String FRIEND_LIST = "friendListSlide";
-    private static final String CHAT_LIST = "chatListSlide";
-    private static final String ADD_FRIEND_LIST = "addFriendSlide";
-    private static final String SETTING = "settingSlide";
+    static final String FRIEND_LIST = "friendListSlide";
+    static final String CHAT_LIST = "chatListSlide";
+    static final String ADD_FRIEND_LIST = "addFriendSlide";
+    static final String SETTING = "settingSlide";
+    static final String ROOT_STACK_PANE = "rootStackPane";
+    static final String ADD_FRIEND_DIALOG = "addFriendDialog";
+    static final String ALERT_DIALOG = "alertDialog";
+    static final String NEW_CHAT_DIALOG = "newChatDialog";
+
+    @FXML
+    private StackPane rootStackPane;
 
     @FXML
     private FontIcon btnRingOn;
@@ -51,12 +55,16 @@ public class MainController implements Initializable {
         Platform.runLater( () -> {
             try {
                 CurrentUserInfo.testLogin();
-                loadPane(FRIEND_LIST);
-                loadPane(CHAT_LIST);
-                loadPane(ADD_FRIEND_LIST);
-                loadPane(SETTING);
-                currentSlide = slidesMap.get(FRIEND_LIST);
+                loadSlidePane(FRIEND_LIST);
+                loadSlidePane(CHAT_LIST);
+                loadSlidePane(ADD_FRIEND_LIST);
+                loadSlidePane(SETTING);
+                currentSlide = parentsMap.get(FRIEND_LIST);
                 currentSlide.setVisible(true);
+                parentsMap.put(ROOT_STACK_PANE, rootStackPane);
+                loadDialog(ADD_FRIEND_DIALOG);
+                loadDialog(ALERT_DIALOG);
+                loadDialog(NEW_CHAT_DIALOG);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -70,41 +78,49 @@ public class MainController implements Initializable {
     }
 
 
-    private void loadPane(String fxml) throws IOException {
+    private void loadDialog(String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+        parentsMap.put(fxml, loader.load());
+        controllersMap.put(fxml, loader.getController());
+    }
+    private void loadSlidePane(String fxml) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
         Parent root = loader.load();
         slidePane.getChildren().add(root);
         root.setVisible(false);
-        slidesMap.put(fxml, root);
-
+        parentsMap.put(fxml, root);
+        controllersMap.put(fxml, loader.getController());
     }
 
     @FXML
     void clickedAddFriend(ActionEvent event) {
         currentSlide.setVisible(false);
-        currentSlide = slidesMap.get(ADD_FRIEND_LIST);
+        currentSlide = parentsMap.get(ADD_FRIEND_LIST);
         currentSlide.setVisible(true);
+        ((AddFriendSlideController) controllersMap.get(ADD_FRIEND_LIST)).reload();
     }
 
     @FXML
     void clickedChatList(ActionEvent event) {
         currentSlide.setVisible(false);
-        currentSlide = slidesMap.get(CHAT_LIST);
+        currentSlide = parentsMap.get(CHAT_LIST);
         currentSlide.setVisible(true);
+        ((ChatListSlideController) controllersMap.get(CHAT_LIST)).reload();
     }
 
     @FXML
     void clickedFriendList(ActionEvent event) {
         currentSlide.setVisible(false);
-        currentSlide = slidesMap.get(FRIEND_LIST);
+        currentSlide = parentsMap.get(FRIEND_LIST);
         currentSlide.setVisible(true);
+        ((FriendListSlideController) controllersMap.get(FRIEND_LIST)).reload();
     }
 
     @FXML
     void clickedSetting(ActionEvent event) {
         currentSlide.setVisible(false);
-        currentSlide = slidesMap.get(SETTING);
+        currentSlide = parentsMap.get(SETTING);
         currentSlide.setVisible(true);
     }
 
@@ -150,4 +166,5 @@ public class MainController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+
 }

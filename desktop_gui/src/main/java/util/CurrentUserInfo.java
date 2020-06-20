@@ -30,7 +30,9 @@ public class CurrentUserInfo {
     }
 
     // for testing
-    
+    public static void testLogin() {
+        chatController.login("Vincent", "123");
+    }
 
 
 }

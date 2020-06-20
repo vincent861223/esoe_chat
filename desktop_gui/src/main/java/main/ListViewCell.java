@@ -2,17 +2,14 @@ package main;
 
 import javafx.scene.control.ListCell;
 
-public class ListViewCell extends ListCell<String>
+public class ListViewCell extends ListCell<ListCellItem>
 {
     @Override
-    public void updateItem(String string, boolean empty)
+    public void updateItem(ListCellItem item, boolean empty)
     {
-        super.updateItem(string,empty);
-        if(string != null)
-        {
-            Data data = new Data();
-            data.setInfo(string);
-            setGraphic(data.getBox());
+        super.updateItem(item,empty);
+        if(item != null) {
+            setGraphic(item.getBox());
         }
     }
 }

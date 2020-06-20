@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox fx:id="hBox" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <FontIcon iconColor="#59cd90" iconLiteral="mdi-account-circle" iconSize="40" />
+      <VBox alignment="CENTER_LEFT" prefWidth="185.0">
+         <children>
+              <Label fx:id="label1" text="Label 1">
+               <font>
+                  <Font name="Noto Sans CJK TC Regular" size="13.0" />
+               </font></Label>
+            <Label fx:id="label2" text="Label 2" textFill="#616161">
+               <font>
+                  <Font name="Noto Sans CJK TC Regular" size="13.0" />
+               </font></Label>
+         </children>
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+      </VBox>
+    </children>
+</HBox>

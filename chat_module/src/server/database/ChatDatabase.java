@@ -202,7 +202,8 @@ public class ChatDatabase extends Database {
 		List<HashMap<String, String>> results = select("Friend", attr);
 		FriendList friendList = new FriendList();
 		for(HashMap<String, String> result: results) {
-			friendList.friends.add(new Friend(result.get("friendID"), result.get("pending"), result.get("blocked")));
+			System.out.println(getUserName(result.get("friendID")));
+			friendList.friends.add(new Friend(getUserName(result.get("friendID")), result.get("pending"), result.get("blocked")));
 		}
 		return new Response("OK", friendList);
 	}
@@ -266,5 +267,13 @@ public class ChatDatabase extends Database {
 		List<HashMap<String, String>> results = select("User", attr);
 		if(results.size() == 0) return null;
 		else return results.get(0).get("userID");
+	}
+	
+	private String getUserName(String userID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("userID", userID);
+		List<HashMap<String, String>> results = select("User", attr);
+		if(results.size() == 0) return null;
+		else return results.get(0).get("username");
 	}
 }

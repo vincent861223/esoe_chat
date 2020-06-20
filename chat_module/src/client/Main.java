@@ -11,7 +11,7 @@ import container.Message;;
 public class Main{
 	
 	public static void main(String[] argv) {
-		ChatController chatController = new ChatController("127.0.0.1", 12345, 11112);
+		ChatController chatController = new ChatController("127.0.0.1", 12345, 11113);
 		TestUpdateHistoryThread testUpdateHistoryThread = new TestUpdateHistoryThread(chatController);
 		testUpdateHistoryThread.start();
 		Scanner scanner = new Scanner(System.in);
