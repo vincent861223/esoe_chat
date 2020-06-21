@@ -12,6 +12,8 @@ public class Main{
 	
 	public static void main(String[] argv) {
 		ChatController chatController = new ChatController("127.0.0.1", 12345);
+		//ChatController chatController = new ChatController("linux5.csie.ntu.edu.tw", 12345);
+
 		TestUpdateHistoryThread testUpdateHistoryThread = new TestUpdateHistoryThread(chatController);
 		testUpdateHistoryThread.start();
 		Scanner scanner = new Scanner(System.in);
