@@ -3,7 +3,6 @@ package main;
 import com.jfoenix.controls.JFXTextField;
 import container.Message;
 import container.MessageHistory;
-import container.Response;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +39,6 @@ public class ChatroomController implements Initializable {
     @FXML
     private Label lblChatroomStatus;
 
-
     @FXML
     private ScrollPane scrollPane;
 
@@ -71,15 +69,17 @@ public class ChatroomController implements Initializable {
     }
 
     @FXML
-    void RingOn(MouseEvent event) {
+    void turnRingOn(MouseEvent event) {
         btnRingOff.setVisible(false);
         btnRingOn.setVisible(true);
+        Maps.notificationPrefs.put(chatroomID, true);
     }
 
     @FXML
-    void RingOff(MouseEvent event) {
+    void turnRingOff(MouseEvent event) {
         btnRingOn.setVisible(false);
         btnRingOff.setVisible(true);
+        Maps.notificationPrefs.put(chatroomID, false);
     }
 
     @FXML

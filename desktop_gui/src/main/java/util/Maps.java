@@ -21,6 +21,7 @@ public abstract class Maps {
     public static final Map<String, ListCellChatroomItem> chatroomListItems = new HashMap<>();
     public static final Map<String, ChatroomController> chatroomControllers = new HashMap<>();
     public static final Map<String, Object> controllers = new HashMap<>();
+    public static final Map<String, Boolean> notificationPrefs = new HashMap<>();
 
     // Stage Constants
     public static final String LOGIN_STAGE = "loginStage";
@@ -61,6 +62,7 @@ public abstract class Maps {
         ChatroomController controller = loader.getController();
         controller.setChatroomID(chatroomID);
         chatroomControllers.put(chatroomID, controller);
+        notificationPrefs.put(chatroomID, true);
         return controller;
     }
 

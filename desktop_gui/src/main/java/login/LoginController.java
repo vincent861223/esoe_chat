@@ -23,13 +23,11 @@ import util.Maps;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 public class LoginController extends FormController implements Initializable {
 
-    Preferences userPreferences = Preferences.userRoot();
+
     private static final String SAVED_USERNAME = "savedUsername";
     private static final String SAVED_PASSWORD = "savedPassword";
 
@@ -73,7 +71,7 @@ public class LoginController extends FormController implements Initializable {
         try {
             username = inputUsername.getText();
             password = inputPassword.getText();
-            Response response = chatController.login(username, password);
+            Response response = CurrentUser.chatController.login(username, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             }
@@ -82,12 +80,13 @@ public class LoginController extends FormController implements Initializable {
             }
             else {
                 if (btnRememberMe.isSelected()) {
-                    userPreferences.put(SAVED_USERNAME, username);
-                    userPreferences.put(SAVED_PASSWORD, password);
+                    CurrentUser.userPrefs.put(SAVED_USERNAME, username);
+                    CurrentUser.userPrefs.put(SAVED_PASSWORD, password);
                 } else {
-                    userPreferences.put(SAVED_USERNAME, "");
-                    userPreferences.put(SAVED_PASSWORD, "");
+                    CurrentUser.userPrefs.put(SAVED_USERNAME, "");
+                    CurrentUser.userPrefs.put(SAVED_PASSWORD, "");
                 }
+
                 try {
                     CurrentUser.setUsername(username);
                     FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainWindow.fxml"));
@@ -120,8 +119,8 @@ public class LoginController extends FormController implements Initializable {
     }
 
     private void displaySavedInfo() {
-        String account = userPreferences.get(SAVED_USERNAME, "");
-        String password = userPreferences.get(SAVED_PASSWORD, "");
+        String account = CurrentUser.userPrefs.get(SAVED_USERNAME, "");
+        String password = CurrentUser.userPrefs.get(SAVED_PASSWORD, "");
         if (account.length() != 0 && password.length() != 0) {
             inputUsername.setText(account);
             inputPassword.setText(password);

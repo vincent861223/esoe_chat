@@ -18,10 +18,10 @@
             <Font name="Noto Sans CJK TC Light" size="30.0" />
          </font>
          <graphic>
-            <StackedFontIcon iconSize="25">
+            <StackedFontIcon iconColor="#fac05e" iconSize="22">
                <children>
-                  <FontIcon id="ringon" fx:id="btnRingOn" iconColor="#f79d84" iconLiteral="mdi-bell-ring-outline" onMouseClicked="#RingOff" />
-                  <FontIcon id="ringoff" fx:id="btnRingOff" iconColor="#f79d84" iconLiteral="mdi-bell-outline" onMouseClicked="#RingOn" visible="false" />
+                  <FontIcon id="ringon" fx:id="btnRingOn" iconColor="#fac05e" iconLiteral="mdi-bell-ring-outline" onMouseClicked="#turnRingOff" />
+                  <FontIcon id="ringoff" fx:id="btnRingOff" iconColor="#f79d84" iconLiteral="mdi-bell-outline" onMouseClicked="#turnRingOn" visible="false" />
                </children>
             </StackedFontIcon>
          </graphic>
@@ -34,7 +34,7 @@
             <FontIcon fx:id="statusIcon" iconColor="#686868" iconLiteral="fth-lock" />
             <Label fx:id="lblChatroomStatus" text="Direct Message" textFill="#686868">
                <font>
-                  <Font name="Noto Sans CJK TC Light" size="13.0" />
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font>
             </Label>
          </children>
@@ -53,7 +53,7 @@
                </padding></VBox>
          </content>
          <VBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </VBox.margin>
          <padding>
             <Insets left="15.0" />

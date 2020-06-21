@@ -1,23 +1,24 @@
 package util;
 
 import client.ChatController;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-// This is the common parent of all controllers that should hold User information
-public class CurrentUser {
 
-    static public ChatController chatController = new ChatController("127.0.0.1", 12345);
+import java.util.prefs.Preferences;
 
-    // TODO:  preference
-    //       + profile pic? --> use placeholder now
-    //       + logout
-    //       + notification
-    static String username;
+public abstract class CurrentUser {
+
+    protected static String username;
+    public static final Preferences userPrefs = Preferences.userRoot();
+    public static final ChatController chatController = new ChatController("127.0.0.1", 12345);
+
+    public static final String NOTIFICANTION_PREF = "Notification";
 
     // User Info getters & setters
     public static String getUsername() {
         return username;
     }
-
     public static void setUsername(String username) {
         CurrentUser.username = username;
     }

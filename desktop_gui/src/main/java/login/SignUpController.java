@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
+import util.CurrentUser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -67,9 +68,11 @@ public class SignUpController extends FormController implements Initializable {
                     popOver.hide();
                 }
                 else {
-                    ((Label) popOver.getContentNode()).setText("Passwords do not match");
-                    popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
-                    popOver.show(inputConfirmPassword, -5);
+                    if (!matchPassword()) {
+                        ((Label) popOver.getContentNode()).setText("Passwords do not match");
+                        popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
+                        popOver.show(inputConfirmPassword, -5);
+                    }
                 }
             });
 
@@ -111,7 +114,7 @@ public class SignUpController extends FormController implements Initializable {
             username = inputUsername.getText();
             email = inputEmail.getText();
             password = inputPassword.getText();
-            Response response = chatController.register(username, email, password);
+            Response response = CurrentUser.chatController.register(username, email, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             } else if (response.getStatus().equals("Failed")) {
@@ -130,7 +133,7 @@ public class SignUpController extends FormController implements Initializable {
             JFXButton button = new JFXButton("Go to login");
             button.getStyleClass().add("dialog-button");
             vbox.getChildren().addAll(icon, lbl, button);
-            vbox.setMargin(button, new Insets(10, 0, 0, 0));
+            VBox.setMargin(button, new Insets(10, 0, 0, 0));
 
             JFXDialog dialog = new JFXDialog(boxPane, vbox, JFXDialog.DialogTransition.TOP);
             button.setOnAction(a -> {
@@ -155,8 +158,6 @@ public class SignUpController extends FormController implements Initializable {
         return inputConfirmPassword.getText().equals(inputPassword.getText());
     }
 
-    private void setValidationDeco(ValidationSupport v) {
 
-    }
 
 }

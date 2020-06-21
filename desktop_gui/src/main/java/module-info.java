@@ -3,6 +3,7 @@ module desktop_gui {
     requires javafx.fxml;
     requires javafx.base;
     requires javafx.graphics;
+    requires javafx.media;
     requires com.jfoenix;
     requires org.controlsfx.controls;
 

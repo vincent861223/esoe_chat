@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="250.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingSlideController">
    <children>
-      <JFXToggleButton fx:id="toggleNotification" text="Notification" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
+      <JFXToggleButton fx:id="toggleNotification" text="Notification Off" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
          <font>
-            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+            <Font name="Noto Sans CJK TC DemiLight" size="14.0" />
          </font>
       </JFXToggleButton>
       <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
