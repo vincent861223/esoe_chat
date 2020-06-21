@@ -12,7 +12,7 @@
    <children>
       <JFXToggleButton fx:id="toggleNotification" text="Notification Off" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
          <font>
-            <Font name="Noto Sans CJK TC DemiLight" size="14.0" />
+            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
          </font>
       </JFXToggleButton>
       <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />

@@ -153,7 +153,8 @@ public class ChatroomController implements Initializable {
 
             // update chatroom slide item
             loadedHistoryCount = numberOfMessages;
-            Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
+            if (lastMessage != null)
+                Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
             scrollPane.vvalueProperty().bind(messageBox.heightProperty());
         });
     }

@@ -44,9 +44,9 @@ public class FriendListSlideController implements Initializable, ListviewControl
         });
 
         // TODO: block friend
-//            block.setOnAction(e -> {
-//
-//            });
+            block.setOnAction(e -> {
+
+            });
     }
 
     @Override
