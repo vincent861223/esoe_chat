@@ -1,11 +1,13 @@
 package main;
 
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXTextField;
 import container.Friend;
 import container.FriendList;
 import container.Response;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -34,7 +36,13 @@ public class AddFriendSlideController implements Initializable, ListviewControll
     void addNewFriend() {
         StackPane content = (StackPane) Maps.parents.get(Maps.ADD_FRIEND_DIALOG);
         StackPane root = (StackPane) Maps.parents.get(Maps.ROOT_STACK_PANE);
+        Label lblMsg = (Label)content.lookup("#lblMsg");
+        JFXTextField textField = (JFXTextField) content.lookup("#tfUsername");
         dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.TOP);
+        dialog.setOnDialogClosed(e -> {
+            lblMsg.setVisible(false);
+            textField.setText("");
+        });
         dialog.show();
     }
 
@@ -48,7 +56,7 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         Response response = CurrentUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
-            if (friend.pending && !friend.blocked)
+            if (friend.pending && !friend.blocked && !friend.inviteSender)
                 obsList.add(new ListCellAddFriendItem(friend.friendUsername));
         }
 

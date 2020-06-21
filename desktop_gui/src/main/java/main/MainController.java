@@ -102,7 +102,7 @@ public class MainController implements Initializable {
         currentSlide.setVisible(false);
         currentSlide = Maps.parents.get(Maps.CHAT_LIST);
         currentSlide.setVisible(true);
-//        ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
+        ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
     }
 
     @FXML

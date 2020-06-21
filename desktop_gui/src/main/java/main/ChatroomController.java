@@ -18,6 +18,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import util.*;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -58,6 +62,8 @@ public class ChatroomController implements Initializable {
     private int loadedHistoryCount;
     private String previousSender;
     private String lastMessage;
+    private DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    private SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -120,6 +126,14 @@ public class ChatroomController implements Initializable {
             for (int i = loadedHistoryCount; i < numberOfMessages; i++) {
                 Message msg = messageHistory.messages.get(i);
                 String timestamp = msg.timestamp;
+
+                try {
+                    Date date = df.parse(msg.timestamp);
+                    timestamp = sdf.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 String username = CurrentUser.chatController.getUsername(msg.senderID).msg;
 
                 // determine display MessageUnit style
@@ -139,7 +153,8 @@ public class ChatroomController implements Initializable {
 
             // update chatroom slide item
             loadedHistoryCount = numberOfMessages;
-            Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
+            if (lastMessage != null)
+                Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
             scrollPane.vvalueProperty().bind(messageBox.heightProperty());
         });
     }

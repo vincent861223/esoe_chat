@@ -7,6 +7,8 @@ import container.Response;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.CurrentUser;
@@ -28,7 +30,24 @@ public class AddFriendDialogController {
     private static final String ALREADY_INVITED = "Already added, waiting for friend to confirm.";
 
     @FXML
+    void textfieldKeyPressed(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER))
+            addFriend();
+    }
+
+    @FXML
     void submitAddFriend(ActionEvent event) {
+        addFriend();
+    }
+
+    @FXML
+    void cancelAddFriend(ActionEvent event) {
+        lblMsg.setVisible(false);
+        tfUsername.setText("");
+        ((AddFriendSlideController) Maps.controllers.get(Maps.ADD_FRIEND_LIST)).closeDialog();
+    }
+
+    void addFriend() {
         String username = tfUsername.getText();
         if (username.equals("")) return;
         Response response = CurrentUser.chatController.addFriend(username);
@@ -57,12 +76,6 @@ public class AddFriendDialogController {
             }
             lblMsg.setVisible(true);
         }
-    }
-
-    @FXML
-    void cancelAddFriend(ActionEvent event) {
-        lblMsg.setVisible(false);
-        ((AddFriendSlideController) Maps.controllers.get(Maps.ADD_FRIEND_LIST)).closeDialog();
     }
 
 }

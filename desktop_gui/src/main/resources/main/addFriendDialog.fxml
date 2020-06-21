@@ -15,12 +15,12 @@
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="219.0" spacing="10.0">
          <children>
             <FontIcon iconColor="#3fa7d6" iconLiteral="mdi-account-plus" iconSize="40" />
-            <JFXTextField fx:id="tfUsername" focusColor="#3fa7d6" promptText="Username">
+            <JFXTextField fx:id="tfUsername" focusColor="#3fa7d6" onKeyPressed="#textfieldKeyPressed" promptText="Username">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font>
             </JFXTextField>
-            <Label fx:id="lblMsg" text="Message" textFill="#ee6352" visible="false">
+            <Label id="lblMsg" fx:id="lblMsg" text="Message" textFill="#ee6352" visible="false">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font>

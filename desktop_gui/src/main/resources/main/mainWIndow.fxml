@@ -60,9 +60,8 @@
                   </HBox>
                   <StackPane fx:id="slidePane" maxHeight="1.7976931348623157E308" prefHeight="415.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                      <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                  </StackPane>
+                        <Insets left="1.0" right="1.0" />
+                     </padding></StackPane>
                </children>
             </VBox>
          </left>

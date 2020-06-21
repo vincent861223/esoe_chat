@@ -38,6 +38,7 @@ public class NewChatDialogController implements Initializable, ListviewControlle
 
     @FXML
     void cancelDialog(ActionEvent event) {
+        members.clear();
         chatListSlideController.closeDialog();
     }
 
@@ -55,6 +56,7 @@ public class NewChatDialogController implements Initializable, ListviewControlle
 
     @Override
     public void reload() {
+        members.clear();
         obsList.clear();
         Response response = CurrentUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
