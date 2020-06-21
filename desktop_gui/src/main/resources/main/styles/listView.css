@@ -3,31 +3,37 @@
 /*}*/
 
 .list-cell:even {
-    -fx-background-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0);
 }
 .list-cell:odd {
-    -fx-background-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0);
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #F0F0F0;
+    -fx-background-color: rgba(250, 192, 94, 0.3);
 }
 
 .list-view {
     -fx-background-insets: 0;
+    -fx-background-color: rgba(255, 255, 255, 0);
 }
 
 
-.scroll-bar:vertical .track{
-    -fx-background-color: white;
-    -fx-border-color: white;
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-fill: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
 }
 
 .scroll-bar:vertical .increment-button ,
 .scroll-bar:vertical .decrement-button {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(255, 255, 255, 0.5);
     -fx-background-radius: 0;
     -fx-padding: 0 10 0 0;
 }
@@ -40,7 +46,7 @@
 }
 
 .scroll-bar:vertical .thumb {
-    -fx-background-color: derive(black,90%);
+    -fx-background-color: derive(black, 80%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 }

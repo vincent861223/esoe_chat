@@ -62,7 +62,7 @@
       </ScrollPane>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="550.0" spacing="10.0">
          <children>
-            <JFXTextField fx:id="inputMessage" focusColor="#a1a1a1" onKeyPressed="#tfKeyPressed" prefColumnCount="0" prefWidth="440.0" promptText="Write your message..." style="-fx-prompt-text-fill: #686868;" unFocusColor="#a1a1a1">
+            <JFXTextField fx:id="inputMessage" focusColor="#f79d84" onKeyPressed="#tfKeyPressed" prefColumnCount="0" prefWidth="440.0" promptText="Write your message..." style="-fx-prompt-text-fill: #686868;" unFocusColor="#a1a1a1">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font>

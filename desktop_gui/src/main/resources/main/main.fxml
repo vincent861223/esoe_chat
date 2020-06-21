@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -12,9 +13,9 @@
 
 <StackPane fx:id="rootStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
     <children>
-        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#Dragged" onMousePressed="#Pressed" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@styles/side_pane.css">
+        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#Dragged" onMousePressed="#Pressed" prefHeight="500.0" prefWidth="800.0" stylesheets="@styles/side_pane.css">
             <center>
-                <VBox alignment="CENTER" prefHeight="475.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+                <VBox alignment="CENTER" prefHeight="475.0" prefWidth="550.0" style="-fx-background-color: rgba(255, 255, 255, 1);" BorderPane.alignment="CENTER">
                     <children>
                         <FontIcon iconColor="#fac05e" iconLiteral="fth-coffee" iconSize="50" />
                         <Label style="-fx-border-color: #fac05e; -fx-border-width: 0 0 2 0;" text="Start a new conversation!" textFill="#686868">
@@ -29,7 +30,7 @@
                 </VBox>
             </center>
             <left>
-                <VBox alignment="CENTER" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 2 0 0;" BorderPane.alignment="TOP_CENTER">
+                <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="255.0" style="-fx-background-color: rgba(255, 255, 255, 0.85);" BorderPane.alignment="TOP_CENTER">
                     <children>
                         <HBox alignment="CENTER" prefWidth="250.0" spacing="4.0">
                             <children>
@@ -55,26 +56,34 @@
                                 </Button>
                             </children>
                             <VBox.margin>
-                                <Insets top="15.0" />
+                                <Insets bottom="5.0" top="5.0" />
                             </VBox.margin>
                         </HBox>
-                        <StackPane fx:id="slidePane" maxHeight="1.7976931348623157E308" prefHeight="415.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="slidePane" maxHeight="1.7976931348623157E308" prefWidth="250.0" VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets left="1.0" right="1.0" />
                             </padding></StackPane>
                     </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
                 </VBox>
             </left>
             <top>
-                <HBox id="title-bar" alignment="CENTER_RIGHT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" spacing="3.0" style="-fx-background-color: #F0F0F0;" BorderPane.alignment="CENTER">
+                <HBox id="title-bar" alignment="CENTER_RIGHT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" BorderPane.alignment="CENTER">
                     <children>
-                        <FontIcon id="minimize" iconColor="#686868" iconLiteral="enty-circle-with-minus" iconSize="15" onMouseClicked="#minimizeClicked" />
-                        <FontIcon id="maximize" iconColor="#686868" iconLiteral="enty-circle-with-plus" iconSize="15" />
-                        <FontIcon id="close" iconColor="#686868" iconLiteral="enty-circle-with-cross" iconSize="15" onMouseClicked="#closeClicked" />
+                  <Region maxWidth="-Infinity" minWidth="-Infinity" prefWidth="255.0" style="-fx-background-color: rgba(255, 255, 255, 0.85);" />
+                  <HBox alignment="CENTER_RIGHT" spacing="3.0" style="-fx-background-color: #FFFFFF;" HBox.hgrow="ALWAYS">
+                     <children>
+                              <FontIcon id="minimize" iconColor="#686868" iconLiteral="enty-circle-with-minus" iconSize="15" onMouseClicked="#minimizeClicked" />
+                              <FontIcon id="maximize" iconColor="#686868" iconLiteral="enty-circle-with-plus" iconSize="15" />
+                              <FontIcon id="close" iconColor="#686868" iconLiteral="enty-circle-with-cross" iconSize="15" onMouseClicked="#closeClicked" />
+                     </children>
+                     <padding>
+                        <Insets right="7.0" />
+                     </padding>
+                  </HBox>
                     </children>
-                    <padding>
-                        <Insets left="7.0" right="7.0" />
-                    </padding>
                 </HBox>
             </top>
         </BorderPane>

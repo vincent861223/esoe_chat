@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.MainController;
@@ -89,12 +90,18 @@ public class LoginController extends FormController implements Initializable {
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     scene.getStylesheets().add(MainController.class.getResource("styles/main.css").toExternalForm());
+
+                    // create new stage
                     Stage newStage = new Stage();
                     newStage.setScene(scene);
                     newStage.initStyle(StageStyle.TRANSPARENT);
+                    scene.setFill(Color.TRANSPARENT);
                     newStage.setTitle("ESOE CHAT");
                     newStage.show();
+
                     Maps.stages.put(Maps.MAIN_STAGE, newStage);
+
+                    // hide login stage
                     Stage loginStage = Maps.stages.getOrDefault(Maps.LOGIN_STAGE, null);
                     if (loginStage != null) {
                         loginStage.hide();

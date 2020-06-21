@@ -3,18 +3,34 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="250.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingSlideController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingSlideController">
    <children>
-      <JFXToggleButton fx:id="toggleNotification" text="Notification Off" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
+      <Label prefWidth="230.0" style="-fx-border-color: #a1a1a1; -fx-border-width: 0 0 1 0;" text=" Settings" textFill="#3c3c3c">
          <font>
-            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+            <Font name="Noto Sans CJK TC Bold" size="14.0" />
          </font>
-      </JFXToggleButton>
+         <padding>
+            <Insets bottom="3.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <VBox>
+         <children>
+            <JFXToggleButton fx:id="toggleNotification" text="Notification Off" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+               </font>
+            </JFXToggleButton>
+         </children>
+      </VBox>
       <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox alignment="CENTER">
          <children>
@@ -30,6 +46,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="5.0" top="5.0" />
+      <Insets bottom="5.0" />
    </padding>
 </VBox>
