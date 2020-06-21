@@ -161,6 +161,17 @@ public class ChatDatabase extends Database {
 		return new Response("OK", new ChatroomList(chatroomIDs));
 	}
 	
+	public Response getChatroomMember(String chatroomID) {
+		HashMap<String, String> attr = new HashMap<String, String>();
+		attr.put("chatroomID", chatroomID);
+		List<HashMap<String, String>> results = select("Chatroom", attr);
+		String[] chatroomMemberIDs = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) {
+			chatroomMemberIDs[i] = results.get(i).get("memberID");
+		}
+		return new Response("OK", chatroomMemberIDs);
+	}
+	
 	public Response getChatroomName(String chatroomID) {
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("chatroomID", chatroomID);

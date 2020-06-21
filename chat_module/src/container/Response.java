@@ -3,6 +3,10 @@ package container;
 import java.io.Serializable;
 
 
+/**
+ * @author VincentLin
+ *
+ */
 public class Response extends Container implements Serializable{
 	/**
 	 * 
@@ -11,6 +15,7 @@ public class Response extends Container implements Serializable{
 	public String status;
 	public Container info;
 	public String msg;
+	public String[] msgs;
 
 	public String getStatus() {
 		return status;
@@ -36,6 +41,14 @@ public class Response extends Container implements Serializable{
 		this.msg = msg;
 	}
 
+	public String[] getMsgs() {
+		return msgs;
+	}
+
+	public void setMsgs(String[] msgs) {
+		this.msgs = msgs;
+	}
+
 	public Response(String status) {
 		this.status = status;
 		this.msg = "";
@@ -51,4 +64,9 @@ public class Response extends Container implements Serializable{
 		this.info = info;
 	}
 	
+	
+	public Response(String status, String[] msgs) {
+		this.status = status;
+		this.msgs = msgs;
+	}
 }

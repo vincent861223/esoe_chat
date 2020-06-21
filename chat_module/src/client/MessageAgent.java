@@ -37,6 +37,11 @@ public class MessageAgent extends Agent {
 		return sendRequest(request);
 	}
 	
+	public Response getChatroomMember(String chatroomID) {
+		Request request = new Request("GetChatroomMember", chatroomID);
+		return sendRequest(request);
+	}
+	
 	public Response sendMessage(String chatroomID, String msg) {
 		MessageInfo messageInfo = new MessageInfo(chatroomID, userID, msg);
 		Request request = new Request("SendMsg", messageInfo);

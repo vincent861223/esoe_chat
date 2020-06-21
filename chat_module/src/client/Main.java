@@ -111,6 +111,7 @@ public class Main{
 	        		chatroomIDs = ((ChatroomList)response.info).chatroomIDs;
 	        		for(String chatroom_ID: chatroomIDs) {
 	        			System.out.println(chatController.getChatroomName(chatroom_ID));
+	        			System.out.println(chatController.getChatroomMember(chatroom_ID));
 	        		}
 	        		break;
 	        	case "enterChatroom":
