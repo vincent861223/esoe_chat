@@ -11,6 +11,8 @@ module desktop_gui {
     requires org.kordamp.ikonli.javafx;
     // add icon pack modules
     requires org.kordamp.ikonli.feather;
+    requires org.kordamp.ikonli.entypo;
+    requires org.kordamp.ikonli.materialdesign;
 
     requires java.prefs;
     requires chat_module;

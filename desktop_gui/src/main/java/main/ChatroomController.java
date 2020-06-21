@@ -68,12 +68,8 @@ public class ChatroomController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            // TODO: set chatroom status
-            setChatroomInfo();
-
             loadHistory();
-
-
+            setChatroomInfo();
         });
     }
 

@@ -76,10 +76,7 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         for (String username: removeSet) {
             obsList.removeIf(item -> username.equals(item.getLabelText()));
         }
-        System.out.println("------");
-        System.out.println("currentSet: " + currentSet);
-        System.out.println("removeSet: " + removeSet);
-        System.out.println("obsList: " + obsList);
+
         removeSet.clear();
         removeSet.addAll(currentSet);
         currentSet.clear();

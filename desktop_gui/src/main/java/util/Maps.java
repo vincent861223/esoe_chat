@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.ChatListSlideController;
 import main.ChatroomController;
 import main.ListCellChatroomItem;
 
@@ -49,6 +50,7 @@ public abstract class Maps {
     public static void displayChatroom(String chatroomID) throws IOException {
         if (!chatrooms.containsKey(chatroomID)) {
             loadPane(chatroomID);
+            ((ChatListSlideController) controllers.get(CHAT_LIST)).reload();
         }
         VBox vBox = (VBox) chatrooms.get(chatroomID);
         borderPane.setCenter(vBox);

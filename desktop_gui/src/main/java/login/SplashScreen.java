@@ -6,13 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.StageStyle;
+import main.MainController;
 import util.Maps;
 
 public class SplashScreen extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        
         // TODO: optimize FXMLLoader load speed! Don't use static load()
         FXMLLoader loader = new FXMLLoader(getClass().getResource("welcomeWindow.fxml"));
         Parent root = loader.load();

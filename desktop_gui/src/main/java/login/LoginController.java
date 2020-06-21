@@ -88,6 +88,7 @@ public class LoginController extends FormController implements Initializable {
                 }
 
                 try {
+
                     CurrentUser.setUsername(username);
                     FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainWindow.fxml"));
                     Parent root = loader.load();
@@ -106,7 +107,7 @@ public class LoginController extends FormController implements Initializable {
                         loginStage.hide();
                     }
                 } catch (Exception e) {
-                    System.out.println( "ERROR: "+ e.getMessage());
+                    System.err.println( "ERROR: "+ e.getMessage());
                 }
             }
 

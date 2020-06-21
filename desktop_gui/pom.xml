@@ -9,6 +9,8 @@
     <artifactId>desktop_gui</artifactId>
     <packaging>jar</packaging>
 
+    <name>ESOEChat-Desktop</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
@@ -85,6 +87,9 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
+                    <release>11</release>
+                    <jlinkImageName>hellofx</jlinkImageName>
+                    <launcher>launcher</launcher>
                     <mainClass>login.SplashScreen</mainClass>  <!--Change this to Launcher when packaging -->
 <!--                    <options>-->
 <!--                        <option>&#45;&#45;add-opens</option>-->

@@ -40,7 +40,6 @@ public class UpdateHistoryThread extends Thread {
                     Message message = messageHistory.messages.get(messageHistory.messages.size() - 1);
                     if (!message.senderID.equals(CurrentUser.chatController.userID)) {
                         String senderName = CurrentUser.chatController.getUsername(message.senderID).msg;
-                        System.out.println(senderName);
                         NotificationUnit nu = new NotificationUnit(senderName, message.msg);
                         nu.show(Duration.seconds(2));
                         // plays sound effect
