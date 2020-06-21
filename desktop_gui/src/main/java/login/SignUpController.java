@@ -1,6 +1,9 @@
 package login;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import container.Response;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -14,9 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.validation.ValidationSupport;
 import org.kordamp.ikonli.javafx.FontIcon;
 import util.CurrentUser;
+import util.Maps;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,30 +47,31 @@ public class SignUpController extends FormController implements Initializable {
     @FXML
     private JFXButton btnSignUp;
 
-    public SignUpController() throws IOException { super(); }
+    public SignUpController() throws IOException {
+        super();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Platform.runLater(() -> {
             btnSignUp.disableProperty().bind((
-                 inputUsername.textProperty().isNotEmpty().and(
-                 inputPassword.textProperty().isNotEmpty().and(
-                 inputConfirmPassword.textProperty().isNotEmpty().and(
-                 inputEmail.textProperty().isNotEmpty()).and(
-                 inputPassword.textProperty().isEqualTo(inputConfirmPassword.textProperty()).and(
-                 isEmailValid
-                 )
-                 )
-                 )
-                 ).not()
+                    inputUsername.textProperty().isNotEmpty().and(
+                            inputPassword.textProperty().isNotEmpty().and(
+                                    inputConfirmPassword.textProperty().isNotEmpty().and(
+                                            inputEmail.textProperty().isNotEmpty()).and(
+                                            inputPassword.textProperty().isEqualTo(inputConfirmPassword.textProperty()).and(
+                                                    isEmailValid
+                                            )
+                                    )
+                            )
+                    ).not()
             ));
 
             inputConfirmPassword.focusedProperty().addListener((v, oldValue, newValue) -> {
                 if (newValue) {
                     popOver.hide();
-                }
-                else {
+                } else {
                     if (!matchPassword()) {
                         ((Label) popOver.getContentNode()).setText("Passwords do not match");
                         popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
@@ -80,8 +84,7 @@ public class SignUpController extends FormController implements Initializable {
                 Matcher matcher = pattern.matcher(inputEmail.getText());
                 if (!matcher.matches()) {
                     isEmailValid.set(false);
-                }
-                else {
+                } else {
                     isEmailValid.set(true);
                 }
             });
@@ -121,26 +124,22 @@ public class SignUpController extends FormController implements Initializable {
                 throw new GuiException(response.getMsg());
             }
 
-            VBox vbox = new VBox();
-            vbox.setPrefSize(250, 160);
-            vbox.setAlignment(Pos.TOP_CENTER);
-            vbox.setPadding(new Insets(10));
-            vbox.setSpacing(5);
-            vbox.getStylesheets().add(getClass().getResource("styles/signupbox.css").toExternalForm());
-            FontIcon icon = new FontIcon("mdi-checkbox-marked-circle-outline:35:#F79D84");
-            Label lbl = new Label("You have signed up successfully!");
-            lbl.getStyleClass().add("dialog-label");
-            JFXButton button = new JFXButton("Go to login");
-            button.getStyleClass().add("dialog-button");
-            vbox.getChildren().addAll(icon, lbl, button);
-            VBox.setMargin(button, new Insets(10, 0, 0, 0));
-
-            JFXDialog dialog = new JFXDialog(boxPane, vbox, JFXDialog.DialogTransition.TOP);
+            VBox content = (VBox) Maps.parents.get(Maps.ALERT_DIALOG);
+            Label label = (Label)content.lookup("#label");
+            JFXButton button = (JFXButton)content.lookup("#button");
+            label.setText("Sign up completed!");
+            JFXDialog dialog = new JFXDialog(boxPane, content, JFXDialog.DialogTransition.TOP);
             button.setOnAction(a -> {
                 dialog.close();
                 goToLogin();
             });
             dialog.show();
+            dialog.setOnDialogClosed(e -> {
+                inputUsername.setText("");
+                inputEmail.setText("");
+                inputPassword.setText("");
+                inputConfirmPassword.setText("");
+            });
 
         } catch (GuiException e) {
             ((Label) popOver.getContentNode()).setText(e.getErrMessage());
@@ -157,7 +156,6 @@ public class SignUpController extends FormController implements Initializable {
     private boolean matchPassword() {
         return inputConfirmPassword.getText().equals(inputPassword.getText());
     }
-
 
 
 }

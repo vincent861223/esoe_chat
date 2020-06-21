@@ -60,8 +60,7 @@ public class AddFriendSlideController implements Initializable, ListviewControll
                 obsList.add(new ListCellAddFriendItem(friend.friendUsername));
         }
 
-        listView.getItems().clear();
-        listView.getItems().addAll(obsList);
+        listView.setItems(obsList);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         listView.setCellFactory(p -> {
 

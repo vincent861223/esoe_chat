@@ -66,7 +66,7 @@ public class AddFriendDialogController {
         }
         else {
             if (response.msg.equals(USERNAME_DOES_NOT_EXIST)) {
-                lblMsg.setText("Username \"" + username + "\" does not exist.");
+                lblMsg.setText("User \"" + username + "\" does not exist.");
             }
             else if (response.msg.equals(ALREADY_FRIEND)) {
                 lblMsg.setText(username + " is already your friend.");

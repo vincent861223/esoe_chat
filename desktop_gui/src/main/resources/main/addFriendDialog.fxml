@@ -12,10 +12,10 @@
 
 <StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AddFriendDialogController">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="219.0" spacing="10.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="230.0" spacing="10.0">
          <children>
             <FontIcon iconColor="#3fa7d6" iconLiteral="mdi-account-plus" iconSize="40" />
-            <JFXTextField fx:id="tfUsername" focusColor="#3fa7d6" onKeyPressed="#textfieldKeyPressed" promptText="Username">
+            <JFXTextField id="tfUsername" fx:id="tfUsername" focusColor="#3fa7d6" onKeyPressed="#textfieldKeyPressed" promptText="Username">
                <font>
                   <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
                </font>

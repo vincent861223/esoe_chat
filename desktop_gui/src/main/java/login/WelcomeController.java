@@ -11,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import util.CurrentUser;
+import util.Maps;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,10 +35,17 @@ public class WelcomeController implements Initializable {
                 loadPane("loginBox");
                 loadPane("signUpBox");
                 Transition.fadeIn(boxPane,"#loginBox");
+                loadDialog(Maps.ALERT_DIALOG);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void loadDialog(String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(CurrentUser.class.getResource(fxml + ".fxml"));
+        Maps.parents.put(fxml, loader.load());
+        Maps.controllers.put(fxml, loader.getController());
     }
 
     private void loadPane(String fxml) throws IOException {

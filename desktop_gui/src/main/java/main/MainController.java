@@ -10,19 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import util.CurrentUser;
 import util.Maps;
-import util.NotificationUnit;
 import util.UpdateHistoryThread;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 import static javafx.application.Application.launch;
 
@@ -59,9 +54,7 @@ public class MainController implements Initializable {
                 Maps.parents.put(Maps.ROOT_STACK_PANE, rootStackPane);
                 Maps.setBorderPane(borderPane);
                 loadDialog(Maps.ADD_FRIEND_DIALOG);
-                loadDialog(Maps.ALERT_DIALOG);
                 loadDialog(Maps.NEW_CHAT_DIALOG);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
