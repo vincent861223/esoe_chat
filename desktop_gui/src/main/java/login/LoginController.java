@@ -90,7 +90,7 @@ public class LoginController extends FormController implements Initializable {
                 try {
 
                     CurrentUser.setUsername(username);
-                    FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainWindow.fxml"));
+                    FXMLLoader loader = new FXMLLoader(MainController.class.getResource("main.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     scene.getStylesheets().add(MainController.class.getResource("styles/main.css").toExternalForm());

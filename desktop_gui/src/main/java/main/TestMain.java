@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class test extends Application {
+public class TestMain extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -18,7 +18,7 @@ public class test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -30,7 +30,6 @@ public class test extends Application {
         primaryStage.setTitle("Test");
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
     }
 }
