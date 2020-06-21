@@ -39,14 +39,19 @@ public class ListCellNewChatItem extends ListCellItem {
 
     @FXML
     void addToChat(ActionEvent event) {
-        listViewController.addMember(label.getText());
+        listViewController.addMember(label.getText(), this);
         addButton.setVisible(false);
         cancelButton.setVisible(true);
     }
 
     @FXML
     void removeFromChat(ActionEvent event) {
-        listViewController.removeMember(label.getText());
+        listViewController.removeMember(label.getText(), this);
+        addButton.setVisible(true);
+        cancelButton.setVisible(false);
+    }
+
+    void toggleOff() {
         addButton.setVisible(true);
         cancelButton.setVisible(false);
     }

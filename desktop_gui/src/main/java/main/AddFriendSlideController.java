@@ -5,8 +5,10 @@ import com.jfoenix.controls.JFXTextField;
 import container.Friend;
 import container.FriendList;
 import container.Response;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +18,9 @@ import util.CurrentUser;
 import util.Maps;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class AddFriendSlideController implements Initializable, ListviewController {
 
@@ -24,11 +28,17 @@ public class AddFriendSlideController implements Initializable, ListviewControll
     private ListView<ListCellItem> listView;
 
     private final ObservableList<ListCellItem> obsList = FXCollections.observableArrayList();
+    private final Set<String> removeSet = new HashSet<>();
+    private final Set<String> currentSet = new HashSet<>();
+
     private JFXDialog dialog = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listView.setFocusTraversable(false);
+        listView.setItems(obsList);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listView.setCellFactory(p -> new ListViewCell());
         reload();
     }
 
@@ -52,24 +62,26 @@ public class AddFriendSlideController implements Initializable, ListviewControll
 
     @Override
     public void reload() {
-        obsList.clear();
         Response response = CurrentUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
-            if (friend.pending && !friend.blocked && !friend.inviteSender)
-                obsList.add(new ListCellAddFriendItem(friend.friendUsername));
+            if (friend.pending && !friend.blocked && !friend.inviteSender) {
+                currentSet.add(friend.friendUsername);
+                if (!removeSet.contains(friend.friendUsername)) {
+                    obsList.add(new ListCellAddFriendItem(friend.friendUsername));
+                }
+            }
         }
-
-        listView.setItems(obsList);
-        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        listView.setCellFactory(p -> {
-
-            ListCell<ListCellItem> cell = new ListViewCell();
-
-            // FIXIT: duplicate item after confirm a friend when there were more than 1 cell item
-
-            return cell;
-        });
-
+        removeSet.removeAll(currentSet);
+        for (String username: removeSet) {
+            obsList.removeIf(item -> username.equals(item.getLabelText()));
+        }
+        System.out.println("------");
+        System.out.println("currentSet: " + currentSet);
+        System.out.println("removeSet: " + removeSet);
+        System.out.println("obsList: " + obsList);
+        removeSet.clear();
+        removeSet.addAll(currentSet);
+        currentSet.clear();
     }
 }

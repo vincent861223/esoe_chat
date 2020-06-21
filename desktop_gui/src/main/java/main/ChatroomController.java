@@ -69,8 +69,11 @@ public class ChatroomController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             // TODO: set chatroom status
-            setChatroomTitle();
+            setChatroomInfo();
+
             loadHistory();
+
+
         });
     }
 
@@ -105,18 +108,13 @@ public class ChatroomController implements Initializable {
         inputMessage.setText("");
     }
 
-    public void setChatroomTitle() {
-        // TODO: Chatroom Title
-//        Response response = CurrentUserInfo.chatController.getChatroomName(chatroomID);
-//        StringTokenizer tokens = new StringTokenizer(response.msg, " ");
-//        String username;
-//        while(tokens.hasMoreTokens()) {
-//            username = tokens.nextToken();
-//            members.put(username);
-//        }
-
-        String title = chatroomID;
-        lblChatroomTitle.setText(title);
+    public void setChatroomInfo() {
+        lblChatroomTitle.setText(Maps.chatroomListItems.get(chatroomID).getLabelText());
+        int numberofmembers = ChatInfo.getNumberOfMembers(chatroomID);
+        if (numberofmembers > 2) {
+            lblChatroomStatus.setText(numberofmembers + " people in the chat");
+            statusIcon.setIconLiteral("fth-heart");
+        }
     }
 
     public void loadHistory() {

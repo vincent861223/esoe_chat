@@ -12,11 +12,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import util.ChatInfo;
 import util.CurrentUser;
 import util.Maps;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class ChatListSlideController implements Initializable, ListviewController {
 
@@ -26,12 +29,17 @@ public class ChatListSlideController implements Initializable, ListviewControlle
     @FXML
     private ListView<ListCellItem> listView;
     private ObservableList<ListCellItem> obsList = FXCollections.observableArrayList();
+    private final Set<String> removeSet = new HashSet<>();
+    private final Set<String> currentSet = new HashSet<>();
 
     private JFXDialog dialog = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listView.setFocusTraversable(false);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listView.setItems(obsList);
+        listView.setCellFactory(p -> new ListViewCell());
         Platform.runLater(this::reload);
     }
 
@@ -48,25 +56,31 @@ public class ChatListSlideController implements Initializable, ListviewControlle
 
     @Override
     public void reload() {
-        obsList.clear();
         Response response = CurrentUser.chatController.getChatroomList();
         String[] chatroomIDs = ((ChatroomList) response.info).chatroomIDs;
         for (String id: chatroomIDs) {
-            MessageHistory msgHistory = (MessageHistory) CurrentUser.chatController.getHistory(id).info;
-
-            ListCellChatroomItem newItem;
-            if (!msgHistory.messages.isEmpty())
-                newItem = new ListCellChatroomItem(id, id, msgHistory.messages.get(msgHistory.messages.size() - 1).msg);
-            else
-                newItem = new ListCellChatroomItem(id, id, null);
-            Maps.chatroomListItems.put(id, newItem);
-            obsList.add(newItem);
+            currentSet.add(id);
+            if (!removeSet.contains((id))) {
+                MessageHistory msgHistory = (MessageHistory) CurrentUser.chatController.getHistory(id).info;
+                ListCellChatroomItem newItem;
+                String chatroomName = ChatInfo.getChatroomName(id);
+                // Display Last message
+                if (!msgHistory.messages.isEmpty())
+                    newItem = new ListCellChatroomItem(chatroomName, id, msgHistory.messages.get(msgHistory.messages.size() - 1).msg);
+                else
+                    newItem = new ListCellChatroomItem(chatroomName, id, null);
+                Maps.chatroomListItems.put(id, newItem);
+                obsList.add(newItem);
+            }
+        }
+            removeSet.removeAll(currentSet);
+            for (String roomID: removeSet) {
+                obsList.removeIf(item -> roomID.equals(((ListCellChatroomItem) item).getChatroomID()));
+            }
+            removeSet.clear();
+            removeSet.addAll(currentSet);
+            currentSet.clear();
             // TODO: chatroom ID & chatroom Title
 
-        }
-        listView.getItems().clear();
-        listView.getItems().addAll(obsList);
-        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        listView.setCellFactory(p -> new ListViewCell());
     }
 }

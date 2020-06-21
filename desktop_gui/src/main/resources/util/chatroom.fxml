@@ -30,7 +30,7 @@
             <Insets left="15.0" right="10.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <HBox alignment="CENTER_LEFT" spacing="3.0" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 0 2 0;">
+      <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 0 2 0;">
          <children>
             <FontIcon fx:id="statusIcon" iconColor="#686868" iconLiteral="fth-lock" />
             <Label fx:id="lblChatroomStatus" text="Direct Message" textFill="#686868">

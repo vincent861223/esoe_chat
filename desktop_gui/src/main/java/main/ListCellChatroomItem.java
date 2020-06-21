@@ -13,6 +13,10 @@ public class ListCellChatroomItem extends ListCellItem {
     @FXML
     private Label label2;
 
+    public String getChatroomID() {
+        return chatroomID;
+    }
+
     private String chatroomID;
 
     public ListCellChatroomItem() {
