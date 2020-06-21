@@ -77,6 +77,8 @@ public class RequestHandler extends Thread{
 				return chatDatabase.getChatroomList(request.userID);
 			case "GetChatroomName":
 				return chatDatabase.getChatroomName(request.userID);
+			case "GetChatroomMember":
+				return chatDatabase.getChatroomMember(request.userID);
 			case "GetUsername":
 				String username = chatDatabase.getUsername(request.userID);
 				if(username != null) return new Response("OK", username);
