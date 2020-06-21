@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class NewChatDialogController implements Initializable, ListviewController {
+public class NewChatDialogController implements Initializable {
 
     @FXML
     private ListView<ListCellItem> listView;
@@ -54,6 +54,7 @@ public class NewChatDialogController implements Initializable, ListviewControlle
     void createNewChatroom(ActionEvent event) throws IOException {
         Maps.createNewChatroom(members.toArray(new String[0]));
         members.clear();
+        // reset button status
         for (ListCellNewChatItem item: chatItems) {
             item.toggleOff();
         }
@@ -71,21 +72,22 @@ public class NewChatDialogController implements Initializable, ListviewControlle
         members.remove(username);
     }
 
-    @Override
     public void reload() {
         members.clear();
 
-        Response response = CurrentUser.chatController.getFriend();
+        Response response = CUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
 
         for (Friend friend : friendList.friends) {
             if (!friend.pending && !friend.blocked) {
                 currentSet.add(friend.friendUsername);
                 if (!removeSet.contains(friend.friendUsername)) {
+                    // add anything isn't in the list
                     obsList.add(new ListCellNewChatItem(friend.friendUsername));
                 }
             }
         }
+        // remove those be deleted from the list
         removeSet.removeAll(currentSet);
         for (String username : removeSet) {
             obsList.removeIf(item -> username.equals(item.getLabelText()));

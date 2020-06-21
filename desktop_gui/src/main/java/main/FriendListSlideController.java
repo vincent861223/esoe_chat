@@ -3,13 +3,12 @@ package main;
 import container.Friend;
 import container.FriendList;
 import container.Response;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class FriendListSlideController implements Initializable, ListviewController {
+public class FriendListSlideController implements Initializable {
 
     @FXML
     private ListView<ListCellItem> listView;
@@ -27,7 +26,24 @@ public class FriendListSlideController implements Initializable, ListviewControl
     private final Set<String> currentSet = new HashSet<>();
 
     private static final String[] selectedFriend = { "" };
+
+    // build context menu for right click
     private static final ContextMenu contextMenu = new ContextMenu();
+    static {
+        MenuItem chat = new MenuItem("Chat");
+        MenuItem block = new MenuItem("Block");
+        contextMenu.getItems().addAll(chat, block);
+        chat.setOnAction(e -> {
+            try {
+                Maps.createNewChatroom(selectedFriend);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        // TODO: block friend
+        block.setOnAction(e -> {
+        });
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,37 +60,22 @@ public class FriendListSlideController implements Initializable, ListviewControl
             return cell;
         });
         listView.setItems(obsList);
-
-        Platform.runLater(this::reload);
-
-        MenuItem chat = new MenuItem("Chat");
-        MenuItem block = new MenuItem("Block");
-        contextMenu.getItems().addAll(chat, block);
-
-        chat.setOnAction(e -> {
-            try {
-                Maps.createNewChatroom(selectedFriend);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-        // TODO: block friend
-            block.setOnAction(e -> {
-            });
+        reload();
     }
 
-    @Override
     public void reload() {
-        Response response = CurrentUser.chatController.getFriend();
+        Response response = CUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
             if (!friend.pending && !friend.blocked) {
                 currentSet.add(friend.friendUsername);
                 if (!removeSet.contains(friend.friendUsername)) {
+                    // add anything isn't in the list
                     obsList.add(new ListCellFriendItem(friend.friendUsername));
                 }
             }
         }
+        // remove those be deleted from the list
         removeSet.removeAll(currentSet);
         for (String username: removeSet) {
             obsList.removeIf(item -> username.equals(item.getLabelText()));

@@ -5,16 +5,13 @@ import com.jfoenix.controls.JFXTextField;
 import container.Friend;
 import container.FriendList;
 import container.Response;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.net.URL;
@@ -22,7 +19,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class AddFriendSlideController implements Initializable, ListviewController {
+public class AddFriendSlideController implements Initializable {
 
     @FXML
     private ListView<ListCellItem> listView;
@@ -48,8 +45,11 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         StackPane root = (StackPane) Maps.parents.get(Maps.ROOT_STACK_PANE);
         Label lblMsg = (Label)content.lookup("#lblMsg");
         JFXTextField textField = (JFXTextField) content.lookup("#tfUsername");
+
+        // show add friend dialog
         dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.TOP);
         dialog.setOnDialogClosed(e -> {
+            // reset the content of the dialog on close
             lblMsg.setVisible(false);
             textField.setText("");
         });
@@ -60,23 +60,23 @@ public class AddFriendSlideController implements Initializable, ListviewControll
         if (dialog != null) dialog.close();
     }
 
-    @Override
     public void reload() {
-        Response response = CurrentUser.chatController.getFriend();
+        Response response = CUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
             if (friend.pending && !friend.blocked && !friend.inviteSender) {
                 currentSet.add(friend.friendUsername);
                 if (!removeSet.contains(friend.friendUsername)) {
+                    // add anything isn't in the list
                     obsList.add(new ListCellAddFriendItem(friend.friendUsername));
                 }
             }
         }
+        // remove those be deleted from the list
         removeSet.removeAll(currentSet);
         for (String username: removeSet) {
             obsList.removeIf(item -> username.equals(item.getLabelText()));
         }
-
         removeSet.clear();
         removeSet.addAll(currentSet);
         currentSet.clear();

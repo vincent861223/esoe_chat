@@ -14,7 +14,6 @@ public class SplashScreen extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // TODO: optimize FXMLLoader load speed! Don't use static load()
         FXMLLoader loader = new FXMLLoader(getClass().getResource("welcomeWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);

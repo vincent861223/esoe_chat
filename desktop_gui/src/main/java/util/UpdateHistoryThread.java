@@ -16,16 +16,16 @@ public class UpdateHistoryThread extends Thread {
     @Override
     public void run() {
         while (true) {
-            if (CurrentUser.chatController.updateHistoryChatroom != null) {
+            if (CUser.chatController.updateHistoryChatroom != null) {
 
-                Response response = CurrentUser.chatController.getHistory(CurrentUser.chatController.updateHistoryChatroom);
+                Response response = CUser.chatController.getHistory(CUser.chatController.updateHistoryChatroom);
 
                 // Load history in chatroom pane
                 ChatroomController controller = Maps.chatroomControllers.get(
-                        CurrentUser.chatController.updateHistoryChatroom);
+                        CUser.chatController.updateHistoryChatroom);
                 if (controller == null) {
                     try {
-                        controller = Maps.loadPane(CurrentUser.chatController.updateHistoryChatroom);
+                        controller = Maps.loadPane(CUser.chatController.updateHistoryChatroom);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -34,22 +34,24 @@ public class UpdateHistoryThread extends Thread {
                 controller.loadHistory();
 
                 // Create a notification
-                if (CurrentUser.userPrefs.getBoolean(CurrentUser.NOTIFICANTION_PREF, true)
-                && Maps.notificationPrefs.get(CurrentUser.chatController.updateHistoryChatroom)) {
+                if (CUser.userPrefs.getBoolean(CUser.NOTIFICATION_PREF, true)
+                && Maps.notificationPrefs.get(CUser.chatController.updateHistoryChatroom)) {
                     MessageHistory messageHistory = (MessageHistory) response.info;
                     Message message = messageHistory.messages.get(messageHistory.messages.size() - 1);
-                    if (!message.senderID.equals(CurrentUser.chatController.userID)) {
-                        String senderName = CurrentUser.chatController.getUsername(message.senderID).msg;
+
+                    // Send a notification when the new message sender is not myself
+                    if (!message.senderID.equals(CUser.chatController.userID)) {
+                        String senderName = CUser.chatController.getUsername(message.senderID).msg;
+
                         NotificationUnit nu = new NotificationUnit(senderName, message.msg);
                         nu.show(Duration.seconds(2));
                         // plays sound effect
-                        MediaPlayer notificationSfx = new MediaPlayer(new Media(CurrentUser.class.getResource("sfx/notification.mp3").toExternalForm()));
+                        MediaPlayer notificationSfx = new MediaPlayer(new Media(CUser.class.getResource("sfx/notification.mp3").toExternalForm()));
                         notificationSfx.play();
                     }
                 }
-
-                CurrentUser.chatController.updateHistoryChatroom = null;
-
+                // reset for update
+                CUser.chatController.updateHistoryChatroom = null;
             }
         }
     }

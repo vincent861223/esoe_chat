@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.io.IOException;
@@ -25,13 +25,11 @@ public class WelcomeController implements Initializable {
     @FXML
     private StackPane boxPane;
 
-    @FXML
-    private AnchorPane basePane;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater( () -> {
             try {
+                // load all panes in the login stage
                 loadPane("loginBox");
                 loadPane("signUpBox");
                 Transition.fadeIn(boxPane,"#loginBox");
@@ -43,7 +41,7 @@ public class WelcomeController implements Initializable {
     }
 
     private void loadDialog(String fxml) throws IOException {
-        FXMLLoader loader = new FXMLLoader(CurrentUser.class.getResource(fxml + ".fxml"));
+        FXMLLoader loader = new FXMLLoader(CUser.class.getResource(fxml + ".fxml"));
         Maps.parents.put(fxml, loader.load());
         Maps.controllers.put(fxml, loader.getController());
     }
@@ -55,7 +53,7 @@ public class WelcomeController implements Initializable {
         Platform.runLater(() -> {
             FormController controller = loader.getController();
             if (controller != null) {
-                controller.setBoxPane(boxPane);
+                FormController.setBoxPane(boxPane);
             }
         });
         root.translateXProperty().set(600);
@@ -75,6 +73,7 @@ public class WelcomeController implements Initializable {
         stage.setY(event.getScreenY() - y);
     }
 
+    // Set up (x, y) location for Dragging
     @FXML
     void titleBarPressed(MouseEvent event) {
         x = event.getSceneX();
@@ -89,7 +88,7 @@ public class WelcomeController implements Initializable {
         System.exit(0);
     }
 
-    // FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it
+    // FIXME: this doesn't function properly on macOS Catalina since javafx doesn't fix it
     @FXML
     void minimizeClicked(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -12,6 +12,7 @@ public class ListViewCell extends ListCell<ListCellItem>
             setGraphic(item.getBox());
         }
         else {
+            // If item == null, remove display
             setGraphic(null);
         }
     }

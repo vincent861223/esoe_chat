@@ -2,7 +2,6 @@ package main;
 
 import com.jfoenix.controls.JFXDialog;
 import container.*;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +12,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import util.ChatInfo;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.net.URL;
@@ -21,7 +20,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class ChatListSlideController implements Initializable, ListviewController {
+public class ChatListSlideController implements Initializable {
 
     @FXML
     private VBox vBox;
@@ -40,7 +39,7 @@ public class ChatListSlideController implements Initializable, ListviewControlle
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         listView.setItems(obsList);
         listView.setCellFactory(p -> new ListViewCell());
-        Platform.runLater(this::reload);
+        reload();
     }
 
     @FXML
@@ -54,17 +53,16 @@ public class ChatListSlideController implements Initializable, ListviewControlle
 
     void closeDialog() { if (dialog != null) dialog.close(); }
 
-    @Override
     public void reload() {
-        Response response = CurrentUser.chatController.getChatroomList();
+        Response response = CUser.chatController.getChatroomList();
         String[] chatroomIDs = ((ChatroomList) response.info).chatroomIDs;
         for (String id: chatroomIDs) {
             currentSet.add(id);
             if (!removeSet.contains((id))) {
-                MessageHistory msgHistory = (MessageHistory) CurrentUser.chatController.getHistory(id).info;
+                MessageHistory msgHistory = (MessageHistory) CUser.chatController.getHistory(id).info;
                 ListCellChatroomItem newItem;
                 String chatroomName = ChatInfo.getChatroomName(id);
-                // Display Last message
+                // Display Last message on the cell item
                 if (!msgHistory.messages.isEmpty())
                     newItem = new ListCellChatroomItem(chatroomName, id, msgHistory.messages.get(msgHistory.messages.size() - 1).msg);
                 else
@@ -80,7 +78,5 @@ public class ChatListSlideController implements Initializable, ListviewControlle
             removeSet.clear();
             removeSet.addAll(currentSet);
             currentSet.clear();
-            // TODO: chatroom ID & chatroom Title
-
     }
 }

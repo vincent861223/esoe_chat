@@ -1,18 +1,15 @@
 package main;
 
 import com.jfoenix.controls.JFXToggleButton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
 public class SettingSlideController implements Initializable {
 
@@ -26,16 +23,18 @@ public class SettingSlideController implements Initializable {
         toggleNotification.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (toggleNotification.isSelected()) {
                 toggleNotification.setText("Notification On");
-                CurrentUser.userPrefs.putBoolean(CurrentUser.NOTIFICANTION_PREF, true);
+                CUser.userPrefs.putBoolean(CUser.NOTIFICATION_PREF, true);
             }
             else {
                 toggleNotification.setText("Notification Off");
-                CurrentUser.userPrefs.putBoolean(CurrentUser.NOTIFICANTION_PREF, false);
+                CUser.userPrefs.putBoolean(CUser.NOTIFICATION_PREF, false);
             }
         });
-        toggleNotification.setSelected(CurrentUser.userPrefs.getBoolean(CurrentUser.NOTIFICANTION_PREF, true));
+        // If It's the first time run this program, default = notification on(=true)
+        toggleNotification.setSelected(CUser.userPrefs.getBoolean(CUser.NOTIFICATION_PREF, true));
     }
 
+    // logout: back to lonin screen
     @FXML
     void logoutClicked(ActionEvent event) {
         Stage loginStage = Maps.stages.getOrDefault(Maps.LOGIN_STAGE, null);
@@ -46,6 +45,6 @@ public class SettingSlideController implements Initializable {
         if(mainStage != null) {
             mainStage.close();
         }
-        CurrentUser.chatController.logout();
+        CUser.chatController.logout();
     }
 }

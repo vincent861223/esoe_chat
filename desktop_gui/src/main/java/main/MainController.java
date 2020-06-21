@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 import util.UpdateHistoryThread;
 
@@ -39,12 +39,14 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // start update & notification thread
         UpdateHistoryThread updateHistoryThread = new UpdateHistoryThread();
         updateHistoryThread.start();
 
         Platform.runLater( () -> {
             try {
-                CurrentUser.testLogin();
+                // load all panes in a stack pane
                 loadSlidePane(Maps.FRIEND_LIST);
                 loadSlidePane(Maps.CHAT_LIST);
                 loadSlidePane(Maps.ADD_FRIEND_LIST);
@@ -65,7 +67,6 @@ public class MainController implements Initializable {
     public static void main(String[] args) {
         launch(args);
     }
-
 
     private void loadDialog(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
@@ -120,6 +121,7 @@ public class MainController implements Initializable {
         stage.setY(event.getScreenY() - y);
     }
 
+    // Set up (x, y) location for Dragging
     @FXML
     void Pressed(MouseEvent event) {
         x = event.getSceneX();
@@ -129,14 +131,9 @@ public class MainController implements Initializable {
     @FXML
     void closeClicked(MouseEvent event) throws NullPointerException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // FormController.popOver.setAnimated(false);
         stage.close();
-        CurrentUser.chatController.logout();
+        CUser.chatController.logout();
         System.exit(0);
-    }
-    @FXML
-    void maximizeClicked(MouseEvent event) {
-
     }
 
     // FIXME: this doesn't function properly on macOS Catalina since java doesn't fix it

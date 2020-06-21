@@ -69,7 +69,7 @@
                 <HBox id="title-bar" alignment="CENTER_RIGHT" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" spacing="3.0" style="-fx-background-color: #F0F0F0;" BorderPane.alignment="CENTER">
                     <children>
                         <FontIcon id="minimize" iconColor="#686868" iconLiteral="enty-circle-with-minus" iconSize="15" onMouseClicked="#minimizeClicked" />
-                        <FontIcon id="maximize" iconColor="#686868" iconLiteral="enty-circle-with-plus" iconSize="15" onMouseDragged="#maximizeClicked" text="" />
+                        <FontIcon id="maximize" iconColor="#686868" iconLiteral="enty-circle-with-plus" iconSize="15" />
                         <FontIcon id="close" iconColor="#686868" iconLiteral="enty-circle-with-cross" iconSize="15" onMouseClicked="#closeClicked" />
                     </children>
                     <padding>

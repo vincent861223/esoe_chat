@@ -1,4 +1,4 @@
-package login;
+package util;
 
 public class GuiException extends Exception {
 

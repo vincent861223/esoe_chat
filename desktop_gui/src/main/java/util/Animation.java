@@ -6,6 +6,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+// Animation for notification
 public class Animation {
 
     private final CustomStage stage;

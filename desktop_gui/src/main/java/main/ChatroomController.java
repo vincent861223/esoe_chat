@@ -52,13 +52,7 @@ public class ChatroomController implements Initializable {
     @FXML
     private JFXTextField inputMessage;
 
-    @FXML
-    private JFXButton btnSendMessage;
-
-    private Map<String, String> members = new HashMap<>();
     private String chatroomID;
-    private String chatroomTitle;
-    private int memberCount;
     private int loadedHistoryCount;
     private String previousSender;
     private String lastMessage;
@@ -100,13 +94,15 @@ public class ChatroomController implements Initializable {
 
     @FXML
     void sendMessage() {
-        CurrentUser.chatController.sendMessage(chatroomID, inputMessage.getText());
+        CUser.chatController.sendMessage(chatroomID, inputMessage.getText());
         inputMessage.setText("");
     }
 
     public void setChatroomInfo() {
         lblChatroomTitle.setText(Maps.chatroomListItems.get(chatroomID).getLabelText());
         int numberofmembers = ChatInfo.getNumberOfMembers(chatroomID);
+
+        // change chatroom info for multimember chatrooms
         if (numberofmembers > 2) {
             lblChatroomStatus.setText(numberofmembers + " people in the chat");
             statusIcon.setIconLiteral("fth-heart");
@@ -115,29 +111,31 @@ public class ChatroomController implements Initializable {
 
     public void loadHistory() {
         Platform.runLater(() -> {
-            MessageHistory messageHistory = (MessageHistory) CurrentUser.chatController.getHistory(chatroomID).info;
+            MessageHistory messageHistory = (MessageHistory) CUser.chatController.getHistory(chatroomID).info;
             int numberOfMessages = messageHistory.messages.size();
+
+            // read unload message
             for (int i = loadedHistoryCount; i < numberOfMessages; i++) {
                 Message msg = messageHistory.messages.get(i);
                 String timestamp = msg.timestamp;
-
                 try {
                     Date date = df.parse(msg.timestamp);
                     timestamp = sdf.format(date);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-                String username = CurrentUser.chatController.getUsername(msg.senderID).msg;
+                String username = CUser.chatController.getUsername(msg.senderID).msg;
 
                 // determine display MessageUnit style
-                if (username.equals(CurrentUser.getUsername())) {
+                if (username.equals(CUser.getUsername())) {
+                    // If sender is myself create right message unit
                     messageBox.getChildren().add(new RightMessageUnit(msg.msg, timestamp));
                 }
                 else {
                     if (username.equals(previousSender))
                         messageBox.getChildren().add(new LeftMessageUnit(msg.msg, timestamp));
                     else {
+                        // If the previous message is from a different sender
                         messageBox.getChildren().add(new LeftNameMessageUnit(msg.msg, timestamp, username));
                     }
                 }

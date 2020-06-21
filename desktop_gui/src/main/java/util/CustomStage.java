@@ -1,14 +1,14 @@
 package util;
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
+// Custom stage for notification
 public class CustomStage extends Stage {
 
     private Location bottomRight;
@@ -109,8 +109,5 @@ public class CustomStage extends Stage {
             Location loc = (Location) obj;
             return x == loc.x && y == loc.y;
         }
-
     }
-
-
 }

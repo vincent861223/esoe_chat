@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import util.CurrentUser;
+import util.CUser;
 import util.Maps;
 
 public class AddFriendDialogController {
@@ -40,19 +40,13 @@ public class AddFriendDialogController {
         addFriend();
     }
 
-    @FXML
-    void cancelAddFriend(ActionEvent event) {
-        lblMsg.setVisible(false);
-        tfUsername.setText("");
-        ((AddFriendSlideController) Maps.controllers.get(Maps.ADD_FRIEND_LIST)).closeDialog();
-    }
-
     void addFriend() {
         String username = tfUsername.getText();
         if (username.equals("")) return;
-        Response response = CurrentUser.chatController.addFriend(username);
+        Response response = CUser.chatController.addFriend(username);
         if (response.status.equals("OK")) {
             lblMsg.setVisible(false);
+            // Set up success dialog
             VBox content = (VBox) Maps.parents.get(Maps.ALERT_DIALOG);
             Label label = (Label)content.lookup("#label");
             JFXButton button = (JFXButton)content.lookup("#button");
@@ -65,6 +59,7 @@ public class AddFriendDialogController {
             dialog.show();
         }
         else {
+            // display error message
             if (response.msg.equals(USERNAME_DOES_NOT_EXIST)) {
                 lblMsg.setText("User \"" + username + "\" does not exist.");
             }
@@ -76,6 +71,13 @@ public class AddFriendDialogController {
             }
             lblMsg.setVisible(true);
         }
+    }
+
+    @FXML
+    void cancelAddFriend(ActionEvent event) {
+        lblMsg.setVisible(false);
+        tfUsername.setText("");
+        ((AddFriendSlideController) Maps.controllers.get(Maps.ADD_FRIEND_LIST)).closeDialog();
     }
 
 }

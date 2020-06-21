@@ -35,6 +35,7 @@ public class NotificationUnit extends HBox {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            // set up notification stage, position & animation
             stage = new CustomStage(root, StageStyle.UNDECORATED);
             stage.setScene(new Scene(root));
             stage.setAlwaysOnTop(true);

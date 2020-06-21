@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-public abstract class ListCellItem
-{
+public abstract class ListCellItem {
+
     @FXML
     protected HBox hBox;
     @FXML
@@ -16,4 +16,5 @@ public abstract class ListCellItem
     {
         return hBox;
     }
+
 }

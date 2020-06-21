@@ -18,7 +18,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.MainController;
 import org.controlsfx.control.PopOver;
-import util.CurrentUser;
+import util.CUser;
+import util.GuiException;
 import util.Maps;
 
 import java.io.IOException;
@@ -43,25 +44,18 @@ public class LoginController extends FormController implements Initializable {
     @FXML
     private JFXButton btnLogin;
 
-    @FXML
-    private Label lblForgetPassword;
-
     public LoginController() throws IOException { super(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // display saved info
         displaySavedInfo();
+        // Button will be enable if both field are not empty
         btnLogin.disableProperty().bind((
             inputUsername.textProperty().isNotEmpty().and(
             inputPassword.textProperty().isNotEmpty()
             ).not()
         ));
-    }
-
-    //TODO: forget password
-    @FXML
-    void handleForgetPasswordClicked(MouseEvent event) {
-
     }
 
     @FXML
@@ -71,7 +65,7 @@ public class LoginController extends FormController implements Initializable {
         try {
             username = inputUsername.getText();
             password = inputPassword.getText();
-            Response response = CurrentUser.chatController.login(username, password);
+            Response response = CUser.chatController.login(username, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             }
@@ -79,17 +73,18 @@ public class LoginController extends FormController implements Initializable {
                 throw new GuiException(response.getMsg());
             }
             else {
+                // store username & password in Preference
                 if (btnRememberMe.isSelected()) {
-                    CurrentUser.userPrefs.put(SAVED_USERNAME, username);
-                    CurrentUser.userPrefs.put(SAVED_PASSWORD, password);
+                    CUser.userPrefs.put(SAVED_USERNAME, username);
+                    CUser.userPrefs.put(SAVED_PASSWORD, password);
                 } else {
-                    CurrentUser.userPrefs.put(SAVED_USERNAME, "");
-                    CurrentUser.userPrefs.put(SAVED_PASSWORD, "");
+                    CUser.userPrefs.put(SAVED_USERNAME, "");
+                    CUser.userPrefs.put(SAVED_PASSWORD, "");
                 }
 
                 try {
-
-                    CurrentUser.setUsername(username);
+                    // Create Main Screen
+                    CUser.setUsername(username);
                     FXMLLoader loader = new FXMLLoader(MainController.class.getResource("main.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -100,8 +95,6 @@ public class LoginController extends FormController implements Initializable {
                     newStage.setTitle("ESOE CHAT");
                     newStage.show();
                     Maps.stages.put(Maps.MAIN_STAGE, newStage);
-
-                    // TODO: Not determine to hide() or to close() login stage yet. Check this later.
                     Stage loginStage = Maps.stages.getOrDefault(Maps.LOGIN_STAGE, null);
                     if (loginStage != null) {
                         loginStage.hide();
@@ -120,8 +113,8 @@ public class LoginController extends FormController implements Initializable {
     }
 
     private void displaySavedInfo() {
-        String account = CurrentUser.userPrefs.get(SAVED_USERNAME, "");
-        String password = CurrentUser.userPrefs.get(SAVED_PASSWORD, "");
+        String account = CUser.userPrefs.get(SAVED_USERNAME, "");
+        String password = CUser.userPrefs.get(SAVED_PASSWORD, "");
         if (account.length() != 0 && password.length() != 0) {
             inputUsername.setText(account);
             inputPassword.setText(password);
@@ -134,5 +127,4 @@ public class LoginController extends FormController implements Initializable {
             });
         }
     }
-
 }

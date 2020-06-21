@@ -11,14 +11,12 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.PopOver;
-import org.kordamp.ikonli.javafx.FontIcon;
-import util.CurrentUser;
+import util.CUser;
+import util.GuiException;
 import util.Maps;
 
 import java.io.IOException;
@@ -55,6 +53,7 @@ public class SignUpController extends FormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Platform.runLater(() -> {
+            // button will be enable when all field are not empty or invalid
             btnSignUp.disableProperty().bind((
                     inputUsername.textProperty().isNotEmpty().and(
                             inputPassword.textProperty().isNotEmpty().and(
@@ -68,6 +67,7 @@ public class SignUpController extends FormController implements Initializable {
                     ).not()
             ));
 
+            // show popOver when two password fields do not match
             inputConfirmPassword.focusedProperty().addListener((v, oldValue, newValue) -> {
                 if (newValue) {
                     popOver.hide();
@@ -80,6 +80,7 @@ public class SignUpController extends FormController implements Initializable {
                 }
             });
 
+            // show popOver when e-mail format is invalid
             inputEmail.setOnKeyTyped(v -> {
                 Matcher matcher = pattern.matcher(inputEmail.getText());
                 if (!matcher.matches()) {
@@ -117,13 +118,14 @@ public class SignUpController extends FormController implements Initializable {
             username = inputUsername.getText();
             email = inputEmail.getText();
             password = inputPassword.getText();
-            Response response = CurrentUser.chatController.register(username, email, password);
+            Response response = CUser.chatController.register(username, email, password);
             if (response == null) {
                 throw new GuiException("Server Offline");
             } else if (response.getStatus().equals("Failed")) {
                 throw new GuiException(response.getMsg());
             }
 
+            // Set up success message dialog
             VBox content = (VBox) Maps.parents.get(Maps.ALERT_DIALOG);
             Label label = (Label)content.lookup("#label");
             JFXButton button = (JFXButton)content.lookup("#button");
@@ -135,6 +137,7 @@ public class SignUpController extends FormController implements Initializable {
             });
             dialog.show();
             dialog.setOnDialogClosed(e -> {
+                // clean textfields after sign up successfully
                 inputUsername.setText("");
                 inputEmail.setText("");
                 inputPassword.setText("");

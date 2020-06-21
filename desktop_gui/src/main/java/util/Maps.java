@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+// Store stages, scenes, controllers
 public abstract class Maps {
 
     public static final Map<String, Stage> stages = new HashMap<>();
@@ -43,7 +44,7 @@ public abstract class Maps {
     private Maps() {}
 
     public static void createNewChatroom(String[] members) throws IOException {
-        Response response = CurrentUser.chatController.creatChatroom(members);
+        Response response = CUser.chatController.creatChatroom(members);
         displayChatroom(response.getMsg());
     }
 

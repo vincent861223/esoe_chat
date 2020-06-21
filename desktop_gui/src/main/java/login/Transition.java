@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+// Animation for Login Form & SignUp Form
 public class Transition {
     private Transition() {}
 
