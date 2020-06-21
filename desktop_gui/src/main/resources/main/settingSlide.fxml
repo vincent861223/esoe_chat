@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="415.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingSlideController">
-<children>
-    <Label layoutX="63.0" layoutY="172.0" prefHeight="17.0" prefWidth="125.0" text="Setting Slide" textAlignment="CENTER">
-        <font>
-            <Font size="17.0" />
-        </font>
-    </Label>
-</children>
-</AnchorPane>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="250.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingSlideController">
+   <children>
+      <JFXToggleButton fx:id="toggleNotification" text="Notification" toggleColor="#3fa7d6" toggleLineColor="#83dcff">
+         <font>
+            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+         </font>
+      </JFXToggleButton>
+      <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <HBox alignment="CENTER">
+         <children>
+            <JFXButton onAction="#logoutClicked" prefWidth="220.0" ripplerFill="#f79d84" style="-fx-background-color: #EE6352;" text="Log out" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" top="5.0" />
+   </padding>
+</VBox>

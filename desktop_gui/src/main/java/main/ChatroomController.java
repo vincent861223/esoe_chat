@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
 
 public class ChatroomController implements Initializable {
 
@@ -90,14 +89,13 @@ public class ChatroomController implements Initializable {
 
     @FXML
     void tfKeyPressed(KeyEvent event) {
-        System.out.println("Key pressed");
         if(event.getCode().equals(KeyCode.ENTER))
             sendMessage();
     }
 
     @FXML
     void sendMessage() {
-        CurrentUserInfo.chatController.sendMessage(chatroomID, inputMessage.getText());
+        CurrentUser.chatController.sendMessage(chatroomID, inputMessage.getText());
         inputMessage.setText("");
     }
 
@@ -117,14 +115,15 @@ public class ChatroomController implements Initializable {
 
     public void loadHistory() {
         Platform.runLater(() -> {
-            Response response = CurrentUserInfo.chatController.getHistory(chatroomID);
-            MessageHistory messageHistory = (MessageHistory) response.info;
+            MessageHistory messageHistory = (MessageHistory) CurrentUser.chatController.getHistory(chatroomID).info;
             int numberOfMessages = messageHistory.messages.size();
             for (int i = loadedHistoryCount; i < numberOfMessages; i++) {
                 Message msg = messageHistory.messages.get(i);
                 String timestamp = msg.timestamp;
-                String username = CurrentUserInfo.chatController.getUsername(msg.senderID).msg;
-                if (username.equals(CurrentUserInfo.getUsername())) {
+                String username = CurrentUser.chatController.getUsername(msg.senderID).msg;
+
+                // determine display MessageUnit style
+                if (username.equals(CurrentUser.getUsername())) {
                     messageBox.getChildren().add(new RightMessageUnit(msg.msg, timestamp));
                 }
                 else {
@@ -132,11 +131,13 @@ public class ChatroomController implements Initializable {
                         messageBox.getChildren().add(new LeftMessageUnit(msg.msg, timestamp));
                     else {
                         messageBox.getChildren().add(new LeftNameMessageUnit(msg.msg, timestamp, username));
-                        previousSender = username;
                     }
                 }
+                previousSender = username;
                 lastMessage = msg.msg;
             }
+
+            // update chatroom slide item
             loadedHistoryCount = numberOfMessages;
             Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
             scrollPane.vvalueProperty().bind(messageBox.heightProperty());

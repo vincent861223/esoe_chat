@@ -22,6 +22,11 @@ public abstract class Maps {
     public static final Map<String, ChatroomController> chatroomControllers = new HashMap<>();
     public static final Map<String, Object> controllers = new HashMap<>();
 
+    // Stage Constants
+    public static final String LOGIN_STAGE = "loginStage";
+    public static final String MAIN_STAGE = "mainStage";
+
+    // Slide Constants
     public static final String FRIEND_LIST = "friendListSlide";
     public static final String CHAT_LIST = "chatListSlide";
     public static final String ADD_FRIEND_LIST = "addFriendSlide";
@@ -36,7 +41,7 @@ public abstract class Maps {
     private Maps() {}
 
     public static void createNewChatroom(String[] members) throws IOException {
-        Response response = CurrentUserInfo.chatController.creatChatroom(members);
+        Response response = CurrentUser.chatController.creatChatroom(members);
         displayChatroom(response.getMsg());
     }
 
@@ -49,13 +54,14 @@ public abstract class Maps {
 
     }
 
-    private static void loadPane(String chatroomID) throws IOException {
+    public static ChatroomController loadPane(String chatroomID) throws IOException {
         FXMLLoader loader = new FXMLLoader(Maps.class.getResource( "chatroom.fxml"));
         Parent root = loader.load();
         chatrooms.put(chatroomID, root);
         ChatroomController controller = loader.getController();
         controller.setChatroomID(chatroomID);
         chatroomControllers.put(chatroomID, controller);
+        return controller;
     }
 
     public static void setBorderPane(BorderPane borderPane) {

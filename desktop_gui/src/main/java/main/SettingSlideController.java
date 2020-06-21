@@ -1,14 +1,26 @@
 package main;
 
-import javafx.fxml.Initializable;
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.stage.Stage;
+import util.CurrentUser;
+import util.Maps;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+public class SettingSlideController {
+    @FXML
+    private JFXToggleButton toggleNotification;
 
-public class SettingSlideController implements Initializable {
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO: Setting
-        System.out.println("setting initialized");
+    @FXML
+    void logoutClicked(ActionEvent event) {
+        Stage loginStage = Maps.stages.getOrDefault(Maps.LOGIN_STAGE, null);
+        if (loginStage != null) {
+            loginStage.show();
+        }
+        Stage mainStage = Maps.stages.getOrDefault(Maps.MAIN_STAGE, null);
+        if(mainStage != null) {
+            mainStage.close();
+        }
+        CurrentUser.chatController.logout();
     }
 }

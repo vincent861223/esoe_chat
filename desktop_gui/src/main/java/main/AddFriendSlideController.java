@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 import java.net.URL;
@@ -45,7 +45,7 @@ public class AddFriendSlideController implements Initializable, ListviewControll
     @Override
     public void reload() {
         obsList.clear();
-        Response response = CurrentUserInfo.chatController.getFriend();
+        Response response = CurrentUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
             if (friend.pending && !friend.blocked)

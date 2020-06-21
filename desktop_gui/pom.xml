@@ -16,6 +16,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>esoe_chat</groupId>
             <artifactId>chat_module</artifactId>
@@ -56,12 +57,12 @@
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-materialdesign-pack</artifactId>
-            <version>11.4.0</version>
+            <version>11.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-entypo-pack</artifactId>
-            <version>11.4.0</version>
+            <version>11.5.0</version>
         </dependency>
     </dependencies>
     <build>

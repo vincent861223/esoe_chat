@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class NewChatDialogController implements Initializable, ListviewControlle
     @Override
     public void reload() {
         obsList.clear();
-        Response response = CurrentUserInfo.chatController.getFriend();
+        Response response = CurrentUser.chatController.getFriend();
         FriendList friendList = (FriendList) response.info;
         for(Friend friend: friendList.friends){
             if (!friend.pending && !friend.blocked)

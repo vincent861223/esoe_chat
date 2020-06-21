@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class ListCellAddFriendItem extends ListCellItem {
 
     @FXML
     void comfirmFriend(ActionEvent event) {
-        CurrentUserInfo.chatController.confirmFriend(label.getText());
+        CurrentUser.chatController.confirmFriend(label.getText());
         ((AddFriendSlideController) Maps.controllers.get(ADD_FRIEND_LIST)).reload();
     }
 }

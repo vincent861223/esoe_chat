@@ -31,7 +31,7 @@
          <left>
             <VBox alignment="CENTER" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 2 0 0;" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="250.0" spacing="4.0">
+                  <HBox alignment="CENTER" prefWidth="250.0" spacing="4.0">
                      <children>
                         <Button id="transparent-button" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickedFriendList" prefWidth="50.0">
                            <graphic>
@@ -55,7 +55,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <StackPane fx:id="slidePane" maxHeight="1.7976931348623157E308" prefHeight="415.0" prefWidth="250.0" VBox.vgrow="ALWAYS">

@@ -22,7 +22,7 @@ public class SplashScreen extends Application {
         primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.show();
-        Maps.stages.put("loginStage", primaryStage);
+        Maps.stages.put(Maps.LOGIN_STAGE, primaryStage);
     }
 
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 public class AddFriendDialogController {
@@ -31,7 +31,7 @@ public class AddFriendDialogController {
     void submitAddFriend(ActionEvent event) {
         String username = tfUsername.getText();
         if (username.equals("")) return;
-        Response response = CurrentUserInfo.chatController.addFriend(username);
+        Response response = CurrentUser.chatController.addFriend(username);
         if (response.status.equals("OK")) {
             lblMsg.setVisible(false);
             VBox content = (VBox) Maps.parents.get(Maps.ALERT_DIALOG);

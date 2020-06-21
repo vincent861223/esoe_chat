@@ -11,9 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.FontIcon;
-import util.CurrentUserInfo;
+import javafx.util.Duration;
+import util.CurrentUser;
 import util.Maps;
+import util.NotificationUnit;
 import util.UpdateHistoryThread;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class MainController implements Initializable {
 
         Platform.runLater( () -> {
             try {
-                CurrentUserInfo.testLogin();
+                CurrentUser.testLogin();
                 loadSlidePane(Maps.FRIEND_LIST);
                 loadSlidePane(Maps.CHAT_LIST);
                 loadSlidePane(Maps.ADD_FRIEND_LIST);
@@ -134,7 +135,7 @@ public class MainController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         // FormController.popOver.setAnimated(false);
         stage.close();
-        CurrentUserInfo.chatController.logout();
+        CurrentUser.chatController.logout();
         System.exit(0);
     }
     @FXML

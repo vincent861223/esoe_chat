@@ -12,7 +12,7 @@ public class ChatController {
 	private static final int listenPortMin = 10000;
 	private static final int listenPortMax = 20000;
 	public volatile String updateHistoryChatroom = null;
-	private String userID;
+	public String userID;
 	private String sessionID;
 	private AccountAgent accountAgent;
 	private MessageAgent messageAgent;

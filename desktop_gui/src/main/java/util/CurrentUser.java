@@ -1,10 +1,9 @@
 package util;
 
 import client.ChatController;
-import container.Response;
 
 // This is the common parent of all controllers that should hold User information
-public class CurrentUserInfo {
+public class CurrentUser {
 
     static public ChatController chatController = new ChatController("127.0.0.1", 12345);
 
@@ -20,7 +19,7 @@ public class CurrentUserInfo {
     }
 
     public static void setUsername(String username) {
-        CurrentUserInfo.username = username;
+        CurrentUser.username = username;
     }
 
     // for testing

@@ -41,7 +41,7 @@
       <HBox alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="25.0" prefWidth="600.0" spacing="1.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <FontIcon fx:id="btnMinimize" iconColor="#3fa7d6" iconLiteral="fth-minus" iconSize="23" onMouseClicked="#minimizeClicked" styleClass="hover-hand" />
-            <FontIcon fx:id="btnClose" iconColor="#3fa7d6" iconLiteral="fth-cross" iconSize="23" onMouseClicked="#closeClicked" styleClass="hover-hand" />
+            <FontIcon fx:id="btnClose" iconColor="#3fa7d6" iconLiteral="fth-x" iconSize="23" onMouseClicked="#closeClicked" styleClass="hover-hand" />
          </children>
          <padding>
             <Insets right="3.0" />

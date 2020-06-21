@@ -8,7 +8,7 @@ import org.controlsfx.control.PopOver;
 import java.io.IOException;
 import util.*;
 
-public abstract class FormController extends CurrentUserInfo {
+public abstract class FormController extends CurrentUser {
 
     static StackPane boxPane;
     static PopOver popOver;

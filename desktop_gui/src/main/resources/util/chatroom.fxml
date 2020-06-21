@@ -53,7 +53,7 @@
                </padding></VBox>
          </content>
          <VBox.margin>
-            <Insets />
+            <Insets top="5.0" />
          </VBox.margin>
          <padding>
             <Insets left="15.0" />

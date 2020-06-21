@@ -8,12 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 import java.net.URL;
@@ -50,10 +49,10 @@ public class ChatListSlideController implements Initializable, ListviewControlle
     @Override
     public void reload() {
         obsList.clear();
-        Response response = CurrentUserInfo.chatController.getChatroomList();
+        Response response = CurrentUser.chatController.getChatroomList();
         String[] chatroomIDs = ((ChatroomList) response.info).chatroomIDs;
         for (String id: chatroomIDs) {
-            MessageHistory msgHistory = (MessageHistory)CurrentUserInfo.chatController.getHistory(id).info;
+            MessageHistory msgHistory = (MessageHistory) CurrentUser.chatController.getHistory(id).info;
 
             ListCellChatroomItem newItem;
             if (!msgHistory.messages.isEmpty())

@@ -18,11 +18,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.MainController;
 import org.controlsfx.control.PopOver;
-import util.CurrentUserInfo;
+import util.CurrentUser;
 import util.Maps;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -88,7 +89,7 @@ public class LoginController extends FormController implements Initializable {
                     userPreferences.put(SAVED_PASSWORD, "");
                 }
                 try {
-                    CurrentUserInfo.setUsername(username);
+                    CurrentUser.setUsername(username);
                     FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainWindow.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -98,12 +99,12 @@ public class LoginController extends FormController implements Initializable {
                     newStage.initStyle(StageStyle.TRANSPARENT);
                     newStage.setTitle("ESOE CHAT");
                     newStage.show();
-                    Maps.stages.put("mainStage", newStage);
+                    Maps.stages.put(Maps.MAIN_STAGE, newStage);
 
                     // TODO: Not determine to hide() or to close() login stage yet. Check this later.
-                    Stage loginStage = Maps.stages.getOrDefault("loginStage", null);
+                    Stage loginStage = Maps.stages.getOrDefault(Maps.LOGIN_STAGE, null);
                     if (loginStage != null) {
-                        loginStage.close();
+                        loginStage.hide();
                     }
                 } catch (Exception e) {
                     System.out.println( "ERROR: "+ e.getMessage());
