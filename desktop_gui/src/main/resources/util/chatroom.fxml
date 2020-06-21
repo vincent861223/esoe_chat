@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,11 +12,11 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import org.kordamp.ikonli.javafx.StackedFontIcon?>
 
-<VBox prefHeight="475.0" prefWidth="550.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/chatroom.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChatroomController">
+<VBox prefHeight="475.0" prefWidth="550.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChatroomController">
    <children>
       <Label id="lblChatroomTitle" fx:id="lblChatroomTitle" contentDisplay="RIGHT" graphicTextGap="5.0" maxHeight="1.7976931348623157E308" text="Chatroom Title" textFill="#f79d84">
          <font>
-            <Font name="Noto Sans CJK TC Light" size="30.0" />
+            <Font name="Noto Sans CJK TC Light" size="28.0" />
          </font>
          <graphic>
             <StackedFontIcon iconColor="#fac05e" iconSize="22">
@@ -47,13 +48,13 @@
       </HBox>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <content>
-            <VBox fx:id="messageBox" alignment="TOP_CENTER" fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="495.0" spacing="5.0">
+            <VBox fx:id="messageBox" fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="525.0" spacing="5.0">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding></VBox>
          </content>
          <VBox.margin>
-            <Insets top="2.0" />
+            <Insets left="2.0" right="2.0" top="2.0" />
          </VBox.margin>
          <padding>
             <Insets left="15.0" />
@@ -79,4 +80,8 @@
          </padding>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@styles/chatroom.css" />
+      <URL value="@../main/styles/listView.css" />
+   </stylesheets>
 </VBox>
