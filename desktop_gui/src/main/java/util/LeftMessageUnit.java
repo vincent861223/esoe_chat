@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+// Left message unit without displaying sender name
 public class LeftMessageUnit extends MessageUnit {
 
     public LeftMessageUnit() {

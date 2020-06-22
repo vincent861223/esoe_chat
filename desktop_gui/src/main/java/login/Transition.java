@@ -12,6 +12,11 @@ import javafx.util.Duration;
 public class Transition {
     private Transition() {}
 
+    /**
+     * Transition in animation for forms in login
+     * @param boxPane pane to show form
+     * @param cssID for getting the transition form
+     */
     static void fadeIn(StackPane boxPane, String cssID) {
         Node node = boxPane.lookup(cssID);
         Timeline timeline = new Timeline();
@@ -21,6 +26,11 @@ public class Transition {
         timeline.play();
     }
 
+    /**
+     * Transition out animation for forms in login
+     * @param boxPane pane to show form
+     * @param cssID for getting the transition form
+     */
     static void fadeOut(StackPane boxPane, String cssID) {
         Node node = boxPane.lookup(cssID);
         Timeline timeline = new Timeline();

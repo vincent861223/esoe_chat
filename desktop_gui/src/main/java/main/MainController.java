@@ -114,6 +114,7 @@ public class MainController implements Initializable {
         currentSlide.setVisible(true);
     }
 
+    // mouse drage
     @FXML
     void Dragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

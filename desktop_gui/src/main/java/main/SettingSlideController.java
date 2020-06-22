@@ -16,8 +16,6 @@ public class SettingSlideController implements Initializable {
     @FXML
     private JFXToggleButton toggleNotification;
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         toggleNotification.selectedProperty().addListener((observable, oldValue, newValue) -> {

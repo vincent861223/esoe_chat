@@ -43,11 +43,21 @@ public abstract class Maps {
 
     private Maps() {}
 
+    /**
+     * creates a new chatroom
+     * @param members
+     * @throws IOException
+     */
     public static void createNewChatroom(String[] members) throws IOException {
         Response response = CUser.chatController.creatChatroom(members);
         displayChatroom(response.getMsg());
     }
 
+    /**
+     * displays chatroom on the right pane(borderPane's center)
+     * @param chatroomID
+     * @throws IOException
+     */
     public static void displayChatroom(String chatroomID) throws IOException {
         if (!chatrooms.containsKey(chatroomID)) {
             loadPane(chatroomID);
@@ -58,6 +68,12 @@ public abstract class Maps {
 
     }
 
+    /**
+     * loads chatroom pane
+     * @param chatroomID
+     * @return the chatroom controller
+     * @throws IOException
+     */
     public static ChatroomController loadPane(String chatroomID) throws IOException {
         FXMLLoader loader = new FXMLLoader(Maps.class.getResource( "chatroom.fxml"));
         Parent root = loader.load();
@@ -69,8 +85,11 @@ public abstract class Maps {
         return controller;
     }
 
+    /**
+     * sets borderPane for displaying chatroom
+     * @param borderPane
+     */
     public static void setBorderPane(BorderPane borderPane) {
         Maps.borderPane = borderPane;
     }
-
 }

@@ -40,9 +40,6 @@ public class FriendListSlideController implements Initializable {
                 ioException.printStackTrace();
             }
         });
-        // TODO: block friend
-        block.setOnAction(e -> {
-        });
     }
 
     @Override

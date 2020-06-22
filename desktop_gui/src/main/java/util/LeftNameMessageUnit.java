@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+// Left message unit with displaying sender name
 public class LeftNameMessageUnit extends MessageUnit {
 
     @FXML
