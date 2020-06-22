@@ -66,6 +66,7 @@ public class WelcomeController implements Initializable {
         Transition.fadeIn(boxPane, "#signUpBox");
     }
 
+    // Mouse Drag
     @FXML
     void titleBarDragged(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

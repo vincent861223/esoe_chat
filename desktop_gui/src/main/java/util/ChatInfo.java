@@ -6,6 +6,11 @@ public abstract class ChatInfo {
 
     static int numberOfMember;
 
+    /**
+     * Determines display chatroom name
+     * @param chatroomID
+     * @return display chatroom name
+     */
     public static String getChatroomName(String chatroomID) {
         String myName = CUser.chatController.getUsername().msg;
         StringBuilder ret = new StringBuilder();
@@ -20,6 +25,11 @@ public abstract class ChatInfo {
         return ret.toString();
     }
 
+    /**
+     * Calculates the number of chatroom members
+     * @param chatroomID
+     * @return the number of chatroom members
+     */
     public static int getNumberOfMembers(String chatroomID) {
         String nameString = CUser.chatController.getChatroomName(chatroomID).msg;
         numberOfMember = nameString.split(" ").length;

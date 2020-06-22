@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+// Right message unit (when the sender is myself)
 public class RightMessageUnit extends MessageUnit {
 
     public RightMessageUnit() {

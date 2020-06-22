@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane id="loginBox" fx:id="loginBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-color: #FDFCDC; -fx-background-radius: 5;" stylesheets="@styles/loginbox.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="179.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
+</columnConstraints>
+<rowConstraints>
+    <RowConstraints maxHeight="42.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="242.0" minHeight="10.0" prefHeight="211.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="49.0" minHeight="42.0" prefHeight="49.0" vgrow="SOMETIMES" />
+</rowConstraints>
+<children>
+    <VBox prefHeight="235.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <children>
+            <Label text="Username" >
+                <VBox.margin>
+                    <Insets left="1.0" />
+                </VBox.margin>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Label>
+            <JFXTextField fx:id="inputUsername" >
+                <VBox.margin>
+                    <Insets bottom="3.0" top="3.0" />
+                </VBox.margin>
+            </JFXTextField>
+            <Label text="Password">
+                <VBox.margin>
+                    <Insets left="1.0" top="10.0" />
+                </VBox.margin>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Label>
+            <JFXPasswordField fx:id="inputPassword" >
+                <VBox.margin>
+                    <Insets bottom="3.0" top="3.0" />
+                </VBox.margin>
+            </JFXPasswordField>
+            <JFXCheckBox fx:id="btnRememberMe" checkedColor="#3fa7d6" text="Remember Me" unCheckedColor="#7cccee">
+                <VBox.margin>
+                    <Insets left="1.0" top="10.0" />
+                </VBox.margin>
+                <font>
+                    <Font size="13.0" />
+                </font>
+                <styleClass>
+                    <String fx:value="hover-hand" />
+                </styleClass>
+            </JFXCheckBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Label fx:id="loginMsg" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 14px;" text="Login Message" textFill="#f07167" visible="false">
+            </Label>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <JFXButton fx:id="btnLogin" alignment="CENTER" maxWidth="1.7976931348623157E308" onAction="#handleLoginClicked" prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: #3fa7d6;" styleClass="hover-hand" text="Login">
+            </JFXButton>
+        </children>
+    </VBox>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <children>
+            <Label fx:id="lblForgetPassword" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="16.0" text="Forget password?" underline="true">
+               <styleClass>
+                  <String fx:value="link-label" />
+                  <String fx:value="hover-hand" />
+               </styleClass>
+            </Label>
+        </children>
+    </AnchorPane>
+</children>
+</GridPane>

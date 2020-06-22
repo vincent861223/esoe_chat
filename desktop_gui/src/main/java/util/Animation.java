@@ -18,6 +18,7 @@ public class Animation {
         sq = new SequentialTransition(setupShowAnimation(), setupDismissAnimation());
     }
 
+    // pop out
     public Timeline setupDismissAnimation() {
         Timeline tl = new Timeline();
 
@@ -38,7 +39,7 @@ public class Animation {
         return tl;
     }
 
-
+    // pop in
     public Timeline setupShowAnimation() {
         Timeline tl = new Timeline();
 

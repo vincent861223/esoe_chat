@@ -1,0 +1,44 @@
+#close, #minimize, #maximize, #function-icon {
+    -fx-icon-color: #686868;
+}
+
+#function-icon:pressed {
+    -fx-icon-color: #FAC05E;
+}
+
+#close:hover {
+    -fx-icon-color: #EE6352;
+}
+
+#minimize:hover {
+    -fx-icon-color: #FAC05E;
+}
+
+#maximize:hover {
+    -fx-icon-color: #50CD90;
+}
+
+#side-pane {
+    /*-fx-effect: dropshadow(three-pass-box, #686868, 10, 0, 10, 0);*/
+}
+
+#title-bar {
+}
+
+#transparent-button{
+    -fx-border-color: transparent;
+    /*-fx-border-color: #3fa7d6;*/
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#transparent-button:hover {
+    -fx-border-color: #3fa7d6;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+/*.button:pressed {*/
+/*    -fx-background-color: black;*/
+/*    -fx-text-fill: white;*/
+/*}*/
