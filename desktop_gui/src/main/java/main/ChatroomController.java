@@ -99,7 +99,13 @@ public class ChatroomController implements Initializable {
     }
 
     public void setChatroomInfo() {
-        lblChatroomTitle.setText(Maps.chatroomListItems.get(chatroomID).getLabelText());
+        ListCellChatroomItem item = Maps.chatroomListItems.get(chatroomID);
+        if (item == null) {
+            ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
+            item = Maps.chatroomListItems.get(chatroomID);
+        }
+        item.setLabel2(lastMessage);
+        lblChatroomTitle.setText(item.getLabelText());
         int numberofmembers = ChatInfo.getNumberOfMembers(chatroomID);
 
         // change chatroom info for multimember chatrooms
@@ -113,7 +119,6 @@ public class ChatroomController implements Initializable {
         Platform.runLater(() -> {
             MessageHistory messageHistory = (MessageHistory) CUser.chatController.getHistory(chatroomID).info;
             int numberOfMessages = messageHistory.messages.size();
-
             // read unload message
             for (int i = loadedHistoryCount; i < numberOfMessages; i++) {
                 Message msg = messageHistory.messages.get(i);
@@ -145,8 +150,14 @@ public class ChatroomController implements Initializable {
 
             // update chatroom slide item
             loadedHistoryCount = numberOfMessages;
-            if (lastMessage != null)
+
+            if (lastMessage != null) {
+                ListCellChatroomItem item = Maps.chatroomListItems.get(chatroomID);
+                if (item == null) {
+                    ((ChatListSlideController) Maps.controllers.get(Maps.CHAT_LIST)).reload();
+                }
                 Maps.chatroomListItems.get(chatroomID).setLabel2(lastMessage);
+            }
             scrollPane.vvalueProperty().bind(messageBox.heightProperty());
         });
     }

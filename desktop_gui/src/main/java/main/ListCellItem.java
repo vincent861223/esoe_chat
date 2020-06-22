@@ -11,7 +11,9 @@ public abstract class ListCellItem {
     @FXML
     protected Label label;
 
-    public String getLabelText() { return label.getText(); }
+    public String getLabelText() {
+        return label.getText();
+    }
     public HBox getBox()
     {
         return hBox;

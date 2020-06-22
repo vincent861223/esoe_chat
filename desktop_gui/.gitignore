@@ -1,10 +1,8 @@
-/target/
+#/target/
 /out/
 .DS_Store
 
-# Delete Later
-/src/main/java/login/Test*
-/src/main/java/login/test*
+/src/main/java/main/TestMain
 
 
 

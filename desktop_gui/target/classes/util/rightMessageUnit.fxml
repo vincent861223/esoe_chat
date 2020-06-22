@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="TOP_RIGHT" maxWidth="-Infinity" prefWidth="500.0" spacing="3.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox alignment="BOTTOM_RIGHT" spacing="5.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Label fx:id="timestamp" text="11:55 PM" textFill="#686868">
+                    <font>
+                        <Font name="Noto Sans CJK TC Light" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="message" maxWidth="350.0" style="-fx-background-radius: 10; -fx-background-color: #fac05e;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." textAlignment="RIGHT" wrapText="true">
+                    <font>
+                        <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="5.0" left="12.0" right="12.0" top="5.0" />
+                    </padding>
+                </Label>
+            </children>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </HBox>
+    </children>
+</fx:root>

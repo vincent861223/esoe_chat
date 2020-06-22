@@ -1,0 +1,2 @@
+JAVA_VERSION="11.0.6"
+MODULES="java.base java.logging java.transaction.xa java.xml java.sql com.google.gson java.datatransfer java.prefs java.desktop chat_module javafx.base jdk.unsupported javafx.graphics javafx.controls com.jfoenix java.scripting javafx.fxml javafx.media org.controlsfx.controls org.kordamp.iconli.core org.kordamp.ikonli.entypo org.kordamp.ikonli.feather org.kordamp.ikonli.javafx org.kordamp.ikonli.materialdesign desktop_gui"

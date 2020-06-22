@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane id="signUpBox" prefHeight="302.0" prefWidth="274.0" style="-fx-background-radius: 5; -fx-background-color: #FDFCDC;" stylesheets="@styles/signupbox.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SignUpController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="42.0" minHeight="33.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="0.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox spacing="19.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <JFXTextField fx:id="inputUsername" labelFloat="true" promptText="Username" >
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="14.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="inputEmail" labelFloat="true" promptText="E-mail" />
+            <JFXPasswordField fx:id="inputPassword" labelFloat="true" promptText="Password" />
+            <JFXPasswordField fx:id="inputConfirmPassword" labelFloat="true" promptText="Confirm your password" >
+               <font>
+                  <Font name="Lucida Grande" size="13.0" />
+               </font></JFXPasswordField>
+            <JFXButton fx:id="btnSignUp" maxWidth="1.7976931348623157E308" onAction="#handleSignUp" prefHeight="12.0" prefWidth="184.0" ripplerFill="#3fa7d6" style="-fx-background-color: #59CD90;" styleClass="hover-hand" text="Sign Up" textFill="WHITE" />
+         </children>
+      </VBox>
+       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+           <children>
+               <Label fx:id="btnGoBackToLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="4.0" onMouseClicked="#haveAccountClicked" text="Already have an account?" underline="true">
+               <styleClass>
+                  <String fx:value="link-label" />
+                  <String fx:value="hover-hand" />
+               </styleClass>
+               </Label>
+           </children>
+       </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@styles/hover.css" />
+   </stylesheets>
+</GridPane>

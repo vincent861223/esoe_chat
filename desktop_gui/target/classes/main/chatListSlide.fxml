@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="250.0" stylesheets="@styles/listView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ChatListSlideController">
+   <children>
+      <Label prefWidth="230.0" style="-fx-border-color: #a1a1a1; -fx-border-width: 0 0 1 0;" text=" Chatrooms" textFill="#3c3c3c">
+         <font>
+            <Font name="Noto Sans CJK TC Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="3.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <ListView fx:id="listView" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+      <JFXButton onAction="#clickedCreateNewChatroom" prefHeight="30.0" prefWidth="220.0" ripplerFill="WHITE" style="-fx-background-color: #3FA7D6;" text="Create A New Chatroom" textFill="WHITE">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+   <padding>
+      <Insets bottom="5.0" />
+   </padding>
+</VBox>

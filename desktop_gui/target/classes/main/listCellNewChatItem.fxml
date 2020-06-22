@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox fx:id="hBox" alignment="CENTER_LEFT" prefWidth="230.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <FontIcon iconColor="#59cd90" iconLiteral="mdi-account-circle" iconSize="40" />
+        <Label fx:id="label" text="Label">
+         <font>
+            <Font name="Noto Sans CJK TC Regular" size="13.0" />
+         </font>
+      </Label>
+      <Region prefHeight="40.0" HBox.hgrow="ALWAYS" />
+      <StackPane>
+         <children>
+            <JFXButton fx:id="cancelButton" onAction="#removeFromChat" prefWidth="60.0" style="-fx-background-color: #3FA7D6;" text="Cancel" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="addButton" onAction="#addToChat" prefWidth="60.0" style="-fx-background-color: #a1a1a1;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans CJK TC DemiLight" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </StackPane>
+    </children>
+</HBox>

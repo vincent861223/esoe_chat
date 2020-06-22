@@ -27,7 +27,7 @@
             </StackedFontIcon>
          </graphic>
          <VBox.margin>
-            <Insets left="15.0" right="10.0" top="5.0" />
+            <Insets left="15.0" right="10.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 0 2 0;">
