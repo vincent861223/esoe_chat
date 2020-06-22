@@ -8,6 +8,9 @@ import java.text.SimpleDateFormat;
 import java.security.MessageDigest;
 
 public class Database {
+	// This is the base class Database
+	// This class defined some basic function of doing SQL operation. 
+	
 	private String dbPath;
 	private String initSQLPath;
 	public Database(String dbPath, String initSQLPath){
@@ -30,6 +33,7 @@ public class Database {
 	}
 	
 	private void initDB(){
+		// initialize the DB will a initSQL file
 	    try{	
 	    	File f = new File(this.initSQLPath);
 	    	Scanner s = new Scanner(f);
@@ -54,7 +58,7 @@ public class Database {
 	}
 
 	private Connection connect(){
-
+		// Connect to the database
 		Connection conn = null;
 		
 		try {
@@ -69,6 +73,7 @@ public class Database {
 	}
 	
 	protected int maxID(String table) {
+		// get the maxID of the specific table
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 
 		String sql = "SELECT MAX(id) FROM " + "`" + table + "`" ;
@@ -92,6 +97,7 @@ public class Database {
 	}
 	
 	protected int len(String table) {
+		// Get the number of rows of the table
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 
 		String sql = "SELECT * FROM " + "`" + table + "`" ;
@@ -116,6 +122,7 @@ public class Database {
 	}
 
 	protected Boolean insert(String table,  HashMap<String, String> attr) {
+		// Insert a row into database
 		//String sql = "INSERT INTO JsonHotel (star, locality, street_address) VALUES (1, 'Taipei', 'abc street');";
 		String columns = "", values = "";
 		for(String key: attr.keySet()){

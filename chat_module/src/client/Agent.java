@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Agent{
+	//Agent is the super class that is responsible for sending request to Server
 	protected String ip;
 	protected int port;
 	
@@ -26,6 +27,7 @@ public class Agent{
 	}
 	
 	public Response sendRequest(Request request, int timeout) {
+		// Sender a request to server
 		Socket server;
 		ObjectOutputStream out;
 		ObjectInputStream in;

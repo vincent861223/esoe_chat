@@ -5,6 +5,9 @@ import java.net.Socket;
 
 
 public class Server extends Thread{
+	// The entry point of Server. 
+	// This class will open a listen port and accept client when the client is connected.
+	// When a client is accepted, a new Request handler thread will be spawned to handle the client request.
 	private ServerSocket server;
 	private int port;
 	

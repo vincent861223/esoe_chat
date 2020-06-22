@@ -6,6 +6,7 @@ import container.Response;
 import container.SessionInfo;
 
 public class ChatController {
+	// This is the main controller class that is responsible for doing all kinds of chat operation
 	private String serverIP;
 	private int serverPort;
 	private int listenPort;
@@ -29,6 +30,7 @@ public class ChatController {
 	}
 	
 	public Response register(String username, String email, String password) {
+		//Register a new account
 		return accountAgent.register(username, email, password);
 	}
 	
@@ -55,6 +57,7 @@ public class ChatController {
 	}
 	
 	public Response getUsername(String userID) {
+		// Get the username from the userID
 		Response response = accountAgent.getUsername(userID);
 		return response;
 	}

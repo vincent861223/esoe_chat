@@ -27,11 +27,14 @@ import container.MessageInfo;;
 
 
 public class ChatDatabase extends Database {
+	// This class define the chat operations that modify the database.
+	// It is a derived class of Database, so it has the basic operations of database
 	public ChatDatabase(String dbPath, String initSQLPath) {
 		super(dbPath, initSQLPath);
 	}
 	
 	public Response addUser(RegisterInfo registerInfo) {
+		// Add a new user to the database
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", UUID.randomUUID().toString());
 		attr.put("username", registerInfo.username);
@@ -43,6 +46,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response login(LoginInfo loginInfo, String client_ip, int client_port) {
+		// check the login info (username, password ... ), and create a new session if successful logged in. 
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("username", loginInfo.username);
 		attr.put("password", hashPassword(loginInfo.password));
@@ -61,6 +65,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response logout(String sessionID) {
+		// remove the session information from the database
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("sessionID", sessionID);
 		if(delete("Session", attr)) return new Response("OK");
@@ -68,6 +73,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response addFriend(AddFriendInfo addFriendInfo) {
+		// Send an invitation to add a new friend.
 		String friendID = getUserID(addFriendInfo.friendUsername);
 		if(friendID == null) return new Response("Failed", "friend username does not exist");
 		// Check if the user exist.
@@ -98,6 +104,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response modifyFriend(String userID, Friend friend) {
+		// Modify the status of a friend relationship (pending, blocked)
 		// Check if the user exist.
 		String friendUserID = getUserID(friend.friendUsername);
 		if(friendUserID == null || !userExist(userID) || !userExist(friendUserID)) return new Response("Failed", "User not exist"); 
@@ -124,6 +131,7 @@ public class ChatDatabase extends Database {
 	
 	
 	public Response newChatroom(ChatroomInfo chatroomInfo) {
+		// Create a new chatroom for the users in the userList.
 		// Check member relationship
 		// each member must be a friend of the establisher (the first member)
 		String[] members = new String[chatroomInfo.members.length];
@@ -151,6 +159,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response getChatroomList(String userID) {
+		// Get the list of chatroomIDs that the user is involved
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("memberID", userID);
 		List<HashMap<String, String>> results = select("Chatroom", attr);
@@ -162,6 +171,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response getChatroomMember(String chatroomID) {
+		// get the member in the chatroom
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("chatroomID", chatroomID);
 		List<HashMap<String, String>> results = select("Chatroom", attr);
@@ -173,6 +183,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response getChatroomName(String chatroomID) {
+		// get the chatroom name of the chatroomID
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("chatroomID", chatroomID);
 		List<HashMap<String, String>> results = select("Chatroom", attr);
@@ -189,6 +200,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response sendMessage(MessageInfo messageInfo) {
+		// add a row in the history table, and send message to all the members in the chatroom to update the chat history. 
 		// Check if the chatroom exist
 		if(!chatroomExist(messageInfo.chatroomID)) return new Response("Failed", "Chatroom does not exist.");
 		// insert the message into Message table
@@ -222,6 +234,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response getFriend(UserInfo userInfo) {
+		// Get the friend list of a user. 
 		if(!userExist(userInfo.userID)) return new Response("Failed", "User does not exist");
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", userInfo.userID);
@@ -235,6 +248,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public Response getHistory(GetHistoryInfo getHistoryInfo) {
+		// Get the chat history associated with the specified chatroom.
 		// Check if the chatroom exist
 		if(!chatroomExist(getHistoryInfo.chatroomID)) return new Response("Failed", "Chatroom does not exist.");
 		HashMap<String, String> attr = new HashMap<String, String>();
@@ -252,6 +266,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public String getUserID(String username) {
+		// Get the userID by the username
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("username", username);
 		List<HashMap<String, String>> results = select("User", attr);
@@ -260,6 +275,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	public String getUsername(String userID) {
+		// get the username by the userID
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", userID);
 		List<HashMap<String, String>> results = select("User", attr);
@@ -268,6 +284,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	private Boolean areFriend(String userA, String userB) {
+		// check if two user are friend.
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", userA);
 		attr.put("friendID", userB);
@@ -278,6 +295,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	private Boolean arePendingFriend(String userA, String userB) {
+		// Check if the two users are pending friends (invitation not confirmed) 
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", userA);
 		attr.put("friendID", userB);
@@ -288,6 +306,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	private Boolean userExist(String userID) {
+		// Check if the user exists in the database. 
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("userID", userID);
 		List<HashMap<String, String>> results = select("User", attr); // Check if the user exist
@@ -296,6 +315,7 @@ public class ChatDatabase extends Database {
 	}
 	
 	private Boolean chatroomExist(String chatroomID) {
+		// check if the chatroom exist in the database.
 		HashMap<String, String> attr = new HashMap<String, String>();
 		attr.put("chatroomID", chatroomID);
 		List<HashMap<String, String>> results = select("Chatroom", attr); // Check if the user exist

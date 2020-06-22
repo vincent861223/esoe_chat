@@ -8,7 +8,8 @@ import container.MessageHistory;
 import container.Response;
 import container.Message;;
 
-public class Main{
+public class Main{ 
+	// Command line version of the chat application, also the testing unit for our API.
 	
 	public static void main(String[] argv) {
 		ChatController chatController = new ChatController("127.0.0.1", 12345);

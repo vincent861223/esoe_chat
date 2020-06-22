@@ -9,6 +9,7 @@ import container.Response;
 import container.UpdateHistoryInfo;
 
 public class ServerRequestHandler extends Thread{
+	// The request handle that handles the request from the server, and send a response back the server. 
 	private ServerSocket server;
 	private int port;
 	private ChatController chatController;

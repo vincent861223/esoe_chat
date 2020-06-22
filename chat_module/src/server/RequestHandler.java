@@ -18,6 +18,8 @@ import server.database.ChatDatabase;
 
 
 public class RequestHandler extends Thread{
+	// The class that handles the request. Each time a new client connected to the server
+	// , a new RequestHandle thread will be spawned to handle the request of the client.
 	private Socket clientSocket;
 	
 	public RequestHandler(Socket clientSocket) {
@@ -50,7 +52,7 @@ public class RequestHandler extends Thread{
 		}
 	}
 	public Response handleRequest(Request request, String client_ip, int client_port) {
-		// FIXME: see if need to change path when packaging?
+		// call different API base on the requested command. 
 		String current = System.getProperty("user.dir");
 		ChatDatabase chatDatabase = new ChatDatabase(current + "/Database/chat.db", current + "/Database/init_table.sql");
 
