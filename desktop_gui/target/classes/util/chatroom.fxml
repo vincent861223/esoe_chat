@@ -16,7 +16,7 @@
    <children>
       <Label id="lblChatroomTitle" fx:id="lblChatroomTitle" contentDisplay="RIGHT" graphicTextGap="5.0" maxHeight="1.7976931348623157E308" text="Chatroom Title" textFill="#f79d84">
          <font>
-            <Font name="Noto Sans CJK TC Light" size="28.0" />
+            <Font name="Noto Sans CJK TC Light" size="30.0" />
          </font>
          <graphic>
             <StackedFontIcon iconColor="#fac05e" iconSize="22">
@@ -27,7 +27,7 @@
             </StackedFontIcon>
          </graphic>
          <VBox.margin>
-            <Insets left="15.0" right="10.0" />
+            <Insets left="15.0" right="10.0" top="1.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: #F0F0F0; -fx-border-width: 0 0 2 0;">
@@ -43,7 +43,7 @@
             <Insets left="10.0" right="10.0" />
          </VBox.margin>
          <padding>
-            <Insets bottom="5.0" left="7.0" />
+            <Insets bottom="6.0" left="7.0" />
          </padding>
       </HBox>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
