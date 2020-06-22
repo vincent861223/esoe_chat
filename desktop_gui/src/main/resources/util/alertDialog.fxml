@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="153.0" prefWidth="194.0" spacing="5.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="153.0" prefWidth="194.0" spacing="5.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FontIcon iconColor="#f79d84" iconLiteral="mdi-checkbox-marked-circle-outline" iconSize="35" />
       <Label id="label" fx:id="label" text="Sign up completed!" textAlignment="CENTER" textFill="#686868">
