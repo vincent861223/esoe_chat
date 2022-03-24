@@ -1,6 +1,14 @@
 # ESOE Chat
 
-### Requirement
+### Screenshots
+
+![login](screenshots/login.png?raw=true)
+
+![main screen](screenshots/main.png?raw=true)
+
+
+
+### Requirements
 
 - JDK 11.0.1
 - javafx-jmods 11.0.2
