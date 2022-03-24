@@ -1,6 +1,6 @@
 # ESOE Chat
 
-### Requiremnet
+### Requirement
 
 - JDK 11.0.1
 - javafx-jmods 11.0.2
